@@ -1,9 +1,6 @@
-<script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-</script>
+<script setup lang="ts"></script>
 
 <template>
-  <HelloWorld msg="yay" />
   <nav>
     <RouterLink to="/">Home</RouterLink>
     <RouterLink to="/about">About</RouterLink>
@@ -12,3 +9,9 @@ import HelloWorld from './components/HelloWorld.vue'
     <RouterView />
   </main>
 </template>
+
+<style>
+body {
+  background-color: #ffeee2;
+}
+</style>
