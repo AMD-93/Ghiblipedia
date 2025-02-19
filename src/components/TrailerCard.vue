@@ -22,11 +22,10 @@ defineProps({
 <template>
   <div>
     <div class="card-container">
-      <h1>Trailers</h1>
       <div class="card-content">
         <div class="trailer">
           <div class="trailer-clip">
-            <video width="320" height="240" controls>
+            <video width="280" height="200" controls>
               <!-- <source src="movie.mp4" type="video/mp4" />
               <source src="movie.ogg" type="video/ogg" /> -->
               Your browser does not support the video tag.
@@ -59,6 +58,7 @@ defineProps({
   border-radius: 10px;
   padding: 1rem;
   margin: auto;
+  margin-top: 1rem;
   width: 80%;
 }
 
@@ -68,7 +68,6 @@ defineProps({
 }
 
 .trailer {
-  flex-grow: 2;
   display: flex;
   flex-direction: row;
 }
@@ -81,17 +80,30 @@ defineProps({
   display: flex;
   flex-direction: column;
   padding: 1rem;
-  flex-grow: 2;
+  width: 70%;
+  justify-content: center;
+  text-align: justify;
 }
 
 .links {
   display: flex;
-  flex-grow: 1;
   flex-direction: column;
   justify-content: center;
+  align-items: end;
+  width: 20%;
+  padding: 1rem;
+}
+
+h2 {
+  font-size: 20px;
 }
 
 h3 {
   font-style: italic;
+  font-size: 15px;
+}
+
+p {
+  font-size: 13px;
 }
 </style>
