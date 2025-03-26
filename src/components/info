@@ -1,0 +1,13 @@
+api key: AIzaSyCkeEknyIEzqzvAlqx677KxdAwkf0nKZd4
+
+channel id: UCb9ME2w6Y_4jChUVlWdltVg
+
+playlist id: PLrMoWLZPWpBU8qR-2hp90obIEEAelORR1
+
+url: https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLrMoWLZPWpBU8qR-2hp90obIEEAelORR1&key=AIzaSyCkeEknyIEzqzvAlqx677KxdAwkf0nKZd4
+
+Authorization: Bearer [YOUR_ACCESS_TOKEN]
+Accept: application/json
+
+api key OMDb: 1a00d434
+http://www.omdbapi.com/?apikey=1a00d434&
