@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import TrailerCard from '@/components/TrailerCard.vue'
-import UpcomingCarousel from '@/components/UpcomingCarousel.vue'
+import TrailerCard from '../components/TrailerCard.vue'
+import UpcomingCarousel from '../components/UpcomingCarousel.vue'
 </script>
 
 <template>
