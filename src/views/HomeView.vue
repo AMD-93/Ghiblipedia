@@ -1,11 +1,6 @@
 <script setup lang="ts">
-<<<<<<< HEAD
-import TrailerCard from '../components/TrailerCard.vue'
-import UpcomingCarousel from '../components/UpcomingCarousel.vue'
-=======
 import TrailerCard from '@/components/TrailerCard.vue'
 import Carousel from '@/components/CarouselComponent.vue'
->>>>>>> origin/main
 </script>
 
 <template>
