@@ -4,11 +4,11 @@ import 'vueperslides/dist/vueperslides.css'
 </script>
 
 <template>
-  <div class="upcoming-carousel">
+  <div class="carousel">
     <vueper-slides
       class="no-shadow"
-      :visible-slides="3"
-      slide-multiple
+      :bullets="false"
+      :visible-slides="1"
       :gap="3"
       :slide-ratio="1 / 4"
       :dragging-distance="200"
@@ -20,14 +20,15 @@ import 'vueperslides/dist/vueperslides.css'
 </template>
 
 <style scoped>
-.upcoming-carousel {
+.carousel {
   background-color: #b7b7a4;
-  padding: 2rem;
-  margin: auto;
-  margin-top: 1rem;
+  padding: 4rem;
+  margin: 1rem;
   border-radius: 10px;
   width: 50%;
 }
 </style>
 
 <!-- https://antoniandre.github.io/vueper-slides/?ref=madewithvuejs.com#ex--show-multiple-slides-and-gap -->
+
+<!-- https://www.youtube.com/watch?v=Bzw2T18YDJ4 youtube data api -->
