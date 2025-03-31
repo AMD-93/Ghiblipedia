@@ -13,14 +13,9 @@
     "type-check": "vue-tsc --build"
   },
   "dependencies": {
-<<<<<<< HEAD
-    "@mdi/font": "^5.9.55",
-    "roboto-fontface": "^0.10.0",
-=======
     "@mdi/font": "5.9.55",
     "axios": "^1.8.2",
     "roboto-fontface": "*",
->>>>>>> origin/main
     "vue": "^3.5.13",
     "vue-router": "^4.5.0",
     "vueperslides": "^3.6.0",
