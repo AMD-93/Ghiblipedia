@@ -8,13 +8,18 @@ import 'vueperslides/dist/vueperslides.css'
     <vueper-slides
       class="no-shadow"
       :bullets="false"
-      :visible-slides="1"
+      :visible-slides="3"
       :gap="3"
       :slide-ratio="1 / 4"
       :dragging-distance="200"
       :breakpoints="{ 800: { visibleSlides: 2, slideMultiple: 2 } }"
     >
-      <vueper-slide v-for="i in 9" :key="i" :title="i.toString()" />
+      <vueper-slide
+        v-for="i in 9"
+        :key="i"
+        :title="i.toString()"
+        :video="'https://www.youtube.com/embed/MhSQlPwtd4c?si=fqAkRveSwUVZaymg'"
+      />
     </vueper-slides>
   </div>
 </template>
