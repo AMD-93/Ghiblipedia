@@ -37,3 +37,6 @@ import 'vueperslides/dist/vueperslides.css'
 <!-- https://antoniandre.github.io/vueper-slides/?ref=madewithvuejs.com#ex--show-multiple-slides-and-gap -->
 
 <!-- https://www.youtube.com/watch?v=Bzw2T18YDJ4 youtube data api -->
+
+<!-- maybe need to write unmount/beforeDestroy/whatever manually for vueperslides thing -->
+<!-- maybe fuck this entirely :) -->
