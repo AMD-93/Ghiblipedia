@@ -28,6 +28,7 @@ fetch(
   .then((data) => {
     videos.value = data
     console.log(data)
+    // add .items[0] to log only the first item (the boy and the heron)
   })
 
 const videoTitles = ref('')
@@ -47,6 +48,7 @@ fetch(
 
     console.log(videoTitles.value, videoDescriptions.value)
   })
+// how do I get the first item in the array?
 </script>
 
 <template>
