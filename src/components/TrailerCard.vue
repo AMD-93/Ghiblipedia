@@ -27,7 +27,7 @@ fetch(
   .then((response) => response.json())
   .then((data) => {
     videos.value = data
-    console.log(data)
+    console.dir(data)
     // add .items[0] to log only the first item (the boy and the heron)
   })
 
@@ -46,7 +46,7 @@ fetch(
       .map((el: { snippet: { description: string } }) => el.snippet.description)
       .join(', ')
 
-    console.log(videoTitles.value, videoDescriptions.value)
+    // console.log(videoTitles.value, videoDescriptions.value)
   })
 // how do I get the first item in the array?
 </script>
