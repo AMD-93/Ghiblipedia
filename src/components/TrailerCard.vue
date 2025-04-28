@@ -1,4 +1,23 @@
 <script setup lang="ts">
+import { defineComponent } from 'vue'
+interface Video {
+  snippet: {
+    resourceId: {
+      videoId: string
+    }
+  }
+}
+
+export default defineComponent({
+  data() {
+    return {
+      videos: [] as Video[],
+      videoTitles: [] as string[],
+      videoDescriptions: [] as string[],
+    }
+  },
+})
+
 defineProps({
   title: {
     type: String,
@@ -19,36 +38,34 @@ defineProps({
 })
 import { ref } from 'vue'
 
-const videos = ref(null)
+const videos = ref([])
 
 fetch(
   'https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLrMoWLZPWpBU8qR-2hp90obIEEAelORR1&key=AIzaSyCkeEknyIEzqzvAlqx677KxdAwkf0nKZd4',
 )
   .then((response) => response.json())
   .then((data) => {
-    videos.value = data
+    videos.value = data.items
     console.dir(data)
-    // add .items[0] to log only the first item (the boy and the heron)
   })
 
-const videoTitles = ref('')
-const videoDescriptions = ref('')
+const videoTitles = ref<string[]>([])
+const videoDescriptions = ref<string[]>([])
 
 fetch(
   'https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLrMoWLZPWpBU8qR-2hp90obIEEAelORR1&key=AIzaSyCkeEknyIEzqzvAlqx677KxdAwkf0nKZd4',
 )
   .then((res) => res.json())
   .then((data) => {
-    videoTitles.value = data.items
-      .map((el: { snippet: { title: string } }) => el.snippet.title)
-      .join(', ')
-    videoDescriptions.value = data.items
-      .map((el: { snippet: { description: string } }) => el.snippet.description)
-      .join(', ')
+    videoTitles.value = data.items.map((el: { snippet: { title: string } }) => el.snippet.title)
 
-    // console.log(videoTitles.value, videoDescriptions.value)
+    videoDescriptions.value = data.items.map(
+      (el: { snippet: { description: string } }) => el.snippet.description,
+    )
+
+    // console.log(videoTitles.value)
+    // console.log(videoDescriptions.value)
   })
-// how do I get the first item in the array?
 </script>
 
 <template>
@@ -56,17 +73,25 @@ fetch(
     <div class="card-container">
       <div class="card-content">
         <div class="trailer">
-          <div class="trailer-clip">
-            <video width="280" height="200" controls>
-              <!-- <source src="movie.mp4" type="video/mp4" />
-              <source src="movie.ogg" type="video/ogg" /> -->
+          <div v-for="(video, index) in videos" :key="index" class="trailer-clip">
+            <iframe
+              :src="`https://www.youtube.com/embed/${video.snippet.resourceId.videoId}`"
+              width="560"
+              height="315"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+            <!-- <video width="280" height="200" controls>
+              <source src="movie.mp4" type="video/mp4" />
+              <source src="movie.ogg" type="video/ogg" />
               Your browser does not support the video tag.
-            </video>
+            </video> -->
           </div>
           <div class="movie-info">
-            <h2>{{ videoTitles }}</h2>
+            <h2>{{ videoTitles[0] }}</h2>
             <!-- <h3>{{ originalTitle }}</h3> -->
-            <p>{{ videoDescriptions }}</p>
+            <p>{{ videoDescriptions[0] }}</p>
             <!-- <p>{{ year }}</p> -->
           </div>
         </div>
