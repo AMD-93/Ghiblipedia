@@ -5,12 +5,7 @@ import CarouselComponent from '@/components/CarouselComponent.vue'
 
 <template>
   <main>
-    <TrailerCard
-      title="Spirited Away"
-      original-title="Sen to Chihiro no kamikakushi"
-      plot="During her family's move to the suburbs, a sullen 10-year-old girl wanders into a world ruled by gods, witches and spirits, and where humans are changed into beasts."
-      year="2001"
-    />
+    <TrailerCard />
     <div class="carousels"><CarouselComponent /></div>
   </main>
 </template>

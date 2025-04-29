@@ -8,6 +8,7 @@ import SignInView from '@/views/SignInView.vue'
 
 const routes = [
   { path: '/', name: 'home', component: HomeView },
+  // modify route for watchlist to route w/ guard + conditionally render component for logged in users only
   { path: '/watchlist', name: 'watchlist', component: WatchlistView },
   { path: '/browse', name: 'browse', component: BrowseView },
   { path: '/news', name: 'news', component: NewsView },

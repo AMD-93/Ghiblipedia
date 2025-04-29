@@ -24,24 +24,6 @@ defineComponent({
   },
 })
 
-defineProps({
-  title: {
-    type: String,
-    required: true,
-  },
-  originalTitle: {
-    type: String,
-    required: true,
-  },
-  plot: {
-    type: String,
-    required: true,
-  },
-  year: {
-    type: String,
-    required: true,
-  },
-})
 import { ref } from 'vue'
 
 const videos = ref<Video[]>([])
@@ -67,7 +49,7 @@ fetch(
     <div class="card-container">
       <div class="card-content">
         <div class="trailer">
-          <div class="trailer-clip">
+          <div v-if="videos[0]" class="trailer-clip">
             <iframe
               :src="`https://www.youtube.com/embed/${videos[0].snippet.resourceId.videoId}`"
               width="340"
