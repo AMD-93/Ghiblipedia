@@ -1,4 +1,5 @@
 import { createApp } from 'vue'
+import { createAuth0 } from '@auth0/auth0-vue'
 
 // Vuetify
 import 'vuetify/styles'
@@ -15,4 +16,16 @@ const vuetify = createVuetify({
   directives,
 })
 
-createApp(App).use(vuetify).use(router).mount('#app')
+createApp(App)
+  .use(vuetify)
+  .use(router)
+  .use(
+    createAuth0({
+      domain: 'dev-f4im6j56guz4g0ga.eu.auth0.com',
+      clientId: 'iHH7t1usdDV1FSpErtmRNDMCRsj5t6yP',
+      authorizationParams: {
+        redirect_uri: window.location.origin,
+      },
+    }),
+  )
+  .mount('#app')
