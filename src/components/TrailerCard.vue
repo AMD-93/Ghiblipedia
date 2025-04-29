@@ -1,17 +1,23 @@
 <script setup lang="ts">
 import { defineComponent } from 'vue'
+
 interface Video {
   snippet: {
+    title: string
+    description: string
     resourceId: {
       videoId: string
     }
   }
 }
 
-export default defineComponent({
+interface ApiResponse {
+  items: Video[]
+}
+
+defineComponent({
   data() {
     return {
-      videos: [] as Video[],
       videoTitles: [] as string[],
       videoDescriptions: [] as string[],
     }
@@ -38,17 +44,7 @@ defineProps({
 })
 import { ref } from 'vue'
 
-const videos = ref([])
-
-fetch(
-  'https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLrMoWLZPWpBU8qR-2hp90obIEEAelORR1&key=AIzaSyCkeEknyIEzqzvAlqx677KxdAwkf0nKZd4',
-)
-  .then((response) => response.json())
-  .then((data) => {
-    videos.value = data.items
-    console.dir(data)
-  })
-
+const videos = ref<Video[]>([])
 const videoTitles = ref<string[]>([])
 const videoDescriptions = ref<string[]>([])
 
@@ -56,12 +52,10 @@ fetch(
   'https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLrMoWLZPWpBU8qR-2hp90obIEEAelORR1&key=AIzaSyCkeEknyIEzqzvAlqx677KxdAwkf0nKZd4',
 )
   .then((res) => res.json())
-  .then((data) => {
-    videoTitles.value = data.items.map((el: { snippet: { title: string } }) => el.snippet.title)
-
-    videoDescriptions.value = data.items.map(
-      (el: { snippet: { description: string } }) => el.snippet.description,
-    )
+  .then((data: ApiResponse) => {
+    videos.value = data.items // TypeScript now knows the structure of videos
+    videoTitles.value = data.items.map((el: Video) => el.snippet.title)
+    videoDescriptions.value = data.items.map((el: Video) => el.snippet.description)
 
     // console.log(videoTitles.value)
     // console.log(videoDescriptions.value)
@@ -73,26 +67,19 @@ fetch(
     <div class="card-container">
       <div class="card-content">
         <div class="trailer">
-          <div v-for="(video, index) in videos" :key="index" class="trailer-clip">
+          <div class="trailer-clip">
             <iframe
-              :src="`https://www.youtube.com/embed/${video.snippet.resourceId.videoId}`"
-              width="560"
-              height="315"
+              :src="`https://www.youtube.com/embed/${videos[0].snippet.resourceId.videoId}`"
+              width="340"
+              height="200"
               frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowfullscreen
             ></iframe>
-            <!-- <video width="280" height="200" controls>
-              <source src="movie.mp4" type="video/mp4" />
-              <source src="movie.ogg" type="video/ogg" />
-              Your browser does not support the video tag.
-            </video> -->
           </div>
           <div class="movie-info">
             <h2>{{ videoTitles[0] }}</h2>
-            <!-- <h3>{{ originalTitle }}</h3> -->
             <p>{{ videoDescriptions[0] }}</p>
-            <!-- <p>{{ year }}</p> -->
           </div>
         </div>
         <div class="links">
