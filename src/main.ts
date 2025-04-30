@@ -63,3 +63,5 @@ https
   })
 
 // make sure you run git config --global core.autocrlf true on laptop + npm i mkcert
+// install chocolatey on laptop
+// ask Michael if I can install chocolatey on AT computer
