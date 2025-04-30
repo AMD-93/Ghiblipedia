@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { useAuth0 } from '@auth0/auth0-vue'
+const { loginWithRedirect } = useAuth0()
 
 function login() {
-  const { loginWithRedirect } = useAuth0()
   loginWithRedirect()
 }
 
-// figure out why there's an error, continue auth0 tuto at Add Login to Your Application
+// issue: localhost is http, need https. Mkcert might work
 
 // import { reactive } from 'vue'
 // defineOptions({
