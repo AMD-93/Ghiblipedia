@@ -1,14 +1,26 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useAuth0 } from '@auth0/auth0-vue'
+
+const { loginWithRedirect, isAuthenticated } = useAuth0()
+
+function login() {
+  loginWithRedirect()
+}
+</script>
 <template>
   <nav class="navbar" role="navigation">
     <div>
       <RouterLink class="navbar-brand" :to="{ name: 'home' }">ghiblipedia</RouterLink>
     </div>
     <div class="navbar-links">
-      <RouterLink :to="{ name: 'watchlist' }" class="navbar-item">watchlist</RouterLink>
+      <RouterLink :to="{ name: 'watchlist' }" class="navbar-item" v-if="isAuthenticated"
+        >watchlist</RouterLink
+      >
       <RouterLink :to="{ name: 'browse' }" class="navbar-item">browse</RouterLink>
       <RouterLink :to="{ name: 'news' }" class="navbar-item">news</RouterLink>
-      <RouterLink :to="{ name: 'signin' }" class="navbar-item">sign in</RouterLink>
+      <RouterLink :to="{ name: 'signin' }" class="navbar-item"
+        ><button @click="login">sign in</button></RouterLink
+      >
     </div>
   </nav>
 </template>

@@ -1,11 +1,16 @@
 <script setup lang="ts">
 import { useAuth0 } from '@auth0/auth0-vue'
 
-const { loginWithRedirect, logout, user, isAuthenticated } = useAuth0()
+const {
+  // loginWithRedirect,
+  logout,
+  user,
+  isAuthenticated,
+} = useAuth0()
 
-function login() {
-  loginWithRedirect()
-}
+// function login() {
+//   loginWithRedirect()
+// }
 
 function handleLogout() {
   logout({ logoutParams: { returnTo: window.location.origin } })
@@ -14,7 +19,6 @@ function handleLogout() {
 
 <template>
   <div>
-    <button @click="login">Log in</button>
     <button @click="handleLogout">Log out</button>
   </div>
 
