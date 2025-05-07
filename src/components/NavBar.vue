@@ -26,6 +26,16 @@ function login() {
 </template>
 
 <style scoped>
+@media only screen and (max-width: 480px) {
+  nav {
+    background-color: #cb997e;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1rem;
+  }
+}
+
 nav {
   background-color: #cb997e;
   display: flex;

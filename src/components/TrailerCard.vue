@@ -52,9 +52,6 @@ fetch(
           <div v-if="videos[0]" class="trailer-clip">
             <iframe
               :src="`https://www.youtube.com/embed/${videos[0].snippet.resourceId.videoId}`"
-              width="340"
-              height="200"
-              frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowfullscreen
             ></iframe>
@@ -76,60 +73,351 @@ fetch(
 </template>
 
 <style scoped>
-.card-container {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  background-color: #b7b7a4;
-  border-radius: 10px;
-  padding: 1rem;
-  margin: auto;
-  margin-top: 1rem;
-  width: 80%;
+@media only screen and (max-width: 480px) {
+  .card-container {
+    display: flex;
+    flex-direction: column;
+    background-color: #b7b7a4;
+    padding: 20px;
+    box-sizing: border-box;
+    width: 100%;
+    overflow-x: hidden;
+  }
+  .card-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .trailer {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .trailer-clip {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 56.25%;
+  }
+
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .movie-info {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    width: 100%;
+    justify-content: center;
+    text-align: justify;
+  }
+
+  .links {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    padding: 5px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  h3 {
+    font-style: italic;
+    font-size: 15px;
+  }
+
+  p {
+    font-size: 13px;
+  }
 }
 
-.card-content {
-  display: flex;
-  flex-direction: row;
+@media only screen and (min-width: 481px) {
+  .card-container {
+    display: flex;
+    flex-direction: column;
+    background-color: #b7b7a4;
+    padding: 20px;
+    box-sizing: border-box;
+    width: 100%;
+    overflow-x: hidden;
+  }
+  .card-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .trailer {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .trailer-clip {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 56.25%;
+  }
+
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .movie-info {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    width: 100%;
+    justify-content: center;
+    text-align: justify;
+  }
+
+  .links {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    padding: 5px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  h3 {
+    font-style: italic;
+    font-size: 15px;
+  }
+
+  p {
+    font-size: 13px;
+  }
 }
 
-.trailer {
-  display: flex;
-  flex-direction: row;
+@media only screen and (min-width: 769px) {
+  .card-container {
+    display: flex;
+    flex-direction: column;
+    background-color: #b7b7a4;
+    padding: 20px;
+    box-sizing: border-box;
+    width: 100%;
+    overflow-x: hidden;
+  }
+  .card-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .trailer {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .trailer-clip {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 56.25%;
+  }
+
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .movie-info {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    width: 100%;
+    justify-content: center;
+    text-align: justify;
+  }
+
+  .links {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    padding: 5px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  h3 {
+    font-style: italic;
+    font-size: 15px;
+  }
+
+  p {
+    font-size: 13px;
+  }
 }
 
-.trailer-clip {
-  padding: 1rem;
+@media only screen and (min-width: 992px) {
+  .card-container {
+    display: flex;
+    flex-direction: column;
+    background-color: #b7b7a4;
+    padding: 20px;
+    box-sizing: border-box;
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  .card-content {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .trailer {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .trailer-clip {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 56.25%;
+  }
+
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .movie-info {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    width: 70%;
+    justify-content: center;
+    text-align: justify;
+  }
+
+  .links {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: end;
+    width: 20%;
+    padding: 1rem;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  h3 {
+    font-style: italic;
+    font-size: 15px;
+  }
+
+  p {
+    font-size: 13px;
+  }
 }
 
-.movie-info {
-  display: flex;
-  flex-direction: column;
-  padding: 1rem;
-  width: 70%;
-  justify-content: center;
-  text-align: justify;
-}
+@media only screen and (min-width: 1025px) {
+  .card-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    margin: auto;
+    padding: 1rem;
+    background-color: #b7b7a4;
+    border-radius: 10px;
+  }
 
-.links {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: end;
-  width: 20%;
-  padding: 1rem;
-}
+  .card-content {
+    display: flex;
+    width: auto;
+    text-align: center;
+  }
 
-h2 {
-  font-size: 20px;
-}
+  .trailer {
+    display: flex;
+    flex-direction: row;
+  }
 
-h3 {
-  font-style: italic;
-  font-size: 15px;
-}
+  .trailer-clip {
+    display: flex;
+    width: 100%;
+    padding-top: 56.25%;
+  }
 
-p {
-  font-size: 13px;
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 60%;
+  }
+
+  .movie-info {
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    width: 70%;
+    justify-content: center;
+    text-align: justify;
+  }
+
+  .links {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: end;
+    width: 20%;
+    padding: 1rem;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  h3 {
+    font-style: italic;
+    font-size: 15px;
+  }
+
+  p {
+    font-size: 13px;
+  }
 }
 </style>

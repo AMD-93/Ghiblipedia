@@ -8,7 +8,9 @@ import NavBar from './components/NavBar.vue'
 </template>
 
 <style>
+html,
 body {
   background-color: #ffeee2;
+  overflow-x: hidden;
 }
 </style>
