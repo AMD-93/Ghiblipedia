@@ -33,7 +33,9 @@ function showMenu() {
           <li><RouterLink :to="{ name: 'news' }" class="navbar-item">news</RouterLink></li>
           <li><RouterLink :to="{ name: 'signin' }" class="navbar-item">profile</RouterLink></li>
         </ul>
-        <div class="login-button"><button @click="login">sign in</button></div>
+        <div class="login-button">
+          <button @click="login" v-if="!isAuthenticated">sign in</button>
+        </div>
       </div>
     </div>
   </div>
