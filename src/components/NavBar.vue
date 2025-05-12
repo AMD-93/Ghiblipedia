@@ -16,17 +16,19 @@ function showMenu() {
 <template>
   <div>
     <div class="nav-menu">
-      <i class="fas fa-bars" @click="showMenu()"> x </i>
+      <i class="fas fa-bars" @click="showMenu()"></i>
       <div class="nav-content" :class="showMobileMenu ? 'open-menu' : 'closed-menu'">
         <div class="logo">
           <RouterLink class="navbar-brand" :to="{ name: 'home' }">ghiblipedia</RouterLink>
         </div>
         <ul class="nav-items">
+          <li><RouterLink class="hide-fullscreen" :to="{ name: 'home' }">home</RouterLink></li>
           <li>
             <RouterLink :to="{ name: 'watchlist' }" class="navbar-item" v-if="isAuthenticated"
               >watchlist</RouterLink
             >
           </li>
+
           <li><RouterLink :to="{ name: 'browse' }" class="navbar-item">browse</RouterLink></li>
           <li><RouterLink :to="{ name: 'news' }" class="navbar-item">news</RouterLink></li>
           <li><RouterLink :to="{ name: 'signin' }" class="navbar-item">profile</RouterLink></li>
@@ -53,6 +55,12 @@ function showMenu() {
 </template>
 
 <style scoped>
+@media only screen and (min-width: 700px) {
+  .hide-fullscreen {
+    display: none;
+  }
+}
+
 .nav-menu {
   background-color: #cb997e;
   color: #ffeee2;
@@ -109,6 +117,9 @@ a:hover {
     display: block;
     text-align: left;
     padding: 20px;
+  }
+  .navbar-brand {
+    display: none;
   }
 }
 
