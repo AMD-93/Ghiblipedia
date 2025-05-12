@@ -22,7 +22,11 @@ function showMenu() {
           <RouterLink class="navbar-brand" :to="{ name: 'home' }">ghiblipedia</RouterLink>
         </div>
         <ul class="nav-items">
-          <li><RouterLink class="hide-fullscreen" :to="{ name: 'home' }">home</RouterLink></li>
+          <li>
+            <RouterLink class="hide-fullscreen" :to="{ name: 'home' }"
+              >home <v-icon icon="mdi-home" />
+            </RouterLink>
+          </li>
           <li>
             <RouterLink :to="{ name: 'watchlist' }" class="navbar-item" v-if="isAuthenticated"
               >watchlist</RouterLink
