@@ -25,6 +25,7 @@ function showMenu() {
           <li>
             <RouterLink class="hide-fullscreen" :to="{ name: 'home' }"
               >home <v-icon icon="mdi-home" />
+              <!-- Figure out wtf is happening with the icon, why doesn't it show up -->
             </RouterLink>
           </li>
           <li>
