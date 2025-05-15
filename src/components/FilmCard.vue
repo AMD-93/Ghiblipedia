@@ -14,11 +14,11 @@ const props = defineProps<{ films: Film[] }>()
   <v-expansion-panels bg-color="#b7b7a4" elevation="5" multiple>
     <v-expansion-panel v-for="(film, index) in props.films" :key="index">
       <!-- figure out why tf are the title and the year behaving weird in smaller screen  -->
-      <v-expansion-panel-title
+      <v-expansion-panel-title class="title-section"
         ><h1>{{ film.title }}</h1>
         ({{ film.year }})</v-expansion-panel-title
       >
-      <v-expansion-panel-text>{{ film.plot }}</v-expansion-panel-text>
+      <v-expansion-panel-text class="info-section">{{ film.plot }}</v-expansion-panel-text>
     </v-expansion-panel>
   </v-expansion-panels>
 
@@ -29,24 +29,6 @@ const props = defineProps<{ films: Film[] }>()
     <div class="info-section">
       <h3>{{ film.year }}</h3>
       <p>{{ film.plot }}</p>
-    </div>
-    <div class="categorize-section">
-      <div class="genres-section">
-        <h3>Genres</h3>
-        <ul>
-          <li>Genre 1</li>
-          <li>Genre 2</li>
-          <li>Genre 3</li>
-        </ul>
-      </div>
-      <div class="tags-section">
-        <h3>Tags</h3>
-        <ul>
-          <li>tag 1</li>
-          <li>tag 2</li>
-          <li>tag 3</li>
-        </ul>
-      </div>
     </div>
   </div> -->
 </template>
@@ -72,25 +54,14 @@ h1 {
   padding-right: 10px;
 }
 
-/* .title-section {
+.title-section {
   background-color: aliceblue;
+  padding: 25px;
 }
 
 .info-section {
   background-color: aqua;
 }
-
-.categorize-section {
-  background-color: aquamarine;
-}
-
-.genres-section {
-  background-color: beige;
-}
-
-.tags-section {
-  background-color: bisque;
-} */
 
 @media only screen and (max-width: 480px) {
   .card-container {
