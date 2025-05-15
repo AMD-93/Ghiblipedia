@@ -14,7 +14,7 @@ const films = [
   {
     title: 'Spirited Away',
     year: '2001',
-    plot: '10-year-old Chihiro moves with her parents to a new home in the Japanese countryside. After taking a wrong turn down a wooded path, Chihiro and her parents discover an amusement park with a stall containing an assortment of food. To her surprise, Chihiro´s parents begin eating and then transform into pigs. In this supernatural realm, Chihiro encounters a host of characters and endures labor in a bathhouse for spirits, awaiting a reunion with her parents.',
+    plot: "10-year-old Chihiro moves with her parents to a new home in the Japanese countryside. After taking a wrong turn down a wooded path, Chihiro and her parents discover an amusement park with a stall containing an assortment of food. To her surprise, Chihiro's parents begin eating and then transform into pigs. In this supernatural realm, Chihiro encounters a host of characters and endures labor in a bathhouse for spirits, awaiting a reunion with her parents.",
     genres: 'genres',
     tags: 'tags',
   },
@@ -26,9 +26,9 @@ const films = [
     tags: 'tags',
   },
   {
-    title: 'Kiki´s Delivery Service',
+    title: "Kiki's Delivery Service",
     year: '1998',
-    plot: '13-year-old Kiki moves to a seaside town with her talking cat, Jiji, to spend a year alone, in accordance with her village´s tradition for witches in training. After learning to control her broomstick, Kiki sets up a flying courier service and soon becomes a fixture in the community. But when the insecure young witch begins questioning herself and loses her magic abilities, she must overcome her self-doubt to get her powers back.',
+    plot: "13-year-old Kiki moves to a seaside town with her talking cat, Jiji, to spend a year alone, in accordance with her village's tradition for witches in training. After learning to control her broomstick, Kiki sets up a flying courier service and soon becomes a fixture in the community. But when the insecure young witch begins questioning herself and loses her magic abilities, she must overcome her self-doubt to get her powers back.",
     genres: 'genres',
     tags: 'tags',
   },

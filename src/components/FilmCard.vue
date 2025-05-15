@@ -11,9 +11,13 @@ const props = defineProps<{ films: Film[] }>()
 </script>
 
 <template>
-  <v-expansion-panels bg-color="#b7b7a4" color="#b7b7a4" elevation="5" multiple>
+  <v-expansion-panels bg-color="#b7b7a4" elevation="5" multiple>
     <v-expansion-panel v-for="(film, index) in props.films" :key="index">
-      <v-expansion-panel-title>{{ film.title }} ({{ film.year }})</v-expansion-panel-title>
+      <!-- figure out why tf are the title and the year behaving weird in smaller screen  -->
+      <v-expansion-panel-title
+        ><h1>{{ film.title }}</h1>
+        ({{ film.year }})</v-expansion-panel-title
+      >
       <v-expansion-panel-text>{{ film.plot }}</v-expansion-panel-text>
     </v-expansion-panel>
   </v-expansion-panels>
@@ -60,6 +64,12 @@ ul {
   list-style-type: none;
   padding: 0;
   margin: 0;
+}
+
+h1 {
+  font-size: large;
+  font-weight: normal;
+  padding-right: 10px;
 }
 
 /* .title-section {
