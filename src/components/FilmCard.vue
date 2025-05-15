@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 interface Film {
   title: string
   year: string
@@ -9,16 +8,18 @@ interface Film {
 }
 
 const props = defineProps<{ films: Film[] }>()
-
-const active = ref(0)
-function expandCard(index: number) {
-  active.value = index
-}
 </script>
 
 <template>
-  <div class="card-container" v-for="(film, index) in props.films" :key="index">
-    <div :class="{ active: active === index }" class="title-section" @click="expandCard(index)">
+  <v-expansion-panels bg-color="#b7b7a4" color="#b7b7a4" elevation="5" multiple>
+    <v-expansion-panel v-for="(film, index) in props.films" :key="index">
+      <v-expansion-panel-title>{{ film.title }} ({{ film.year }})</v-expansion-panel-title>
+      <v-expansion-panel-text>{{ film.plot }}</v-expansion-panel-text>
+    </v-expansion-panel>
+  </v-expansion-panels>
+
+  <!-- <div class="card-container" v-for="(film, index) in props.films" :key="index">
+    <div class="title-section">
       <h1>{{ film.title }}</h1>
     </div>
     <div class="info-section">
@@ -43,7 +44,7 @@ function expandCard(index: number) {
         </ul>
       </div>
     </div>
-  </div>
+  </div> -->
 </template>
 
 <style>
