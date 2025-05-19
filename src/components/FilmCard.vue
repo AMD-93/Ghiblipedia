@@ -1,6 +1,7 @@
 <script setup lang="ts">
 interface Film {
   title: string
+  originalTitle: string
   year: string
   plot: string
   genres: string
@@ -11,108 +12,129 @@ const props = defineProps<{ films: Film[] }>()
 </script>
 
 <template>
-  <v-expansion-panels bg-color="#b7b7a4" elevation="5" multiple>
-    <v-expansion-panel v-for="(film, index) in props.films" :key="index">
-      <!-- figure out why tf are the title and the year behaving weird in smaller screen  -->
-      <v-expansion-panel-title class="title-section"
-        ><h1>{{ film.title }}</h1>
-        ({{ film.year }})</v-expansion-panel-title
-      >
-      <v-expansion-panel-text class="info-section">{{ film.plot }}</v-expansion-panel-text>
+  <v-expansion-panels class="container" bg-color="#b7b7a4" rounded="lg" multiple>
+    <v-expansion-panel class="panel" v-for="(film, index) in props.films" :key="index">
+      <v-expansion-panel-title class="title-section">
+        <h1>{{ film.title }}</h1>
+        ({{ film.year }})
+      </v-expansion-panel-title>
+
+      <v-expansion-panel-text class="info-section">
+        <h2>{{ film.originalTitle }}</h2>
+        <p>{{ film.plot }}</p>
+      </v-expansion-panel-text>
     </v-expansion-panel>
   </v-expansion-panels>
-
-  <!-- <div class="card-container" v-for="(film, index) in props.films" :key="index">
-    <div class="title-section">
-      <h1>{{ film.title }}</h1>
-    </div>
-    <div class="info-section">
-      <h3>{{ film.year }}</h3>
-      <p>{{ film.plot }}</p>
-    </div>
-  </div> -->
 </template>
 
-<style>
-.card-container {
-  background-color: #b7b7a4;
-  padding: 5px;
-  margin: 20px;
-  border-radius: 10px;
-  height: calc(100% / 10);
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
+<style scoped>
 h1 {
   font-size: large;
   font-weight: normal;
+  font-style: italic;
   padding-right: 10px;
+  padding-left: 25px;
 }
 
-.title-section {
-  background-color: aliceblue;
-  padding: 25px;
+h2 {
+  font-size: medium;
+  font-weight: normal;
+  font-style: italic;
+  padding-bottom: 10px;
 }
 
-.info-section {
-  background-color: aqua;
+p {
+  font-size: smaller;
+}
+
+.panel {
+  box-shadow: 5px 5px 15px rgb(153, 153, 153);
 }
 
 @media only screen and (max-width: 480px) {
-  .card-container {
-    display: flex;
-    flex-direction: column;
-    padding: 5px;
-    margin: 20px;
-    border-radius: 10px;
+  .container {
+    margin: auto;
   }
   .title-section {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: wrap;
-    padding: 5px;
+    padding: 10px;
     margin: 0 5 5 0;
-  }
-  h2 {
-    margin-left: 5px;
   }
 
   .info-section {
     padding: 5px;
     margin: 5px;
   }
-  .categorize-section {
-  }
-  .genres-section {
-    padding: 5px;
-    margin: 5px;
-  }
-  .tags-section {
-    padding: 5px;
-    margin: 5px;
-  }
 }
 @media only screen and (min-width: 481px) {
+  .container {
+    margin: auto;
+  }
+  .title-section {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 10px;
+    margin: 0 5 5 0;
+  }
+
+  .info-section {
+    padding: 5px;
+    margin: 5px;
+  }
 }
 @media only screen and (min-width: 769px) {
+  .container {
+    margin: auto;
+  }
+  .title-section {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 10px;
+    margin: 0 5 5 0;
+  }
+
+  .info-section {
+    padding: 5px;
+    margin: 5px;
+  }
 }
 @media only screen and (min-width: 992px) {
-  .card-container {
-    width: 80%;
+  .container {
     margin: auto;
-    margin-top: 10px;
+  }
+  .title-section {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 10px;
+    margin: 0 5 5 0;
+  }
+
+  .info-section {
+    padding: 5px;
+    margin: 5px;
   }
 }
 @media only screen and (min-width: 1025px) {
-  .card-container {
-    width: 80%;
+  .container {
     margin: auto;
-    margin-top: 10px;
+    max-width: 100%;
+  }
+  .title-section {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 10px;
+    margin: 0 5 5 0;
+  }
+
+  .info-section {
+    padding: 5px;
+    margin: 5px;
   }
 }
 </style>
