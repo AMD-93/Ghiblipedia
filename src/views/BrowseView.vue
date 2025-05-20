@@ -70,12 +70,14 @@ function filteredList() {
 <style scoped>
 input {
   color: #ffeee2;
+  margin-top: 10px;
 }
 
-.genres-container,
+.genres-tags-container .genres-container,
 .tags-container,
 .error {
   box-shadow: 5px 5px 15px rgb(153, 153, 153);
+  margin-bottom: 10px;
 }
 
 .error {
@@ -90,27 +92,35 @@ input {
   .container {
     display: flex;
     flex-direction: column;
-    padding: 10px;
+    margin: auto;
+    max-width: 90%;
   }
 
   .input {
     background-color: #4a4d41;
     padding: 10px;
     border-radius: 8px;
-    margin: 10px;
-    margin-bottom: 10px;
   }
 
   .search-results {
     margin-top: 10px;
+    max-width: 100%;
   }
 
   .genres-tags-container {
-    margin: 10px;
-    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
 
-  .genres-container,
+  .genres-container {
+    background-color: #b7b7a4;
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 10px;
+  }
   .tags-container {
     background-color: #b7b7a4;
     padding: 10px;
@@ -123,24 +133,27 @@ input {
   .container {
     display: flex;
     flex-direction: column;
-    padding: 10px;
+    margin: auto;
+    max-width: 90%;
   }
 
   .input {
     background-color: #4a4d41;
     padding: 10px;
     border-radius: 8px;
-    margin: 10px;
-    margin-bottom: 10px;
   }
 
   .search-results {
     margin-top: 10px;
+    max-width: 100%;
   }
 
   .genres-tags-container {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
     margin-top: 10px;
-    padding: 0;
+    margin-bottom: 10px;
   }
 
   .genres-container {
@@ -161,24 +174,27 @@ input {
   .container {
     display: flex;
     flex-direction: column;
-    padding: 10px;
+    margin: auto;
+    max-width: 70%;
   }
 
   .input {
     background-color: #4a4d41;
     padding: 10px;
     border-radius: 8px;
-    margin: 10px;
-    margin-bottom: 10px;
   }
 
   .search-results {
     margin-top: 10px;
+    max-width: 100%;
   }
 
   .genres-tags-container {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
     margin-top: 10px;
-    padding: 0;
+    margin-bottom: 10px;
   }
 
   .genres-container {
@@ -199,24 +215,27 @@ input {
   .container {
     display: flex;
     flex-direction: column;
-    padding: 10px;
+    margin: auto;
+    max-width: 70%;
   }
 
   .input {
     background-color: #4a4d41;
     padding: 10px;
     border-radius: 8px;
-    margin: 10px;
-    margin-bottom: 10px;
   }
 
   .search-results {
     margin-top: 10px;
+    max-width: 100%;
   }
 
   .genres-tags-container {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
     margin-top: 10px;
-    padding: 0;
+    margin-bottom: 10px;
   }
 
   .genres-container {
@@ -224,12 +243,14 @@ input {
     padding: 10px;
     border-radius: 8px;
     margin-top: 10px;
+    margin-right: 5px;
   }
   .tags-container {
     background-color: #b7b7a4;
     padding: 10px;
     border-radius: 8px;
     margin-top: 10px;
+    margin-left: 5px;
   }
 }
 
@@ -249,11 +270,15 @@ input {
 
   .search-results {
     margin-top: 10px;
+    max-width: 100%;
   }
 
   .genres-tags-container {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
     margin-top: 10px;
-    padding: 0;
+    margin-bottom: 10px;
   }
 
   .genres-container {
@@ -261,12 +286,14 @@ input {
     padding: 10px;
     border-radius: 8px;
     margin-top: 10px;
+    margin-right: 5px;
   }
   .tags-container {
     background-color: #b7b7a4;
     padding: 10px;
     border-radius: 8px;
     margin-top: 10px;
+    margin-left: 5px;
   }
 }
 </style>

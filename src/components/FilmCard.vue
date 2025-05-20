@@ -12,14 +12,14 @@ const props = defineProps<{ films: Film[] }>()
 </script>
 
 <template>
-  <v-expansion-panels class="container" bg-color="#b7b7a4" rounded="lg" multiple>
-    <v-expansion-panel class="panel" v-for="(film, index) in props.films" :key="index">
-      <v-expansion-panel-title class="title-section">
+  <v-expansion-panels bg-color="#b7b7a4" rounded="lg" multiple>
+    <v-expansion-panel v-for="(film, index) in props.films" :key="index">
+      <v-expansion-panel-title>
         <h1>{{ film.title }}</h1>
         ({{ film.year }})
       </v-expansion-panel-title>
 
-      <v-expansion-panel-text class="info-section">
+      <v-expansion-panel-text>
         <h2>{{ film.originalTitle }}</h2>
         <p>{{ film.plot }}</p>
       </v-expansion-panel-text>
@@ -47,15 +47,15 @@ p {
   font-size: smaller;
 }
 
-.panel {
+.v-expansion-panel {
   box-shadow: 5px 5px 15px rgb(153, 153, 153);
 }
 
 @media only screen and (max-width: 480px) {
-  .container {
+  .v-expansion-panels {
     margin: auto;
   }
-  .title-section {
+  .v-expansion-panel-title {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -63,16 +63,15 @@ p {
     margin: 0 5 5 0;
   }
 
-  .info-section {
+  .v-expansion-panel-text {
     padding: 5px;
-    margin: 5px;
   }
 }
 @media only screen and (min-width: 481px) {
-  .container {
+  .v-expansion-panels {
     margin: auto;
   }
-  .title-section {
+  .v-expansion-panel-title {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -80,61 +79,56 @@ p {
     margin: 0 5 5 0;
   }
 
-  .info-section {
+  .v-expansion-panel-text {
     padding: 5px;
-    margin: 5px;
   }
 }
 @media only screen and (min-width: 769px) {
-  .container {
+  .v-expansion-panels {
     margin: auto;
   }
-  .title-section {
+  .v-expansion-panel-title {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     padding: 10px;
-    margin: 0 5 5 0;
+    margin: 0;
   }
 
-  .info-section {
-    padding: 5px;
-    margin: 5px;
+  .v-expansion-panel-text {
+    margin-top: 0px;
   }
 }
 @media only screen and (min-width: 992px) {
-  .container {
+  .v-expansion-panels {
     margin: auto;
   }
-  .title-section {
+  .v-expansion-panel-title {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     padding: 10px;
-    margin: 0 5 5 0;
+    margin: 0;
+    max-width: 100%;
   }
 
-  .info-section {
-    padding: 5px;
-    margin: 5px;
+  .v-expansion-panel-text {
+    margin-top: 0px;
   }
 }
 @media only screen and (min-width: 1025px) {
-  .container {
+  .v-expansion-panels {
     margin: auto;
-    max-width: 100%;
   }
-  .title-section {
+
+  .v-expansion-panel-title {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    padding: 10px;
-    margin: 0 5 5 0;
   }
 
-  .info-section {
-    padding: 5px;
-    margin: 5px;
+  .v-expansion-panel-text {
+    margin-top: 0px;
   }
 }
 </style>
