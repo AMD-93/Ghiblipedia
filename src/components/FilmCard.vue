@@ -1,5 +1,6 @@
 <script setup lang="ts">
 interface Film {
+  id: number
   title: string
   originalTitle: string
   year: string
@@ -22,6 +23,9 @@ const props = defineProps<{ films: Film[] }>()
       <v-expansion-panel-text>
         <h2>{{ film.originalTitle }}</h2>
         <p>{{ film.plot }}</p>
+        <p>
+          <router-link to="/films/:id">See more </router-link>
+        </p>
       </v-expansion-panel-text>
     </v-expansion-panel>
   </v-expansion-panels>

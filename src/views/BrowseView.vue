@@ -6,6 +6,7 @@ const input = ref('')
 //Films here, replace with DB stuff later (maybe in a separate file?)
 const films = [
   {
+    id: 1,
     title: 'My Neighbor Totoro',
     originalTitle: 'となりのトトロ, Tonari no Totoro',
     year: '1988',
@@ -14,6 +15,7 @@ const films = [
     tags: 'tags',
   },
   {
+    id: 2,
     title: 'Spirited Away',
     originalTitle: '千と千尋の神隠し, Sen to Chihiro no Kamikakushi',
     year: '2001',
@@ -22,6 +24,7 @@ const films = [
     tags: 'tags',
   },
   {
+    id: 3,
     title: 'Princess Mononoke',
     originalTitle: 'もののけ姫, Mononoke-hime',
     year: '1997',
@@ -30,6 +33,7 @@ const films = [
     tags: 'tags',
   },
   {
+    id: 4,
     title: "Kiki's Delivery Service",
     originalTitle: '魔女の宅急便, Majo no Takkyūbin',
     year: '1998',
