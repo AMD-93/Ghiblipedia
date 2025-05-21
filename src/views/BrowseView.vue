@@ -55,6 +55,8 @@ function filteredList() {
 <template>
   <div class="container">
     <input type="text" v-model="input" placeholder="Search films..." class="input" />
+
+    <p>why is this not working? -> {{ $route.params.id }}</p>
     <div class="search-results"><FilmCard :films="filteredList()" /></div>
 
     <div class="error" v-if="input && !filteredList().length">
