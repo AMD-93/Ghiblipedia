@@ -5,7 +5,6 @@ import WatchlistView from '@/views/WatchlistView.vue'
 import BrowseView from '@/views/BrowseView.vue'
 import NewsView from '@/views/NewsView.vue'
 import ProfileView from '@/views/ProfileView.vue'
-import FilmView from '@/views/FilmView.vue'
 
 const routes = [
   { path: '/', name: 'home', component: HomeView },
@@ -13,7 +12,7 @@ const routes = [
   { path: '/browse', name: 'browse', component: BrowseView },
   { path: '/news', name: 'news', component: NewsView },
   { path: '/profile', name: 'profile', component: ProfileView },
-  { path: '/films/:id', name: 'film', component: FilmView },
+  { path: '/films/:id', name: 'film', component: () => import('@/views/FilmView.vue') },
 ]
 
 const router = createRouter({

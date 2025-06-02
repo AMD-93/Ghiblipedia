@@ -1,10 +1,14 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import type { Film } from '@/types.ts'
+
+const props = defineProps<{ films: Film[] }>()
+</script>
 
 <template>
-  <div class="container">
-    <h1>Film title (film year)</h1>
-    <h2>Original title</h2>
-    <p>Film description</p>
+  <div class="container" v-for="(film, index) in props.films" :key="index">
+    <h1>{{ film.title }} {{ film.year }}</h1>
+    <h2>{{ film.originalTitle }}</h2>
+    <p>{{ film.plot }}</p>
   </div>
 </template>
 

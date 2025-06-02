@@ -1,13 +1,5 @@
 <script setup lang="ts">
-interface Film {
-  id: number
-  title: string
-  originalTitle: string
-  year: string
-  plot: string
-  genres: string
-  tags: string
-}
+import type { Film } from '@/types.ts'
 
 const props = defineProps<{ films: Film[] }>()
 </script>
@@ -23,8 +15,8 @@ const props = defineProps<{ films: Film[] }>()
       <v-expansion-panel-text>
         <h2>{{ film.originalTitle }}</h2>
         <p>{{ film.plot }}</p>
-        <p>
-          <router-link to="/films/1">See more </router-link>
+        <p v-if="film.id">
+          <router-link :to="`/films/${film.id}`">See more</router-link>
         </p>
       </v-expansion-panel-text>
     </v-expansion-panel>
