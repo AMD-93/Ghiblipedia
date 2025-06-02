@@ -82,6 +82,7 @@ p {
     margin-bottom: 20px;
     max-width: 70%;
   }
+
   .header {
     display: flex;
     flex-direction: row;
