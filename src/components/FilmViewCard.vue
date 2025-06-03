@@ -8,14 +8,17 @@ const props = defineProps<{ films: Film[] }>()
 
 <template>
   <div class="container" v-for="(film, index) in props.films" :key="index">
-    <div class="header">
-      <img :src="miyazakiImg" alt="Hayao Miyazaki" />
-      <h1>{{ film.title }} ({{ film.year }})</h1>
+    <div class="titles">
+      <div class="header">
+        <img :src="miyazakiImg" alt="Hayao Miyazaki" />
+        <h1>{{ film.title }} ({{ film.year }})</h1>
+      </div>
+      <div class="subheader">
+        <h2>{{ film.originalTitle }}</h2>
+        <p>{{ film.runningTime }} minutes</p>
+      </div>
     </div>
-    <div class="subheader">
-      <h2>{{ film.originalTitle }}</h2>
-      <p>{{ film.runningTime }} minutes</p>
-    </div>
+
     <div class="info">
       <iframe href="trailer"></iframe>
       <p>{{ film.plot }}</p>
@@ -117,82 +120,68 @@ p {
     padding-bottom: 10px;
   }
 }
+
 @media only screen and (min-width: 769px) {
   .container {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-  }
-
-  .header {
-    display: flex;
-    flex-direction: column-reverse;
+    max-width: 70%;
     padding: 10px;
-    padding-bottom: 0;
-    margin: 0 5 5 0;
-  }
-
-  .subheader {
-    padding: 10px;
-    padding-bottom: 0;
   }
 
   img {
-    max-width: 100%;
     border-radius: 8px;
   }
 
   .info {
-    padding: 10px;
+    max-width: 65%;
   }
 
   iframe {
-    margin-bottom: 10px;
-  }
-
-  .info p {
-    padding-bottom: 10px;
+    border-radius: 8px;
   }
 }
 @media only screen and (min-width: 992px) {
   .container {
     display: flex;
-    flex-direction: column;
-    align-self: center;
-    margin-top: 10px;
-    margin-bottom: 20px;
-    max-width: 70%;
-  }
-  .header {
-    display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    max-width: 70%;
     padding: 10px;
-    margin: 0;
-    max-width: 100%;
+  }
+
+  img {
+    border-radius: 8px;
   }
 
   .info {
-    margin-top: 0px;
+    max-width: 65%;
+  }
+
+  iframe {
+    border-radius: 8px;
   }
 }
 @media only screen and (min-width: 1025px) {
   .container {
     display: flex;
-    flex-direction: column;
-    align-self: center;
-    margin-top: 10px;
-    margin-bottom: 20px;
-    max-width: 70%;
-  }
-  .header {
-    display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    max-width: 70%;
+    padding: 10px;
+  }
+
+  img {
+    border-radius: 8px;
   }
 
   .info {
-    margin-top: 0px;
+    max-width: 65%;
+  }
+
+  iframe {
+    border-radius: 8px;
   }
 }
 </style>
