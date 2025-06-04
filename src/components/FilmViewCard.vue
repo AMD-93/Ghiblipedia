@@ -2,6 +2,7 @@
 import type { Film } from '@/types.ts'
 
 import miyazakiImg from '@/assets/miyazaki.jpg'
+import VideoPlayer from './VideoPlayer.vue'
 
 const props = defineProps<{ films: Film[] }>()
 </script>
@@ -20,7 +21,7 @@ const props = defineProps<{ films: Film[] }>()
     </div>
 
     <div class="info">
-      <iframe href="trailer"></iframe>
+      <VideoPlayer />
       <p>{{ film.plot }}</p>
       <p>Directed by {{ film.director }}</p>
     </div>
