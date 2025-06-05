@@ -73,15 +73,19 @@ fetch(
 </template>
 
 <style scoped>
+.card-container {
+  background-color: #b7b7a4;
+  padding: 20px;
+  box-sizing: border-box;
+  border-radius: 8px;
+  overflow-x: hidden;
+}
+
 @media only screen and (max-width: 480px) {
   .card-container {
     display: flex;
     flex-direction: column;
-    background-color: #b7b7a4;
-    padding: 20px;
-    box-sizing: border-box;
-    width: 100%;
-    overflow-x: hidden;
+    margin: 10px;
   }
   .card-content {
     display: flex;
@@ -146,11 +150,7 @@ fetch(
   .card-container {
     display: flex;
     flex-direction: column;
-    background-color: #b7b7a4;
-    padding: 20px;
-    box-sizing: border-box;
-    width: 100%;
-    overflow-x: hidden;
+    margin: 10px;
   }
   .card-content {
     display: flex;
@@ -215,11 +215,7 @@ fetch(
   .card-container {
     display: flex;
     flex-direction: column;
-    background-color: #b7b7a4;
-    padding: 20px;
-    box-sizing: border-box;
-    width: 100%;
-    overflow-x: hidden;
+    margin: 10px;
   }
   .card-content {
     display: flex;
@@ -284,16 +280,18 @@ fetch(
   .card-container {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    margin: auto;
     background-color: #b7b7a4;
-    padding: 20px;
-    box-sizing: border-box;
-    width: 100%;
-    overflow-x: hidden;
+    border-radius: 8px;
   }
 
   .card-content {
     display: flex;
-    flex-direction: row;
+    width: auto;
+    text-align: center;
   }
 
   .trailer {
@@ -302,8 +300,7 @@ fetch(
   }
 
   .trailer-clip {
-    position: relative;
-    overflow: hidden;
+    display: flex;
     width: 100%;
     padding-top: 56.25%;
   }
@@ -315,12 +312,13 @@ fetch(
     bottom: 0;
     right: 0;
     width: 100%;
-    height: 100%;
+    height: 60%;
   }
+
   .movie-info {
     display: flex;
     flex-direction: column;
-    padding: 1rem;
+    padding: 30px;
     width: 70%;
     justify-content: center;
     text-align: justify;
