@@ -1,23 +1,29 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import VideoPlayer from './VideoPlayer.vue'
+</script>
 
 <template>
-  <v-carousel hide-delimiters show-arrows="hover">
+  <v-carousel class="container" hide-delimiters style="height: 100%" show-arrows="hover">
     <v-window-item>
-      <video controls>
-        <source src="" type="video/webm" />
-      </video>
+      <VideoPlayer />
     </v-window-item>
     <v-window-item>
-      <video controls>
-        <source src="" type="video/webm" />
-      </video>
+      <VideoPlayer />
     </v-window-item>
     <v-window-item>
-      <video controls>
-        <source src="" type="video/webm" />
-      </video>
+      <VideoPlayer />
     </v-window-item>
   </v-carousel>
 </template>
 
-<style scoped></style>
+<style scoped>
+@media only screen and (min-width: 769px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    justify-content: space-between;
+    width: 70%;
+  }
+}
+</style>

@@ -25,6 +25,7 @@ defineComponent({
 })
 
 import { ref } from 'vue'
+import VideoPlayer from './VideoPlayer.vue'
 
 const videos = ref<Video[]>([])
 const videoTitles = ref<string[]>([])
@@ -50,11 +51,12 @@ fetch(
       <div class="card-content">
         <div class="trailer">
           <div v-if="videos[0]" class="trailer-clip">
-            <iframe
+            <VideoPlayer />
+            <!-- <iframe
               :src="`https://www.youtube.com/embed/${videos[0].snippet.resourceId.videoId}`"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowfullscreen
-            ></iframe>
+            ></iframe> -->
           </div>
           <div class="movie-info">
             <h2>{{ videoTitles[0] }}</h2>
@@ -95,23 +97,6 @@ fetch(
   .trailer {
     display: flex;
     flex-direction: column;
-  }
-
-  .trailer-clip {
-    position: relative;
-    overflow: hidden;
-    width: 100%;
-    padding-top: 56.25%;
-  }
-
-  iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
   }
   .movie-info {
     display: flex;
@@ -162,22 +147,6 @@ fetch(
     flex-direction: column;
   }
 
-  .trailer-clip {
-    position: relative;
-    overflow: hidden;
-    width: 100%;
-    padding-top: 56.25%;
-  }
-
-  iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-  }
   .movie-info {
     display: flex;
     flex-direction: column;
@@ -215,7 +184,9 @@ fetch(
   .card-container {
     display: flex;
     flex-direction: column;
-    margin: 10px;
+    margin: auto;
+    margin-top: 10px;
+    width: 70%;
   }
   .card-content {
     display: flex;
@@ -227,22 +198,6 @@ fetch(
     flex-direction: column;
   }
 
-  .trailer-clip {
-    position: relative;
-    overflow: hidden;
-    width: 100%;
-    padding-top: 56.25%;
-  }
-
-  iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-  }
   .movie-info {
     display: flex;
     flex-direction: column;
@@ -278,49 +233,32 @@ fetch(
 
 @media only screen and (min-width: 992px) {
   .card-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 90%;
+    width: 80%;
     margin: auto;
+    margin-top: 10px;
     background-color: #b7b7a4;
     border-radius: 8px;
   }
 
   .card-content {
     display: flex;
-    width: auto;
-    text-align: center;
+    flex-direction: row;
   }
 
   .trailer {
     display: flex;
     flex-direction: row;
+    align-items: center;
   }
 
   .trailer-clip {
-    display: flex;
-    width: 100%;
-    padding-top: 56.25%;
-  }
-
-  iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    width: 100%;
-    height: 60%;
+    width: 40%;
   }
 
   .movie-info {
-    display: flex;
-    flex-direction: column;
-    padding: 30px;
-    width: 70%;
-    justify-content: center;
+    padding: 20px;
+    padding-right: 0;
+    width: 60%;
     text-align: justify;
   }
 
@@ -328,9 +266,6 @@ fetch(
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: end;
-    width: 20%;
-    padding: 1rem;
   }
 
   h2 {
@@ -344,55 +279,40 @@ fetch(
 
   p {
     font-size: 13px;
+  }
+  a {
+    padding-top: 20px;
   }
 }
 
 @media only screen and (min-width: 1025px) {
   .card-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 90%;
+    width: 80%;
     margin: auto;
-    padding: 1rem;
+    margin-top: 10px;
     background-color: #b7b7a4;
-    border-radius: 10px;
+    border-radius: 8px;
   }
 
   .card-content {
     display: flex;
-    width: auto;
-    text-align: center;
+    flex-direction: row;
   }
 
   .trailer {
     display: flex;
     flex-direction: row;
+    align-items: center;
   }
 
   .trailer-clip {
-    display: flex;
-    width: 100%;
-    padding-top: 56.25%;
-  }
-
-  iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    width: 100%;
-    height: 60%;
+    width: 40%;
   }
 
   .movie-info {
-    display: flex;
-    flex-direction: column;
-    padding: 30px;
-    width: 70%;
-    justify-content: center;
+    padding: 20px;
+    padding-right: 0;
+    width: 60%;
     text-align: justify;
   }
 
@@ -400,9 +320,6 @@ fetch(
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: end;
-    width: 20%;
-    padding: 1rem;
   }
 
   h2 {
@@ -416,6 +333,9 @@ fetch(
 
   p {
     font-size: 13px;
+  }
+  a {
+    padding-top: 20px;
   }
 }
 </style>
