@@ -1,28 +1,29 @@
 <script setup lang="ts">
 import { films } from '@/data'
 
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import FilmCard from '@/components/FilmCard.vue'
 
 const input = ref('')
 //Films here, replace with DB stuff later (maybe in a separate file?)
 
-function filteredList() {
-  return films.filter((film) =>
-    [film.title, film.genres, film.tags].some((field) =>
-      field.toLowerCase().includes(input.value.toLowerCase()),
-    ),
+const filteredList = computed(() => {
+  return films.filter(
+    (film) =>
+      film.title.toLowerCase().includes(input.value.toLowerCase()) ||
+      film.genres.toLowerCase().includes(input.value.toLowerCase()) ||
+      film.tags.toLowerCase().includes(input.value.toLowerCase()),
   )
-}
+})
 </script>
 
 <template>
   <div class="container">
     <input type="text" v-model="input" placeholder="Search films..." class="input" />
 
-    <div class="search-results"><FilmCard :films="filteredList()" /></div>
+    <div class="search-results"><FilmCard :films="filteredList" /></div>
 
-    <div class="error" v-if="input && !filteredList().length">
+    <div class="error" v-if="input && !filteredList.length">
       <p>No results found!</p>
     </div>
     <div class="genres-tags-container">
