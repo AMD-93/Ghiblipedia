@@ -8,7 +8,7 @@ export interface Film {
   summary: string
   plot: string
   director: string
-  genres: string
+  genres: string[]
   tags: string
   runningTime: number
 }

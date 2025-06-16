@@ -11,7 +11,7 @@ const filteredList = computed(() => {
   return films.filter(
     (film) =>
       film.title.toLowerCase().includes(input.value.toLowerCase()) ||
-      film.genres.toLowerCase().includes(input.value.toLowerCase()) ||
+      film.genres.some((genre) => genre.toLowerCase().includes(input.value.toLowerCase())) ||
       film.tags.toLowerCase().includes(input.value.toLowerCase()),
   )
 })

@@ -17,6 +17,7 @@ const props = defineProps<{ films: Film[] }>()
       <div class="subheader">
         <h2>{{ film.originalTitle }}</h2>
         <p>{{ film.runningTime }} minutes</p>
+        <p>{{ film.genres.join(', ') }}</p>
       </div>
     </div>
 

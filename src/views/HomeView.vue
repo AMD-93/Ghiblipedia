@@ -39,6 +39,7 @@ import CarouselComponent from '@/components/CarouselComponent.vue'
   .carousels {
     display: flex;
     flex-direction: column;
+    margin: 0;
   }
 }
 
@@ -47,12 +48,26 @@ import CarouselComponent from '@/components/CarouselComponent.vue'
     display: flex;
     flex-direction: row;
     margin: auto;
-    justify-content: space-between;
     max-width: 80%;
+    justify-content: space-between;
   }
+
   .carousel-left,
   .carousel-right {
     width: 49%;
+  }
+
+  .carousel-left :deep(.v-carousel),
+  .carousel-right :deep(.v-carousel) {
+    width: 100%;
+    height: 100%;
+  }
+
+  .carousel-left :deep(video),
+  .carousel-right :deep(video) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 }
 
