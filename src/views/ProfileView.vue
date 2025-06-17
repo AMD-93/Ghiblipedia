@@ -11,12 +11,11 @@ function handleLogout() {
 
 <template>
   <div class="container">
-    <div class="profile-container">
-      <ProfileCard />
-    </div>
+    <ProfileCard />
 
     <div class="button-container">
       <button @click="handleLogout">Log out</button>
+      <button>Reset password</button>
     </div>
   </div>
 </template>
@@ -29,29 +28,19 @@ function handleLogout() {
 }
 
 button {
-  background-color: #cb997e;
+  background-color: #4b4e41;
+  color: white;
+  font-size: larger;
   padding: 10px;
   border-radius: 8px;
   width: 100%;
-}
-
-.profile-container {
-  background-color: #b7b7a4;
-  border-radius: 8px;
-  padding: 20px;
-  margin-bottom: 10px;
+  margin-top: 10px;
 }
 
 @media only screen and (max-width: 480px) {
   .container {
     display: flex;
     flex-direction: column;
-  }
-
-  .profile-container {
-  }
-
-  .button-container {
   }
 }
 
