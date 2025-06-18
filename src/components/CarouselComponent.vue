@@ -17,6 +17,9 @@ import VideoPlayer from './VideoPlayer.vue'
 </template>
 
 <style scoped>
+.container {
+  margin: auto;
+}
 @media only screen and (min-width: 769px) {
   .container {
     display: flex;
