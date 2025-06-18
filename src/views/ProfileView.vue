@@ -2,7 +2,7 @@
 import { useAuth0 } from '@auth0/auth0-vue'
 import ProfileCard from '@/components/ProfileCard.vue'
 
-const { logout } = useAuth0()
+const { logout, isAuthenticated } = useAuth0()
 
 function handleLogout() {
   logout({ logoutParams: { returnTo: window.location.origin } })
@@ -10,7 +10,7 @@ function handleLogout() {
 </script>
 
 <template>
-  <div class="container">
+  <div v-if="isAuthenticated" class="container">
     <ProfileCard />
 
     <div class="button-container">

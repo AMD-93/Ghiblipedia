@@ -15,7 +15,7 @@ const items = [{ title: 'Edit profile' }, { title: 'Reset password' }, { title: 
   <div class="profile-container">
     <div class="header">
       <div class="pic"><img :src="Picture" alt="" /></div>
-      <h1>Willem Dafoe</h1>
+      <h1>Name</h1>
     </div>
     <div class="profile-info">
       <p>Username</p>

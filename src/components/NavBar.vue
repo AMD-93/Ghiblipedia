@@ -1,7 +1,15 @@
 <script setup lang="ts">
 import { useAuth0 } from '@auth0/auth0-vue'
+import SvgIcon from '@jamescoyle/vue-icon'
+import { mdiHome, mdiEyeOutline, mdiMagnify, mdiNewspaper, mdiAccount, mdiLogin } from '@mdi/js'
 
 const { loginWithRedirect, isAuthenticated } = useAuth0()
+const home = mdiHome
+const watchlist = mdiEyeOutline
+const browse = mdiMagnify
+const news = mdiNewspaper
+const profile = mdiAccount
+const signIn = mdiLogin
 
 function login() {
   loginWithRedirect()
@@ -24,22 +32,35 @@ function showMenu() {
         <ul class="nav-items">
           <li>
             <RouterLink class="hide-fullscreen" :to="{ name: 'home' }"
-              >home <v-icon icon="mdi-home" />
-              <!-- Figure out wtf is happening with the icon, why doesn't it show up -->
+              ><svg-icon class="icon" type="mdi" :path="home"> </svg-icon>home
             </RouterLink>
           </li>
           <li>
             <RouterLink :to="{ name: 'watchlist' }" class="navbar-item" v-if="isAuthenticated"
-              >watchlist</RouterLink
+              ><svg-icon class="icon" type="mdi" :path="watchlist"> </svg-icon>watchlist</RouterLink
             >
           </li>
 
-          <li><RouterLink :to="{ name: 'browse' }" class="navbar-item">browse</RouterLink></li>
-          <li><RouterLink :to="{ name: 'news' }" class="navbar-item">news</RouterLink></li>
-          <li><RouterLink :to="{ name: 'profile' }" class="navbar-item">profile</RouterLink></li>
+          <li>
+            <RouterLink :to="{ name: 'browse' }" class="navbar-item"
+              ><svg-icon class="icon" type="mdi" :path="browse"> </svg-icon>browse</RouterLink
+            >
+          </li>
+          <li>
+            <RouterLink :to="{ name: 'news' }" class="navbar-item"
+              ><svg-icon class="icon" type="mdi" :path="news"> </svg-icon>news</RouterLink
+            >
+          </li>
+          <li>
+            <RouterLink :to="{ name: 'profile' }" class="navbar-item" v-if="isAuthenticated"
+              ><svg-icon class="icon" type="mdi" :path="profile"> </svg-icon>profile</RouterLink
+            >
+          </li>
         </ul>
         <div class="login-button">
-          <button @click="login" v-if="!isAuthenticated">sign in</button>
+          <button @click="login" v-if="!isAuthenticated">
+            <svg-icon class="icon" type="mdi" :path="signIn"> </svg-icon>sign in
+          </button>
         </div>
       </div>
     </div>
@@ -62,9 +83,21 @@ function showMenu() {
 </template>
 
 <style scoped>
+.icon {
+  height: 1.5em;
+  width: 1.5em;
+  top: 0.27em;
+  position: relative;
+  margin-right: 6px;
+}
+
 @media only screen and (min-width: 700px) {
   .hide-fullscreen {
     display: none;
+  }
+
+  .icon {
+    margin-left: 30px;
   }
 }
 
@@ -81,13 +114,9 @@ function showMenu() {
 .nav-items {
   display: flex;
   justify-content: center;
-  align-items: center;
   list-style: none;
   margin: 0;
   padding: 0;
-  li {
-    padding: 0 10px;
-  }
 }
 i {
   display: none;
