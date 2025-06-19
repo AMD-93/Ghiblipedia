@@ -1,5 +1,6 @@
 import { createApp } from 'vue'
 import { createAuth0 } from '@auth0/auth0-vue'
+import { createPinia } from 'pinia'
 
 // Vuetify
 import 'vuetify/styles'
@@ -16,9 +17,12 @@ const vuetify = createVuetify({
   directives,
 })
 
+const pinia = createPinia()
+
 createApp(App)
   .use(vuetify)
   .use(router)
+  .use(pinia)
   .use(
     createAuth0({
       domain: 'dev-f4im6j56guz4g0ga.eu.auth0.com',

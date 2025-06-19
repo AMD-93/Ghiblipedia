@@ -12,3 +12,10 @@ export interface Film {
   tags: string
   runningTime: number
 }
+
+export interface Article {
+  id: number
+  title: string
+  description: string
+  pubDate: string
+}
