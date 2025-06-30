@@ -17,8 +17,8 @@ onMounted(() => {
     <h1>News</h1>
     <div v-for="article in articles" :key="article.id">
       <h2>{{ article.title }}</h2>
-      <p>{{ article.pubDate }}</p>
-      <p>{{ article.description }}</p>
+      <p class="date">{{ article.pubDate }}</p>
+      <p class="article">{{ article.description }}</p>
     </div>
   </div>
 </template>
@@ -31,5 +31,12 @@ h1 {
 h2 {
   font-size: medium;
   padding-bottom: 5px;
+}
+.date {
+  font-size: small;
+  padding-bottom: 10px;
+}
+.article {
+  padding-bottom: 20px;
 }
 </style>

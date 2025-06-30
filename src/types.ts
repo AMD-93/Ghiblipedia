@@ -13,6 +13,21 @@ export interface Film {
   runningTime: number
 }
 
+export interface FilmDB {
+  movieId: number
+  englishTitle: string
+  japaneseTitle: string
+  releaseDate: string
+  imageUrl: string
+  trailerUrl: string
+  summary: string
+  plot: string
+  director: string
+  genre: string
+  runningTime: number
+  tags: string[]
+}
+
 export interface Article {
   id: number
   title: string

@@ -1,18 +1,33 @@
 <script setup lang="ts">
-import type { Film } from '@/types.ts'
-
 import miyazakiImg from '@/assets/miyazaki.jpg'
 import VideoPlayer from './VideoPlayer.vue'
 
-const props = defineProps<{ films: Film[] }>()
+// const props = defineProps<{ films: Film[] }>()
+
+import { useFilmsStore } from '@/store/Films'
+import { onMounted, computed } from 'vue'
+
+const store = useFilmsStore()
+
+const films = computed(() => {
+  return store.films
+})
+onMounted(() => {
+  store.fetchFilms()
+  console.log(films)
+})
 </script>
 
 <template>
-  <div class="container" v-for="(film, index) in props.films" :key="index">
+  <div v-for="film in films" :key="film.movieId">
+    {{ film.englishTitle }}
+  </div>
+
+  <!-- <div class="container" v-for="(film, index) in props.films" :key="index">
     <div class="titles">
-      <div class="header">
-        <img :src="miyazakiImg" alt="Hayao Miyazaki" />
-        <h1>{{ film.title }} ({{ film.year }})</h1>
+      <div class="header"> -->
+  <img :src="miyazakiImg" alt="Hayao Miyazaki" />
+  <!-- <h1>{{ film.title }} ({{ film.year }})</h1>
       </div>
       <div class="subheader">
         <h2>{{ film.originalTitle }}</h2>
@@ -21,12 +36,12 @@ const props = defineProps<{ films: Film[] }>()
       </div>
     </div>
 
-    <div class="info">
-      <VideoPlayer />
-      <p>{{ film.plot }}</p>
+    <div class="info"> -->
+  <VideoPlayer />
+  <!-- <p>{{ film.plot }}</p>
       <p>Directed by {{ film.director }}</p>
     </div>
-  </div>
+  </div> -->
 </template>
 
 <style scoped>
