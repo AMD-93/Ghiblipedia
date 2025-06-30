@@ -1,17 +1,21 @@
 <script setup lang="ts">
-import type { FilmDB } from '@/types.ts'
+import { useFilmsStore } from '@/store/Films'
+import { onMounted, computed } from 'vue'
 
-const props = defineProps<{ films: FilmDB[] }>()
+const store = useFilmsStore()
+const films = computed(() => store.films)
+onMounted(() => {
+  store.fetchFilms()
+})
 </script>
 
 <template>
   <v-expansion-panels bg-color="#b7b7a4" rounded="lg" multiple>
-    <v-expansion-panel v-for="(film, index) in props.films" :key="index">
+    <v-expansion-panel v-for="film in films" :key="film.movieId">
       <v-expansion-panel-title>
         <h1>{{ film.englishTitle }}</h1>
         ({{ film.releaseDate }})
       </v-expansion-panel-title>
-
       <v-expansion-panel-text>
         <h2>{{ film.japaneseTitle }}</h2>
         <p>{{ film.summary }}</p>
