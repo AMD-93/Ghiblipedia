@@ -9,10 +9,11 @@ export const useFilmsStore = defineStore('films', {
 
   actions: {
     async fetchFilms() {
+      console.log('fetchFilms called')
+
       try {
-        const films = await axios.get('https://ghiblipediaapi.onrender.com/api/movies/')
-        this.films = films.data.results
-        console.log(films)
+        const res = await axios.get('https://ghiblipediaapi.onrender.com/api/movies/')
+        this.films = res.data
       } catch (error) {
         alert(error)
         console.log(error)

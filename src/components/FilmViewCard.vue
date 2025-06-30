@@ -14,7 +14,6 @@ const films = computed(() => {
 })
 onMounted(() => {
   store.fetchFilms()
-  console.log(films)
 })
 </script>
 

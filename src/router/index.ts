@@ -12,7 +12,7 @@ const routes = [
   { path: '/browse', name: 'browse', component: BrowseView },
   { path: '/news', name: 'news', component: NewsView },
   { path: '/profile', name: 'profile', component: ProfileView },
-  { path: '/films/:id', name: 'film', component: () => import('@/views/FilmView.vue') },
+  { path: '/api/movies/:id', name: 'film', component: () => import('@/views/FilmView.vue') },
 ]
 
 const router = createRouter({
