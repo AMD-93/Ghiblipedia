@@ -16,7 +16,7 @@ const props = defineProps<{ films: Film[] }>()
         <h2>{{ film.originalTitle }}</h2>
         <p>{{ film.summary }}</p>
         <p v-if="film.id">
-          <router-link :to="`/api/movies`">See more</router-link>
+          <router-link :to="`/films/${film.id}`">See more</router-link>
         </p>
       </v-expansion-panel-text>
     </v-expansion-panel>
