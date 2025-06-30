@@ -1,22 +1,22 @@
 <script setup lang="ts">
-import type { Film } from '@/types.ts'
+import type { FilmDB } from '@/types.ts'
 
-const props = defineProps<{ films: Film[] }>()
+const props = defineProps<{ films: FilmDB[] }>()
 </script>
 
 <template>
   <v-expansion-panels bg-color="#b7b7a4" rounded="lg" multiple>
     <v-expansion-panel v-for="(film, index) in props.films" :key="index">
       <v-expansion-panel-title>
-        <h1>{{ film.title }}</h1>
-        ({{ film.year }})
+        <h1>{{ film.englishTitle }}</h1>
+        ({{ film.releaseDate }})
       </v-expansion-panel-title>
 
       <v-expansion-panel-text>
-        <h2>{{ film.originalTitle }}</h2>
+        <h2>{{ film.japaneseTitle }}</h2>
         <p>{{ film.summary }}</p>
-        <p v-if="film.id">
-          <router-link :to="`/api/movies/${film.id}`">See more</router-link>
+        <p v-if="film.movieId">
+          <router-link :to="`/api/movies/${film.movieId}`">See more</router-link>
         </p>
       </v-expansion-panel-text>
     </v-expansion-panel>
