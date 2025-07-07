@@ -1,18 +1,18 @@
 <script setup lang="ts">
-import { films } from '@/data'
+import { useFilmsStore } from '../store/Films'
 
 import { ref, computed } from 'vue'
 import FilmCard from '@/components/FilmCard.vue'
 
 const input = ref('')
-//Films here, replace with DB stuff later (maybe in a separate file?)
+const filmsStore = useFilmsStore()
 
 const filteredList = computed(() => {
-  return films.filter(
+  return filmsStore.films.filter(
     (film) =>
-      film.title.toLowerCase().includes(input.value.toLowerCase()) ||
-      film.genres.some((genre) => genre.toLowerCase().includes(input.value.toLowerCase())) ||
-      film.tags.toLowerCase().includes(input.value.toLowerCase()),
+      film.englishTitle.toLowerCase().includes(input.value.toLowerCase()) ||
+      film.genre.some((genre: string) => genre.toLowerCase().includes(input.value.toLowerCase())) ||
+      film.tags.some((tag: string) => tag.toLowerCase().includes(input.value.toLowerCase())),
   )
 })
 </script>
@@ -21,7 +21,7 @@ const filteredList = computed(() => {
   <div class="container">
     <input type="text" v-model="input" placeholder="Search films..." class="input" />
 
-    <div class="search-results"><FilmCard :films="filteredList" /></div>
+    <div class="search-results"><FilmCard :Films="filteredList" /></div>
 
     <div class="error" v-if="input && !filteredList.length">
       <p>No results found!</p>

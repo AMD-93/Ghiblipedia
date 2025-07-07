@@ -5,8 +5,8 @@ import FilmViewCard from '@/components/FilmViewCard.vue'
 import { films } from '@/data'
 
 const route = useRoute()
-const filmId = Number(route.params.id)
-const film = films.find((f) => f.id === filmId)
+const movieId = Number(route.params.movieId)
+const film = films.find((f) => f.id === movieId)
 </script>
 
 <template>

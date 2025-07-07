@@ -8,10 +8,7 @@ import { useFilmsStore } from '@/store/Films'
 import { onMounted, computed } from 'vue'
 
 const store = useFilmsStore()
-
-const films = computed(() => {
-  return store.films
-})
+const films = computed(() => store.films)
 onMounted(() => {
   store.fetchFilms()
 })
