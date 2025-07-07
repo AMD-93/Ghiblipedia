@@ -1,21 +1,13 @@
 <script setup lang="ts">
 import miyazakiImg from '@/assets/miyazaki.jpg'
 import VideoPlayer from './VideoPlayer.vue'
+import type { FilmDB } from '@/types'
 
-// const props = defineProps<{ films: Film[] }>()
-
-import { useFilmsStore } from '@/store/Films'
-import { onMounted, computed } from 'vue'
-
-const store = useFilmsStore()
-const films = computed(() => store.films)
-onMounted(() => {
-  store.fetchFilms()
-})
+const props = defineProps<{ films: FilmDB[] }>()
 </script>
 
 <template>
-  <div v-for="film in films" :key="film.movieId">
+  <div v-for="film in props.films" :key="film.movieId">
     {{ film.englishTitle }}
   </div>
 
