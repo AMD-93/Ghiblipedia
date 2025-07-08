@@ -1,17 +1,13 @@
 <script setup lang="ts">
-import { useRoute } from 'vue-router'
 import { useFilmsStore } from '@/store/Films'
 import { onMounted, computed } from 'vue'
 import TrailerCard from '@/components/TrailerCard.vue'
 import CarouselComponent from '@/components/CarouselComponent.vue'
 
-const route = useRoute()
 const store = useFilmsStore()
 
-const movieId = Number(route.params.movieId)
-
 onMounted(() => {
-  store.fetchFilmById(movieId)
+  store.fetchFilms()
 })
 
 const film = computed(() => store.films[0])
