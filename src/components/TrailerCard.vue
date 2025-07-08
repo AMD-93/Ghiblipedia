@@ -1,66 +1,20 @@
 <script setup lang="ts">
-import { defineComponent } from 'vue'
-
-interface Video {
-  snippet: {
-    title: string
-    description: string
-    resourceId: {
-      videoId: string
-    }
-  }
-}
-
-interface ApiResponse {
-  items: Video[]
-}
-
-defineComponent({
-  data() {
-    return {
-      videoTitles: [] as string[],
-      videoDescriptions: [] as string[],
-    }
-  },
-})
-
-import { ref } from 'vue'
 import VideoPlayer from './VideoPlayer.vue'
-
-const videos = ref<Video[]>([])
-const videoTitles = ref<string[]>([])
-const videoDescriptions = ref<string[]>([])
-
-fetch(
-  'https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLrMoWLZPWpBU8qR-2hp90obIEEAelORR1&key=AIzaSyCkeEknyIEzqzvAlqx677KxdAwkf0nKZd4',
-)
-  .then((res) => res.json())
-  .then((data: ApiResponse) => {
-    videos.value = data.items // TypeScript now knows the structure of videos
-    videoTitles.value = data.items.map((el: Video) => el.snippet.title)
-    videoDescriptions.value = data.items.map((el: Video) => el.snippet.description)
-
-    // console.log(videoTitles.value)
-    // console.log(videoDescriptions.value)
-  })
+import type { FilmDB } from '@/types'
+const props = defineProps<{ films: FilmDB[] }>()
 </script>
 
 <template>
   <div>
-    <div class="card-container">
+    <div class="card-container" v-for="film in props.films" :key="film.movieId">
       <div class="card-content">
         <div class="trailer">
-          <div v-if="videos[0]" class="trailer-clip">
+          <div>
             <VideoPlayer />
-            <!-- <iframe
-              :src="`https://www.youtube.com/embed/${videos[0].snippet.resourceId.videoId}`"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            ></iframe> -->
           </div>
           <div class="movie-info">
-            <h2>{{ videoTitles[0] }}</h2>
-            <p>{{ videoDescriptions[0] }}</p>
+            <h2>{{ film.englishTitle }}</h2>
+            <p>{{ film.summary }}</p>
           </div>
         </div>
         <div class="links">
