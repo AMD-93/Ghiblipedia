@@ -7,29 +7,25 @@ const props = defineProps<{ films: FilmDB[] }>()
 </script>
 
 <template>
-  <div v-for="film in props.films" :key="film.movieId">
-    {{ film.englishTitle }}
-  </div>
-
-  <!-- <div class="container" v-for="(film, index) in props.films" :key="index">
+  <div class="container" v-for="film in props.films" :key="film.movieId">
     <div class="titles">
-      <div class="header"> -->
-  <img :src="miyazakiImg" alt="Hayao Miyazaki" />
-  <!-- <h1>{{ film.title }} ({{ film.year }})</h1>
+      <div class="header">
+        <img :src="miyazakiImg" alt="Hayao Miyazaki" />
+
+        <h1>{{ film.englishTitle }} ({{ film.releaseDate }})</h1>
       </div>
       <div class="subheader">
-        <h2>{{ film.originalTitle }}</h2>
+        <h2>{{ film.japaneseTitle }}</h2>
         <p>{{ film.runningTime }} minutes</p>
-        <p>{{ film.genres.join(', ') }}</p>
+        <p>{{ film.genre }}</p>
       </div>
     </div>
-
-    <div class="info"> -->
-  <VideoPlayer />
-  <!-- <p>{{ film.plot }}</p>
+    <div class="info">
+      <VideoPlayer />
+      <p>{{ film.plot }}</p>
       <p>Directed by {{ film.director }}</p>
     </div>
-  </div> -->
+  </div>
 </template>
 
 <style scoped>
