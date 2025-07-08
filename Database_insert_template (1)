@@ -1,0 +1,17 @@
+{    
+    "englishTitle": "title",
+    "japaneseTitle": "タイトル taitoru",        
+    "releaseDate": "1 jan 2000",
+    "imageUrl": "https://url.com",
+    "trailerUrl": "https://url.com",
+    "summary": "summary",
+    "plot": "plot",
+    "director": "director",
+    "genre": "genre",
+    "runningTime": "123 min",
+	"tags": [
+            "fantasy",
+            "action",
+            "supernatural etc..."
+        ]
+}

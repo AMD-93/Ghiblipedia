@@ -13,7 +13,7 @@ const props = defineProps<{ films: FilmDB[] }>()
             <VideoPlayer />
           </div>
           <div class="movie-info">
-            <h2>{{ film.englishTitle }}</h2>
+            <h2>{{ film.englishTitle }} ({{ film.releaseDate }})</h2>
             <p>{{ film.summary }}</p>
           </div>
         </div>
