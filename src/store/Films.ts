@@ -9,6 +9,8 @@ export const useFilmsStore = defineStore('films', {
 
   actions: {
     async fetchFilms() {
+      console.log('fetchFilms called')
+
       try {
         const res = await axios.get('https://ghiblipediaapi.onrender.com/api/movies')
         this.films = res.data
@@ -17,12 +19,27 @@ export const useFilmsStore = defineStore('films', {
         console.log(error)
       }
     },
-    async fetchFilmById(movieId: number) {
-      console.log('fetchFilms called')
+
+    async fetchFilmById(movieId: FilmDB['movieId']) {
+      console.log('fetchFilmById called')
 
       try {
         const res = await axios.get(`https://ghiblipediaapi.onrender.com/api/movies/${movieId}`)
-        this.films = [res.data] // store as an array for consistency
+        this.films = [res.data]
+      } catch (error) {
+        alert(error)
+        console.log(error)
+      }
+    },
+
+    async postNewFilm(englishTitle: FilmDB['englishTitle']) {
+      console.log(`postNewFilm called, adding ${englishTitle}`)
+
+      try {
+        const res = await axios.post(
+          `https://ghiblipediaapi.onrender.com/api/movies/omdb/${englishTitle}`,
+        )
+        this.films = [res.data]
       } catch (error) {
         alert(error)
         console.log(error)
