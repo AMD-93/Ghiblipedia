@@ -5,10 +5,11 @@ import WatchlistView from '@/views/WatchlistView.vue'
 import BrowseView from '@/views/BrowseView.vue'
 import NewsView from '@/views/NewsView.vue'
 import ProfileView from '@/views/ProfileView.vue'
+import { authGuard } from '@auth0/auth0-vue'
 
 const routes = [
   { path: '/', name: 'home', component: HomeView },
-  { path: '/watchlist', name: 'watchlist', component: WatchlistView },
+  { path: '/watchlist', name: 'watchlist', component: WatchlistView, beforeEnter: authGuard },
   { path: '/browse', name: 'browse', component: BrowseView },
   { path: '/news', name: 'news', component: NewsView },
   { path: '/profile', name: 'profile', component: ProfileView },
