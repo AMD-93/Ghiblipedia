@@ -5,6 +5,7 @@ import WatchlistView from '@/views/WatchlistView.vue'
 import BrowseView from '@/views/BrowseView.vue'
 import NewsView from '@/views/NewsView.vue'
 import ProfileView from '@/views/ProfileView.vue'
+import FilmView from '@/views/FilmView.vue'
 import { authGuard } from '@auth0/auth0-vue'
 
 const routes = [
@@ -13,7 +14,7 @@ const routes = [
   { path: '/browse', name: 'browse', component: BrowseView },
   { path: '/news', name: 'news', component: NewsView },
   { path: '/profile', name: 'profile', component: ProfileView },
-  { path: '/api/movies/:movieId', name: 'film', component: () => import('@/views/FilmView.vue') },
+  { path: '/api/movies/:movieId', name: 'film', component: FilmView },
 ]
 
 const router = createRouter({

@@ -9,13 +9,15 @@ export const useFilmsStore = defineStore('films', {
 
   actions: {
     async fetchFilms() {
+      if (this.films.length > 0) {
+        return
+      }
       console.log('fetchFilms called')
 
       try {
         const res = await axios.get('https://ghiblipediaapi.onrender.com/api/movies')
-        this.films = res.data
+        this.films = [res.data]
       } catch (error) {
-        alert(error)
         console.log(error)
       }
     },
@@ -27,7 +29,6 @@ export const useFilmsStore = defineStore('films', {
         const res = await axios.get(`https://ghiblipediaapi.onrender.com/api/movies/${movieId}`)
         this.films = [res.data]
       } catch (error) {
-        alert(error)
         console.log(error)
       }
     },
@@ -41,11 +42,25 @@ export const useFilmsStore = defineStore('films', {
         )
         this.films = [res.data]
       } catch (error) {
-        alert(error)
+        console.log(error)
+      }
+    },
+
+    async editFilm(payload: Record<string, string>) {
+      const { movieId, ...updateFields } = payload
+      console.log('editFilm called')
+
+      try {
+        const res = await axios.put(
+          `https://ghiblipediaapi.onrender.com/api/movies/${movieId}`,
+          updateFields,
+        )
+        console.log(res.data)
+      } catch (error) {
         console.log(error)
       }
     },
   },
 })
 
-// why is fetchFilms being called everytime, can I make it so that the function is called once (on mount?) and data is stored here so it's accessible whenever components ask for it? I don't want the function to be called everytime a page loads :/
+// why is fetchFilms being called everytime, can I make it so that the function is called once (on mount?) and data is stored here so it's accessible whenever components ask for it? I don't want the function to be called everytime a page loads?? :/

@@ -24,7 +24,7 @@ export interface FilmDB {
   plot: string
   director: string
   genre: string[]
-  runningTime: number
+  runningTime: string
   tags: string[]
 }
 
