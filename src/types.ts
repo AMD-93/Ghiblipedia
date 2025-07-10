@@ -23,7 +23,7 @@ export interface FilmDB {
   summary: string
   plot: string
   director: string
-  genre: string[]
+  genre: string
   runningTime: string
   tags: string[]
 }

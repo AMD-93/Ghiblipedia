@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { useFilmsStore } from '../store/Films'
-
 import { ref, computed } from 'vue'
 import FilmCard from '@/components/FilmCard.vue'
 
@@ -11,8 +10,7 @@ const filteredList = computed(() => {
   return filmsStore.films.filter(
     (film) =>
       film.englishTitle.toLowerCase().includes(input.value.toLowerCase()) ||
-      film.genre.some((genre: string) => genre.toLowerCase().includes(input.value.toLowerCase())) ||
-      film.tags.some((tag: string) => tag.toLowerCase().includes(input.value.toLowerCase())),
+      film.genre.toLowerCase().includes(input.value.toLowerCase()),
   )
 })
 </script>
