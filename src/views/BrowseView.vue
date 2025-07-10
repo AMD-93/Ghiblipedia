@@ -5,12 +5,17 @@ import FilmCard from '@/components/FilmCard.vue'
 
 const input = ref('')
 const filmsStore = useFilmsStore()
+
 onMounted(() => {
   filmsStore.fetchFilms()
 })
 
+const filmsStoreFilms = computed(() => {
+  return filmsStore.films
+})
+
 const filteredList = computed(() => {
-  return filmsStore.films.filter(
+  return filmsStoreFilms.value.filter(
     (film) =>
       film.englishTitle?.toLowerCase().includes(input.value.toLowerCase()) ||
       film.genre?.toLowerCase().includes(input.value.toLowerCase()),
