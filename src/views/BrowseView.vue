@@ -1,16 +1,19 @@
 <script setup lang="ts">
 import { useFilmsStore } from '../store/Films'
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import FilmCard from '@/components/FilmCard.vue'
 
 const input = ref('')
 const filmsStore = useFilmsStore()
+onMounted(() => {
+  filmsStore.fetchFilms()
+})
 
 const filteredList = computed(() => {
   return filmsStore.films.filter(
     (film) =>
-      film.englishTitle.toLowerCase().includes(input.value.toLowerCase()) ||
-      film.genre.toLowerCase().includes(input.value.toLowerCase()),
+      film.englishTitle?.toLowerCase().includes(input.value.toLowerCase()) ||
+      film.genre?.toLowerCase().includes(input.value.toLowerCase()),
   )
 })
 </script>
@@ -19,7 +22,7 @@ const filteredList = computed(() => {
   <div class="container">
     <input type="text" v-model="input" placeholder="Search films..." class="input" />
 
-    <div class="search-results"><FilmCard :Films="filteredList" /></div>
+    <div class="search-results"><FilmCard :films="filteredList" /></div>
 
     <div class="error" v-if="input && !filteredList.length">
       <p>No results found!</p>
