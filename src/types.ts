@@ -34,3 +34,13 @@ export interface Article {
   description: string
   pubDate: string
 }
+
+export interface YoutubeVideos {
+  id: string
+  snippet: {
+    channelId: string
+  }
+  player: {
+    embedHtml: string
+  }
+}

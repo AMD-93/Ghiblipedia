@@ -9,38 +9,32 @@ export const useFilmsStore = defineStore('films', {
 
   actions: {
     async fetchFilms() {
-      if (this.films.length > 0) {
-        return
-      }
-      console.log('fetchFilms called')
-
       try {
         const res = await axios.get('https://ghiblipediaapi.onrender.com/api/movies')
-        this.films = [res.data]
+        this.films = res.data
+        console.log('fetchFilms called')
       } catch (error) {
         console.log(error)
       }
     },
 
     async fetchFilmById(movieId: FilmDB['movieId']) {
-      console.log('fetchFilmById called')
-
       try {
         const res = await axios.get(`https://ghiblipediaapi.onrender.com/api/movies/${movieId}`)
         this.films = [res.data]
+        console.log('fetchFilmById called')
       } catch (error) {
         console.log(error)
       }
     },
 
     async postNewFilm(englishTitle: FilmDB['englishTitle']) {
-      console.log(`postNewFilm called, adding ${englishTitle}`)
-
       try {
         const res = await axios.post(
           `https://ghiblipediaapi.onrender.com/api/movies/omdb/${englishTitle}`,
         )
-        this.films = [res.data]
+        this.films = res.data
+        console.log(`postNewFilm called, adding ${englishTitle}`)
       } catch (error) {
         console.log(error)
       }

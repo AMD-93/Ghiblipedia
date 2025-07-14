@@ -17,8 +17,8 @@ const filmsStoreFilms = computed(() => {
 const filteredList = computed(() => {
   return filmsStoreFilms.value.filter(
     (film) =>
-      film.englishTitle?.toLowerCase().includes(input.value.toLowerCase()) ||
-      film.genre?.toLowerCase().includes(input.value.toLowerCase()),
+      (film.englishTitle?.toLowerCase() || '').includes(input.value.toLowerCase()) ||
+      (film.genre?.toLowerCase() || '').includes(input.value.toLowerCase()),
   )
 })
 </script>

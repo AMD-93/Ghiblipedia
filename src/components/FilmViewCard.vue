@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import miyazakiImg from '@/assets/miyazaki.jpg'
 import VideoPlayer from './VideoPlayer.vue'
 import type { FilmDB } from '@/types'
 
@@ -10,7 +9,7 @@ const props = defineProps<{ films: FilmDB[] }>()
   <div class="container" v-for="film in props.films" :key="film.movieId">
     <div class="titles">
       <div class="header">
-        <img :src="miyazakiImg" alt="Hayao Miyazaki" />
+        <img :src="film.imageUrl" alt="" />
 
         <h1>{{ film.englishTitle }} ({{ film.releaseDate }})</h1>
       </div>
