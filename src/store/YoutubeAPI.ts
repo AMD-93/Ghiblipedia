@@ -15,6 +15,7 @@ export const useYoutubeStore = defineStore('videos', {
         )
         this.videos = res.data
         console.log(this.videos)
+        console.log('fetchVideos called')
       } catch (error) {
         console.log(error)
       }

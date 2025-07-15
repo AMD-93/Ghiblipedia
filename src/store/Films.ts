@@ -40,15 +40,16 @@ export const useFilmsStore = defineStore('films', {
       }
     },
 
-    async editFilm(payload: Record<string, string>) {
+    async editFilm(payload: Record<string, string>, englishTitle: FilmDB['englishTitle']) {
       const { movieId, ...updateFields } = payload
-      console.log('editFilm called')
 
       try {
         const res = await axios.put(
           `https://ghiblipediaapi.onrender.com/api/movies/${movieId}`,
           updateFields,
         )
+        console.log(`editFilm called, editing ${englishTitle}`)
+
         console.log(res.data)
       } catch (error) {
         console.log(error)
@@ -56,5 +57,3 @@ export const useFilmsStore = defineStore('films', {
     },
   },
 })
-
-// why is fetchFilms being called everytime, can I make it so that the function is called once (on mount?) and data is stored here so it's accessible whenever components ask for it? I don't want the function to be called everytime a page loads?? :/

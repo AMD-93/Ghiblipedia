@@ -1,20 +1,27 @@
 <script setup lang="ts">
-// import videoSrc from '@/assets/278750_tiny.mp4'
-import { useYoutubeStore } from '@/store/YoutubeAPI'
-import { computed, onMounted } from 'vue'
+import LiteYouTubeEmbed from 'vue-lite-youtube-embed'
+import 'vue-lite-youtube-embed/style.css'
 
-const store = useYoutubeStore()
-onMounted(() => {
-  store.fetchVideos()
-})
+// import { useYoutubeStore } from '@/store/YoutubeAPI'
+// import { computed, onMounted } from 'vue'
 
-const video = computed(() => store.videos[0])
+// const store = useYoutubeStore()
+// onMounted(() => {
+//   store.fetchVideos()
+// })
+
+// const video = computed(() => store.videos[0])
 </script>
 
 <template>
-  <div>
+  <!-- <div>
     <video :videos="[video]" controls></video>
-  </div>
+  </div> -->
+
+  <LiteYouTubeEmbed
+    id="dQw4w9WgXcQ"
+    title="Rick Astley - Never Gonna Give You Up (Official Music Video)"
+  />
 </template>
 
 <style scoped>
