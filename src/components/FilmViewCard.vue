@@ -1,8 +1,31 @@
 <script setup lang="ts">
 import VideoPlayer from './VideoPlayer.vue'
 import type { FilmDB } from '@/types'
+import { ref } from 'vue'
+
+import SvgIcon from '@jamescoyle/vue-icon'
+import { mdiCog } from '@mdi/js'
+
+import EditFilmModal from '../components/EditFilmModal.vue'
+
+const path = mdiCog
 
 const props = defineProps<{ films: FilmDB[] }>()
+
+const deleteFilm = () => {}
+
+const isModalOpened = ref(false)
+
+const openModal = () => {
+  isModalOpened.value = true
+}
+const closeModal = () => {
+  isModalOpened.value = false
+}
+
+// could use this to call editFilm PUT func? or should I do it from the modal?
+// const submitHandler = () => {
+// }
 </script>
 
 <template>
@@ -23,6 +46,31 @@ const props = defineProps<{ films: FilmDB[] }>()
       <VideoPlayer />
       <p>{{ film.plot }}</p>
       <p>Directed by {{ film.director }}</p>
+      <div class="settings">
+        <EditFilmModal
+          :films="[film]"
+          :isOpen="isModalOpened"
+          @modal-close="closeModal"
+          name="first-modal"
+        >
+        </EditFilmModal>
+        <v-menu>
+          <template v-slot:activator="{ props }">
+            <v-btn v-bind="props" variant="text">
+              <svg-icon class="icon" type="mdi" :path="path"></svg-icon>
+            </v-btn>
+          </template>
+          <v-list>
+            <v-list-item>
+              <v-list-item-title @click="openModal">Edit film</v-list-item-title>
+            </v-list-item>
+
+            <v-list-item>
+              <v-list-item-title @click="deleteFilm">Delete film</v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-menu>
+      </div>
     </div>
   </div>
 </template>
@@ -65,6 +113,9 @@ p {
     padding-bottom: 0;
     margin: 0 5 5 0;
   }
+  .settings {
+    align-self: flex-end;
+  }
 
   .subheader {
     padding: 10px;
@@ -78,6 +129,8 @@ p {
 
   .info {
     padding: 10px;
+    display: flex;
+    flex-direction: column;
   }
 
   iframe {
