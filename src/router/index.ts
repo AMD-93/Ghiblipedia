@@ -13,7 +13,7 @@ const routes = [
   { path: '/watchlist', name: 'watchlist', component: WatchlistView, beforeEnter: authGuard },
   { path: '/browse', name: 'browse', component: BrowseView },
   { path: '/news', name: 'news', component: NewsView },
-  { path: '/profile', name: 'profile', component: ProfileView },
+  { path: '/profile', name: 'profile', component: ProfileView, beforeEnter: authGuard },
   { path: '/api/movies/:movieId', name: 'film', component: FilmView },
 ]
 

@@ -26,6 +26,8 @@ const closeModal = () => {
 // could use this to call editFilm PUT func? or should I do it from the modal?
 // const submitHandler = () => {
 // }
+
+//how can I make it so that the settings section is only visible if the logged in user has the admin role (ie edit:movies permission)? https://community.auth0.com/t/best-practices-for-retrieving-user-permissions-in-a-spa-vue-js-with-node-js-api-using-auth0/122017/6
 </script>
 
 <template>
