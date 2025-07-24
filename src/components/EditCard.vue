@@ -15,7 +15,7 @@ const form = reactive({
   // runningTime: '',
   tags: [''],
 })
-
+// The Wind Rises, Japanese titles: 風立ちぬ, Kaze Tachinu
 const emit = defineEmits(['submit'])
 
 const submit = () => {

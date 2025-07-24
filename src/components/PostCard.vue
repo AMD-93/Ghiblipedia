@@ -10,7 +10,7 @@ const submit = () => {
 </script>
 <template>
   <div class="form-container">
-    <h1>Post film</h1>
+    <h1>Add film</h1>
     <input v-model="englishTitle" placeholder="English title" />
     <button @click="submit">Submit</button>
   </div>

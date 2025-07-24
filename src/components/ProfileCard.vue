@@ -1,32 +1,41 @@
 <script setup lang="ts">
-import Picture from '@/assets/willem.jpg'
+import { useAuth0 } from '@auth0/auth0-vue'
 import SvgIcon from '@jamescoyle/vue-icon'
-import { mdiCog } from '@mdi/js'
+import { mdiCog, mdiCheckDecagram } from '@mdi/js'
 
-const path = mdiCog
+const cogIcon = mdiCog
+const checkIcon = mdiCheckDecagram
 
 // import { useAuth0 } from '@auth0/auth0-vue'
 
-// const { user, isAuthenticated } = useAuth0()
+const { user, isAuthenticated } = useAuth0()
 
 const items = [{ title: 'Edit profile' }, { title: 'Reset password' }, { title: 'Something else' }]
 </script>
 <template>
-  <div class="profile-container">
+  <div v-if="isAuthenticated" class="profile-container">
     <div class="header">
-      <div class="pic"><img :src="Picture" alt="" /></div>
-      <h1>Name</h1>
+      <div class="pic"><img :src="user?.picture" alt="" /></div>
+      <h1>
+        {{ user?.name }}
+        <svg-icon
+          v-if="user?.email_verified === true"
+          class="icon"
+          type="mdi"
+          :path="checkIcon"
+        ></svg-icon>
+      </h1>
     </div>
     <div class="profile-info">
-      <p>Username</p>
-      <p>Email</p>
-      <p>Whatever</p>
+      <p>
+        {{ user?.email }}
+      </p>
     </div>
     <div class="settings">
       <v-menu>
         <template v-slot:activator="{ props }">
           <v-btn v-bind="props" variant="text">
-            <svg-icon class="icon" type="mdi" :path="path"></svg-icon>
+            <svg-icon class="icon" type="mdi" :path="cogIcon"></svg-icon>
           </v-btn>
         </template>
         <v-list>
@@ -60,7 +69,6 @@ const items = [{ title: 'Edit profile' }, { title: 'Reset password' }, { title: 
 img {
   width: auto;
   height: 100%;
-  margin-left: -120px;
 }
 
 .profile-container {
@@ -74,10 +82,16 @@ img {
     display: flex;
     flex-direction: column;
   }
+
+  .pic {
+    margin-bottom: 10px;
+  }
+
   .header {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-top: 15px;
   }
   .profile-info {
     display: flex;
@@ -96,6 +110,10 @@ img {
   .profile-container {
     display: flex;
     flex-direction: column;
+  }
+
+  .pic {
+    margin-bottom: 10px;
   }
   .header {
     display: flex;

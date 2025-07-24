@@ -5,6 +5,12 @@ import { ref } from 'vue'
 
 import SvgIcon from '@jamescoyle/vue-icon'
 import { mdiCog } from '@mdi/js'
+import { useFilmsStore } from '@/store/Films.ts'
+
+const filmsStore = useFilmsStore()
+const handleEditFilm = (payload: Record<string, string>, englishTitle: string) => {
+  filmsStore.editFilm(payload, englishTitle)
+}
 
 import EditFilmModal from '../components/EditFilmModal.vue'
 
@@ -14,13 +20,13 @@ const props = defineProps<{ films: FilmDB[] }>()
 
 const deleteFilm = () => {}
 
-const isModalOpened = ref(false)
+const openModals = ref<Record<number, boolean>>({})
 
-const openModal = () => {
-  isModalOpened.value = true
+const openModal = (id: number) => {
+  openModals.value[id] = true
 }
-const closeModal = () => {
-  isModalOpened.value = false
+const closeModal = (id: number) => {
+  openModals.value[id] = false
 }
 
 // could use this to call editFilm PUT func? or should I do it from the modal?
@@ -50,9 +56,10 @@ const closeModal = () => {
       <p>Directed by {{ film.director }}</p>
       <div class="settings">
         <EditFilmModal
-          :films="[film]"
-          :isOpen="isModalOpened"
-          @modal-close="closeModal"
+          :film="film"
+          :isOpen="openModals[film.movieId] === true"
+          @modal-close="() => closeModal(film.movieId)"
+          @submit="(payload) => handleEditFilm(payload, film.englishTitle)"
           name="first-modal"
         >
         </EditFilmModal>
@@ -64,7 +71,9 @@ const closeModal = () => {
           </template>
           <v-list>
             <v-list-item>
-              <v-list-item-title @click="openModal">Edit film</v-list-item-title>
+              <v-list-item-title @click="() => openModal(film.movieId)"
+                >Edit film</v-list-item-title
+              >
             </v-list-item>
 
             <v-list-item>

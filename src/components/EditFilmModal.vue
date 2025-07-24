@@ -1,15 +1,16 @@
 <script setup lang="ts">
-import { defineProps, defineEmits, ref, reactive } from 'vue'
+import { ref, reactive, watch } from 'vue'
 import { onClickOutside } from '@vueuse/core'
 import type { FilmDB } from '@/types'
 
-const { isOpen, films } = defineProps<{ isOpen: boolean; films: FilmDB[] }>()
+const { isOpen, film } = defineProps<{ isOpen: boolean; film: FilmDB }>()
 
 const emit = defineEmits(['modal-close', 'submit'])
 
 const target = ref(null)
 onClickOutside(target, () => emit('modal-close'))
 
+// 風立ちぬ, Kaze Tachinu
 //commented out bunch of props that should probably be read-only
 const form = reactive({
   // englishTitle: '',
@@ -25,8 +26,28 @@ const form = reactive({
   tags: [''],
 })
 
-const submit = () => {
-  const payload = Object.fromEntries(Object.entries(form).filter(([, value]) => value !== ''))
+watch(
+  () => film,
+  (newFilm) => {
+    Object.assign(form, {
+      japaneseTitle: newFilm.japaneseTitle || '',
+      trailerUrl: newFilm.trailerUrl || '',
+      summary: newFilm.summary || '',
+      plot: newFilm.plot || '',
+      genre: newFilm.genre || '',
+      tags: newFilm.tags || [''],
+    })
+  },
+  { immediate: true },
+)
+
+const handleSubmit = () => {
+  const filtered = Object.fromEntries(Object.entries(form).filter(([, value]) => value !== ''))
+
+  const payload = {
+    ...filtered,
+    movieId: film.movieId,
+  }
   emit('submit', payload)
 }
 </script>
@@ -35,7 +56,7 @@ const submit = () => {
   <div v-if="isOpen" class="modal-mask">
     <div class="modal-wrapper">
       <div class="modal-container" ref="target">
-        <div v-for="film in films" :key="film.movieId" class="modal-header">
+        <div class="modal-header">
           <slot name="header">
             <h1>
               Edit <span>{{ film.englishTitle }}</span>
@@ -56,9 +77,9 @@ const submit = () => {
               <input v-model="form.genre" placeholder="Genres" />
               <!-- <input v-model="form.runningTime" placeholder="Running time" /> -->
               <input v-model="form.tags" placeholder="Tags" />
-              <button @click="submit">Submit</button>
             </div>
           </slot>
+          <button @click="handleSubmit">Submit</button>
         </div>
         <!-- <div class="modal-footer">
           <slot name="footer">
@@ -95,8 +116,6 @@ const submit = () => {
 .modal-header {
   padding: 10px;
   margin-bottom: 5px;
-}
-.modal-body {
 }
 
 .form-container {
