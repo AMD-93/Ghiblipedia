@@ -10,7 +10,6 @@ const emit = defineEmits(['modal-close', 'submit'])
 const target = ref(null)
 onClickOutside(target, () => emit('modal-close'))
 
-// 風立ちぬ, Kaze Tachinu
 //commented out bunch of props that should probably be read-only
 const form = reactive({
   // englishTitle: '',

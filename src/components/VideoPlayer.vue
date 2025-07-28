@@ -1,16 +1,9 @@
 <script setup lang="ts">
 import LiteYouTubeEmbed from 'vue-lite-youtube-embed'
 import 'vue-lite-youtube-embed/style.css'
+import type { FilmDB } from '@/types'
 
-// import { useYoutubeStore } from '@/store/YoutubeAPI'
-// import { computed, onMounted } from 'vue'
-
-// const store = useYoutubeStore()
-// onMounted(() => {
-//   store.fetchVideos()
-// })
-
-// const video = computed(() => store.videos[0])
+const { film } = defineProps<{ isOpen: boolean; film: FilmDB }>()
 </script>
 
 <template>
@@ -18,10 +11,7 @@ import 'vue-lite-youtube-embed/style.css'
     <video :videos="[video]" controls></video>
   </div> -->
 
-  <LiteYouTubeEmbed
-    id="dQw4w9WgXcQ"
-    title="Rick Astley - Never Gonna Give You Up (Official Music Video)"
-  />
+  <LiteYouTubeEmbed :id="film.trailerUrl" :title="film.englishTitle" />
 </template>
 
 <style scoped>

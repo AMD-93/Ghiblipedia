@@ -29,10 +29,6 @@ const closeModal = (id: number) => {
   openModals.value[id] = false
 }
 
-// could use this to call editFilm PUT func? or should I do it from the modal?
-// const submitHandler = () => {
-// }
-
 //how can I make it so that the settings section is only visible if the logged in user has the admin role (ie edit:movies permission)? https://community.auth0.com/t/best-practices-for-retrieving-user-permissions-in-a-spa-vue-js-with-node-js-api-using-auth0/122017/6
 </script>
 
@@ -51,7 +47,7 @@ const closeModal = (id: number) => {
       </div>
     </div>
     <div class="info">
-      <VideoPlayer />
+      <VideoPlayer :film="film" :isOpen="openModals[film.movieId] === true" />
       <p>{{ film.plot }}</p>
       <p>Directed by {{ film.director }}</p>
       <div class="settings">
