@@ -8,15 +8,16 @@ const props = defineProps<{ films: FilmDB[] }>()
   <div>
     <div class="card-container" v-for="film in props.films" :key="film.movieId">
       <div class="card-content">
-        <div class="trailer">
-          <div>
-            <VideoPlayer />
+        <div class="movie">
+          <div class="trailer">
+            <VideoPlayer :film="film" />
           </div>
           <div class="movie-info">
             <h2>{{ film.englishTitle }} ({{ film.releaseDate }})</h2>
             <p>{{ film.summary }}</p>
           </div>
         </div>
+
         <div class="links">
           <a href="#">Trailer</a>
           <a href="#">Trailer</a>
@@ -199,20 +200,13 @@ const props = defineProps<{ films: FilmDB[] }>()
     flex-direction: row;
   }
 
-  .trailer {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
-
-  .trailer-clip {
-    width: 40%;
+  .movie {
+    width: 80%;
+    padding: 10px;
   }
 
   .movie-info {
-    padding: 20px;
-    padding-right: 0;
-    width: 60%;
+    padding: 10px;
     text-align: justify;
   }
 
@@ -220,6 +214,7 @@ const props = defineProps<{ films: FilmDB[] }>()
     display: flex;
     flex-direction: column;
     justify-content: center;
+    width: 20%;
   }
 
   h2 {
@@ -253,20 +248,13 @@ const props = defineProps<{ films: FilmDB[] }>()
     flex-direction: row;
   }
 
-  .trailer {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
-
-  .trailer-clip {
-    width: 40%;
+  .movie {
+    width: 80%;
+    padding: 10px;
   }
 
   .movie-info {
-    padding: 20px;
-    padding-right: 0;
-    width: 60%;
+    padding: 10px;
     text-align: justify;
   }
 
@@ -274,6 +262,7 @@ const props = defineProps<{ films: FilmDB[] }>()
     display: flex;
     flex-direction: column;
     justify-content: center;
+    width: 20%;
   }
 
   h2 {

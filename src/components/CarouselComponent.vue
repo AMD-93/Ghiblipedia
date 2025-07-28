@@ -1,17 +1,20 @@
 <script setup lang="ts">
 import VideoPlayer from './VideoPlayer.vue'
+import type { FilmDB } from '@/types'
+
+const { film } = defineProps<{ film: FilmDB }>()
 </script>
 
 <template>
   <v-carousel class="container" hide-delimiters style="height: 100%" show-arrows="hover">
     <v-window-item>
-      <VideoPlayer />
+      <VideoPlayer :film="film" />
     </v-window-item>
     <v-window-item>
-      <VideoPlayer />
+      <VideoPlayer :film="film" />
     </v-window-item>
     <v-window-item>
-      <VideoPlayer />
+      <VideoPlayer :film="film" />
     </v-window-item>
   </v-carousel>
 </template>
