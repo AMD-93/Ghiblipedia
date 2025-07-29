@@ -2,6 +2,7 @@
 import VideoPlayer from './VideoPlayer.vue'
 import type { FilmDB } from '@/types'
 import { ref } from 'vue'
+import { useAuth0 } from '@auth0/auth0-vue'
 
 import SvgIcon from '@jamescoyle/vue-icon'
 import { mdiCog } from '@mdi/js'
@@ -14,6 +15,7 @@ const handleEditFilm = (payload: Record<string, string>, englishTitle: string) =
 
 import EditFilmModal from '../components/EditFilmModal.vue'
 
+const { isAuthenticated } = useAuth0()
 const path = mdiCog
 
 const props = defineProps<{ films: FilmDB[] }>()
@@ -50,7 +52,7 @@ const closeModal = (id: number) => {
       <VideoPlayer :film="film" :isOpen="openModals[film.id] === true" />
       <p>{{ film.plot }}</p>
       <p>Directed by {{ film.director }}</p>
-      <div class="settings">
+      <div class="settings" v-if="isAuthenticated">
         <EditFilmModal
           :film="film"
           :isOpen="openModals[film.id] === true"

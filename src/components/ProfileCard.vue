@@ -6,8 +6,6 @@ import { mdiCog, mdiCheckDecagram } from '@mdi/js'
 const cogIcon = mdiCog
 const checkIcon = mdiCheckDecagram
 
-// import { useAuth0 } from '@auth0/auth0-vue'
-
 const { user, isAuthenticated } = useAuth0()
 
 const items = [{ title: 'Edit profile' }, { title: 'Reset password' }, { title: 'Something else' }]
