@@ -6,7 +6,7 @@ const props = defineProps<{ films: FilmDB[] }>()
 
 <template>
   <div>
-    <div class="card-container" v-for="film in props.films" :key="film.movieId">
+    <div class="card-container" v-for="film in props.films" :key="film.id">
       <div class="card-content">
         <div class="movie">
           <div class="trailer">

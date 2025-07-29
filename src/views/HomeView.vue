@@ -2,7 +2,7 @@
 import { useFilmsStore } from '@/store/Films'
 import { onMounted, computed } from 'vue'
 import TrailerCard from '@/components/TrailerCard.vue'
-// import CarouselComponent from '@/components/CarouselComponent.vue'
+import CarouselComponent from '@/components/CarouselComponent.vue'
 
 const store = useFilmsStore()
 
@@ -16,10 +16,10 @@ const film = computed(() => store.films[0])
 <template>
   <main>
     <TrailerCard v-if="film" :films="[film]" />
-    <!-- <div class="carousels">
-      <div class="carousel-left"><CarouselComponent /></div>
-      <div class="carousel-right"><CarouselComponent /></div>
-    </div> -->
+    <div class="carousels">
+      <div class="carousel-left"><CarouselComponent :film="film" /></div>
+      <div class="carousel-right"><CarouselComponent :film="film" /></div>
+    </div>
   </main>
 </template>
 

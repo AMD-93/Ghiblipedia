@@ -33,7 +33,7 @@ const closeModal = (id: number) => {
 </script>
 
 <template>
-  <div class="container" v-for="film in props.films" :key="film.movieId">
+  <div class="container" v-for="film in props.films" :key="film.id">
     <div class="titles">
       <div class="header">
         <img :src="film.imageUrl" alt="" />
@@ -47,14 +47,14 @@ const closeModal = (id: number) => {
       </div>
     </div>
     <div class="info">
-      <VideoPlayer :film="film" :isOpen="openModals[film.movieId] === true" />
+      <VideoPlayer :film="film" :isOpen="openModals[film.id] === true" />
       <p>{{ film.plot }}</p>
       <p>Directed by {{ film.director }}</p>
       <div class="settings">
         <EditFilmModal
           :film="film"
-          :isOpen="openModals[film.movieId] === true"
-          @modal-close="() => closeModal(film.movieId)"
+          :isOpen="openModals[film.id] === true"
+          @modal-close="() => closeModal(film.id)"
           @submit="(payload) => handleEditFilm(payload, film.englishTitle)"
           name="first-modal"
         >
@@ -67,9 +67,7 @@ const closeModal = (id: number) => {
           </template>
           <v-list>
             <v-list-item>
-              <v-list-item-title @click="() => openModal(film.movieId)"
-                >Edit film</v-list-item-title
-              >
+              <v-list-item-title @click="() => openModal(film.id)">Edit film</v-list-item-title>
             </v-list-item>
 
             <v-list-item>

@@ -14,7 +14,7 @@
 // } old interface, substitute these for the FilmDB interface
 
 export interface FilmDB {
-  movieId: number
+  id: number
   englishTitle: string
   japaneseTitle: string
   releaseDate: string

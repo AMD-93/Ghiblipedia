@@ -6,7 +6,7 @@ const props = defineProps<{ films: FilmDB[] }>()
 
 <template>
   <v-expansion-panels bg-color="#b7b7a4" rounded="lg" multiple>
-    <v-expansion-panel v-for="film in props.films" :key="film.movieId">
+    <v-expansion-panel v-for="film in props.films" :key="film.id">
       <v-expansion-panel-title>
         <h1>{{ film.englishTitle }}</h1>
         ({{ film.releaseDate }})
@@ -14,8 +14,8 @@ const props = defineProps<{ films: FilmDB[] }>()
       <v-expansion-panel-text>
         <h2>{{ film.japaneseTitle }}</h2>
         <p>{{ film.summary }}</p>
-        <p v-if="film.movieId">
-          <router-link :to="`/api/movies/${film.movieId}`">See more</router-link>
+        <p v-if="film.id">
+          <router-link :to="`/api/movies/${film.id}`">See more</router-link>
         </p>
       </v-expansion-panel-text>
     </v-expansion-panel>

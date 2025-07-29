@@ -45,7 +45,7 @@ const handleSubmit = () => {
 
   const payload = {
     ...filtered,
-    movieId: film.movieId,
+    id: film.id,
   }
   emit('submit', payload)
 }

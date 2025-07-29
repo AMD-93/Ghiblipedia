@@ -14,7 +14,7 @@ const routes = [
   { path: '/browse', name: 'browse', component: BrowseView },
   { path: '/news', name: 'news', component: NewsView },
   { path: '/profile', name: 'profile', component: ProfileView, beforeEnter: authGuard },
-  { path: '/api/movies/:movieId', name: 'film', component: FilmView },
+  { path: '/api/movies/:id', name: 'film', component: FilmView },
 ]
 
 const router = createRouter({

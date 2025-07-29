@@ -7,10 +7,10 @@ import FilmViewCard from '@/components/FilmViewCard.vue'
 const route = useRoute()
 const store = useFilmsStore()
 
-const movieId = Number(route.params.movieId)
+const id = Number(route.params.id)
 
 onMounted(() => {
-  store.fetchFilmById(movieId)
+  store.fetchFilmById(id)
 })
 
 const film = computed(() => store.films[0])
