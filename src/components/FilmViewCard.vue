@@ -38,8 +38,7 @@ const closeModal = (id: number) => {
   <div class="container" v-for="film in props.films" :key="film.id">
     <div class="titles">
       <div class="header">
-        <img :src="film.imageUrl" alt="" />
-
+        <img :src="film.imageUrl" :alt="film.englishTitle" />
         <h1>{{ film.englishTitle }} ({{ film.releaseDate }})</h1>
       </div>
       <div class="subheader">
@@ -149,6 +148,10 @@ p {
   }
 }
 @media only screen and (min-width: 481px) {
+  .titles {
+    display: flex;
+    flex-direction: row;
+  }
   .header {
     display: flex;
     flex-direction: column;
