@@ -5,7 +5,7 @@ import { ref } from 'vue'
 import { useAuth0 } from '@auth0/auth0-vue'
 
 import SvgIcon from '@jamescoyle/vue-icon'
-import { mdiCog } from '@mdi/js'
+import { mdiCog, mdiCircleSmall } from '@mdi/js'
 import { useFilmsStore } from '@/store/Films.ts'
 
 const filmsStore = useFilmsStore()
@@ -16,7 +16,8 @@ const handleEditFilm = (payload: Record<string, string>, englishTitle: string) =
 import EditFilmModal from '../components/EditFilmModal.vue'
 
 const { isAuthenticated } = useAuth0()
-const path = mdiCog
+const cog = mdiCog
+const dot = mdiCircleSmall
 
 const props = defineProps<{ films: FilmDB[] }>()
 
@@ -36,7 +37,31 @@ const closeModal = (id: number) => {
 
 <template>
   <div class="container" v-for="film in props.films" :key="film.id">
-    <div class="titles">
+    <div class="main-info">
+      <h1 class="english-title">{{ film.englishTitle }}</h1>
+      <h2 class="japanese-title">{{ film.japaneseTitle }}</h2>
+      <div class="year-minutes">
+        <p>{{ film.releaseDate }}</p>
+        <svg-icon class="dot-icon" type="mdi" :path="dot"></svg-icon>
+        <p>{{ film.runningTime }}</p>
+      </div>
+    </div>
+
+    <div class="trailer">
+      <VideoPlayer :film="film" :isOpen="openModals[film.id] === true" />
+    </div>
+
+    <div class="poster-plot">
+      <img :src="film.imageUrl" :alt="film.englishTitle" />
+      <p>{{ film.plot }}</p>
+    </div>
+
+    <div class="director-genres">
+      <p>Directed by {{ film.director }}</p>
+      <p>{{ film.genre }}</p>
+    </div>
+
+    <!-- <div class="titles">
       <div class="header">
         <img :src="film.imageUrl" :alt="film.englishTitle" />
         <h1>{{ film.englishTitle }} ({{ film.releaseDate }})</h1>
@@ -63,7 +88,7 @@ const closeModal = (id: number) => {
         <v-menu>
           <template v-slot:activator="{ props }">
             <v-btn v-bind="props" variant="text">
-              <svg-icon class="icon" type="mdi" :path="path"></svg-icon>
+              <svg-icon class="icon" type="mdi" :path="cog"></svg-icon>
             </v-btn>
           </template>
           <v-list>
@@ -77,7 +102,7 @@ const closeModal = (id: number) => {
           </v-list>
         </v-menu>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -85,15 +110,23 @@ const closeModal = (id: number) => {
 .container {
   display: flex;
   flex-direction: column;
-  padding: 20px;
-  margin: 20px;
+  margin: 5px;
+  /* padding: 20px; */
+  /* margin: 20px; */
   justify-self: center;
   background-color: #b7b7a4;
-  box-shadow: 5px 5px 15px rgb(153, 153, 153);
+  /* box-shadow: 5px 5px 15px rgb(153, 153, 153); */
   border-radius: 8px;
 }
 
-h1 {
+h1,
+h2,
+p {
+  line-height: 1.6;
+  letter-spacing: 0.7px;
+}
+
+/* h1 {
   font-size: large;
   font-weight: normal;
   font-style: italic;
@@ -108,10 +141,62 @@ h2 {
 
 p {
   font-size: smaller;
-}
+} */
 
 @media only screen and (max-width: 480px) {
-  .header {
+  .main-info {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .english-title {
+    font-size: 40px;
+    font-weight: normal;
+  }
+
+  .japanese-title {
+    font-size: 20px;
+    font-weight: normal;
+  }
+
+  .year-minutes {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .dot-icon {
+    width: 18px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .trailer {
+    margin-top: 10px;
+  }
+
+  .poster-plot {
+    margin-top: 10px;
+    padding: 10px;
+  }
+
+  .poster-plot p {
+    font-size: 14px;
+    text-align: justify;
+  }
+
+  img {
+    max-height: 220px;
+    border-radius: 8px;
+    float: left;
+    margin-right: 13px;
+  }
+
+  .director-genres {
+    padding: 10px;
+    font-size: 15px;
+  }
+
+  /* .header {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -145,64 +230,124 @@ p {
 
   .info p {
     padding-bottom: 10px;
-  }
+  } */
 }
 @media only screen and (min-width: 481px) {
-  .titles {
+  .main-info {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .english-title {
+    font-size: 40px;
+    font-weight: normal;
+  }
+
+  .japanese-title {
+    font-size: 20px;
+    font-weight: normal;
+  }
+
+  .year-minutes {
     display: flex;
     flex-direction: row;
   }
-  .header {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    padding: 10px;
-    padding-bottom: 0;
-    margin: 0 5 5 0;
+
+  .dot-icon {
+    width: 18px;
+    margin-left: 10px;
+    margin-right: 10px;
   }
 
-  .subheader {
+  .trailer {
+    margin-top: 10px;
+  }
+
+  .poster-plot {
+    margin-top: 10px;
     padding: 10px;
-    padding-bottom: 0;
+  }
+
+  .poster-plot p {
+    font-size: 14px;
+    text-align: justify;
   }
 
   img {
-    max-width: 100%;
+    max-height: 220px;
     border-radius: 8px;
+    float: left;
+    margin-right: 13px;
   }
 
-  .info {
+  .director-genres {
     padding: 10px;
-  }
-
-  iframe {
-    margin-bottom: 10px;
-  }
-
-  .info p {
-    padding-bottom: 10px;
+    font-size: 15px;
   }
 }
 
 @media only screen and (min-width: 769px) {
-  .container {
+  .main-info {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .english-title {
+    font-size: 40px;
+    font-weight: normal;
+  }
+
+  .japanese-title {
+    font-size: 20px;
+    font-weight: normal;
+  }
+
+  .year-minutes {
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap;
-    max-width: 70%;
+  }
+
+  .dot-icon {
+    width: 18px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .trailer {
+    margin-top: 10px;
+    flex: 1 1 250px;
+    min-width: 200px;
+    margin: 10px;
+  }
+
+  .poster-plot {
+    margin-top: 10px;
     padding: 10px;
   }
 
+  .poster-plot p {
+    font-size: 14px;
+    text-align: justify;
+  }
+
   img {
+    max-height: 220px;
     border-radius: 8px;
+    float: left;
+    margin-right: 13px;
   }
 
-  .info {
-    max-width: 65%;
+  .director-genres {
+    padding: 10px;
+    font-size: 15px;
   }
 
-  iframe {
-    border-radius: 8px;
+  .container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-width: 80%;
+    padding: 10px;
   }
 }
 @media only screen and (min-width: 992px) {

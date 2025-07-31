@@ -10,21 +10,12 @@ const { film } = defineProps<{ film: FilmDB }>()
 </script>
 
 <template>
-  <div class="wrapper">
-    <LiteYouTubeEmbed
-      v-if="film"
-      :id="film.trailerUrl"
-      :title="film.englishTitle"
-      poster="maxresdefault"
-    />
-  </div>
+  <LiteYouTubeEmbed
+    v-if="film"
+    :id="film.trailerUrl"
+    :title="film.englishTitle"
+    poster="maxresdefault"
+  />
 </template>
 
-<style scoped>
-.wrapper {
-  display: block;
-  overflow: hidden;
-  border-radius: 8px;
-  transform: translateZ(0px);
-}
-</style>
+<style scoped></style>
