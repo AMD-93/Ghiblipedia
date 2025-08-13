@@ -10,18 +10,12 @@ const emit = defineEmits(['modal-close', 'submit'])
 const target = ref(null)
 onClickOutside(target, () => emit('modal-close'))
 
-//commented out bunch of props that should probably be read-only
 const form = reactive({
-  // englishTitle: '',
   japaneseTitle: '',
-  // releaseDate: '',
-  // imageUrl: '',
   trailerUrl: '',
   summary: '',
   plot: '',
-  // director: '',
   genre: '',
-  // runningTime: '',
   tags: [''],
 })
 
@@ -65,16 +59,11 @@ const handleSubmit = () => {
         <div class="modal-body">
           <slot name="content">
             <div class="form-container">
-              <!-- <input v-model="form.englishTitle" placeholder="English title" /> -->
               <input v-model="form.japaneseTitle" placeholder="Japanese title" />
-              <!-- <input v-model="form.releaseDate" placeholder="Release date" /> -->
-              <!-- <input v-model="form.imageUrl" placeholder="Image URL" /> -->
               <input v-model="form.trailerUrl" placeholder="Trailer URL" />
               <input v-model="form.summary" placeholder="Summary" />
               <input v-model="form.plot" placeholder="Plot" />
-              <!-- <input v-model="form.director" placeholder="Director" /> -->
               <input v-model="form.genre" placeholder="Genres" />
-              <!-- <input v-model="form.runningTime" placeholder="Running time" /> -->
               <input v-model="form.tags" placeholder="Tags" />
             </div>
           </slot>
@@ -93,62 +82,319 @@ const handleSubmit = () => {
 </template>
 
 <style scoped>
-.modal-mask {
-  position: fixed;
-  z-index: 9998;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-}
+@media only screen and (max-width: 480px) {
+  .modal-mask {
+    position: absolute;
+    z-index: 9998;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
 
-.modal-container {
-  max-width: 80%;
-  margin: 150px auto;
-  padding: 20px 30px;
-  background-color: #ddddc7;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
-}
+  .modal-container {
+    max-width: 100%;
+    margin: 60px 10px 0px 10px;
+    padding: 10px;
+    background-color: #ddddc7;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
+    display: flex;
+    flex-direction: column;
+  }
 
-.modal-header {
-  padding: 10px;
-  margin-bottom: 5px;
-}
+  .modal-header {
+    padding: 10px 0px 10px 1px;
+  }
 
-.form-container {
-  display: flex;
-  flex-direction: column;
-}
+  .modal-body {
+    display: flex;
+    flex-direction: column;
+  }
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 5px;
+  }
 
-h1 {
-  font-size: x-large;
-  font-weight: normal;
-  padding-top: 10px;
-}
+  h1 {
+    font-size: 20px;
+    font-weight: normal;
+  }
 
-span {
-  font-style: italic;
-}
+  span {
+    font-style: italic;
+  }
 
-input {
-  border: 2px #818174 solid;
-  border-radius: 8px;
-  padding: 10px;
-  margin-bottom: 10px;
-}
+  input {
+    border: 1px #818174 solid;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 15px;
+  }
 
-input::placeholder {
-  opacity: 0.6;
-  color: black;
-}
+  input::placeholder {
+    opacity: 0.6;
+    color: black;
+  }
 
-button {
-  background-color: #868678;
-  color: black;
-  border-radius: 8px;
-  padding: 10px;
-  margin-top: 10px;
+  button {
+    width: 100%;
+    background-color: #868678;
+    color: black;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 15px;
+  }
+}
+@media only screen and (min-width: 481px) {
+  .modal-mask {
+    position: absolute;
+    z-index: 9998;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .modal-container {
+    max-width: 100%;
+    margin: 60px 10px 0px 10px;
+    padding: 10px;
+    background-color: #ddddc7;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
+  }
+
+  .modal-header {
+    padding: 10px;
+    margin-bottom: 5px;
+  }
+
+  .form-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  h1 {
+    font-size: x-large;
+    font-weight: normal;
+    padding-top: 10px;
+  }
+
+  span {
+    font-style: italic;
+  }
+
+  input {
+    border: 2px #818174 solid;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 15px;
+  }
+
+  input::placeholder {
+    opacity: 0.6;
+    color: black;
+  }
+
+  button {
+    background-color: #868678;
+    color: black;
+    border-radius: 8px;
+    padding: 10px;
+    margin-top: 10px;
+    font-size: 15px;
+  }
+}
+@media only screen and (min-width: 769px) {
+  .modal-mask {
+    position: absolute;
+    z-index: 9998;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .modal-container {
+    max-width: 80%;
+    margin: 60px auto;
+    padding: 10px;
+    background-color: #ddddc7;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
+  }
+
+  .modal-header {
+    padding: 10px;
+    margin-bottom: 5px;
+  }
+
+  .form-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  h1 {
+    font-size: x-large;
+    font-weight: normal;
+    padding-top: 10px;
+  }
+
+  span {
+    font-style: italic;
+  }
+
+  input {
+    border: 2px #818174 solid;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 15px;
+  }
+
+  input::placeholder {
+    opacity: 0.6;
+    color: black;
+  }
+
+  button {
+    background-color: #868678;
+    color: black;
+    border-radius: 8px;
+    padding: 10px;
+    margin-top: 10px;
+    font-size: 15px;
+  }
+}
+@media only screen and (min-width: 992px) {
+  .modal-mask {
+    position: absolute;
+    z-index: 9998;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .modal-container {
+    max-width: 80%;
+    margin: 60px auto;
+    padding: 10px;
+    background-color: #ddddc7;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
+  }
+
+  .modal-header {
+    padding: 10px;
+    margin-bottom: 5px;
+  }
+
+  .form-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  h1 {
+    font-size: x-large;
+    font-weight: normal;
+    padding-top: 10px;
+  }
+
+  span {
+    font-style: italic;
+  }
+
+  input {
+    border: 2px #818174 solid;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 15px;
+  }
+
+  input::placeholder {
+    opacity: 0.6;
+    color: black;
+  }
+
+  button {
+    background-color: #868678;
+    color: black;
+    border-radius: 8px;
+    padding: 10px;
+    margin-top: 10px;
+    font-size: 15px;
+  }
+}
+@media only screen and (min-width: 1025px) {
+  .modal-mask {
+    position: absolute;
+    z-index: 9998;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .modal-container {
+    max-width: 80%;
+    margin: 60px auto;
+    padding: 10px;
+    background-color: #ddddc7;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
+  }
+
+  .modal-header {
+    padding: 10px;
+    margin-bottom: 5px;
+  }
+
+  .form-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  h1 {
+    font-size: x-large;
+    font-weight: normal;
+    padding-top: 10px;
+  }
+
+  span {
+    font-style: italic;
+  }
+
+  input {
+    border: 2px #818174 solid;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 15px;
+  }
+
+  input::placeholder {
+    opacity: 0.6;
+    color: black;
+  }
+
+  button {
+    background-color: #868678;
+    color: black;
+    border-radius: 8px;
+    padding: 10px;
+    margin-top: 10px;
+    font-size: 15px;
+  }
 }
 </style>

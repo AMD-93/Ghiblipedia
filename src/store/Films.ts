@@ -55,5 +55,17 @@ export const useFilmsStore = defineStore('films', {
         console.log(error)
       }
     },
+
+    async deleteFilm(englishTitle: FilmDB['englishTitle']) {
+      try {
+        const res = await axios.delete(
+          `https://ghiblipediaapi.onrender.com/api/v1/movies/${englishTitle}`,
+        )
+        this.films = [res.data]
+        console.log(`deleteFilm called, ${englishTitle} deleted`)
+      } catch (error) {
+        console.log(error)
+      }
+    },
   },
 })

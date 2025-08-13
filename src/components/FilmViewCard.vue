@@ -21,7 +21,9 @@ const dot = mdiCircleSmall
 
 const props = defineProps<{ films: FilmDB[] }>()
 
-const deleteFilm = () => {}
+const handleDeleteFilm = (englishTitle: FilmDB['englishTitle']) => {
+  filmsStore.deleteFilm(englishTitle)
+}
 
 const openModals = ref<Record<number, boolean>>({})
 
@@ -38,7 +40,37 @@ const closeModal = (id: number) => {
 <template>
   <div class="container" v-for="film in props.films" :key="film.id">
     <div class="main-info">
-      <h1 class="english-title">{{ film.englishTitle }}</h1>
+      <h1 class="english-title">
+        {{ film.englishTitle }}
+        <div class="settings" v-if="isAuthenticated">
+          <EditFilmModal
+            :film="film"
+            :isOpen="openModals[film.id] === true"
+            @modal-close="() => closeModal(film.id)"
+            @submit="(payload) => handleEditFilm(payload, film.englishTitle)"
+            name="first-modal"
+          >
+          </EditFilmModal>
+          <v-menu>
+            <template v-slot:activator="{ props }">
+              <v-btn v-bind="props" variant="text">
+                <svg-icon class="settings-icon" type="mdi" :path="cog"></svg-icon>
+              </v-btn>
+            </template>
+            <v-list>
+              <v-list-item>
+                <v-list-item-title @click="() => openModal(film.id)">Edit film</v-list-item-title>
+              </v-list-item>
+
+              <v-list-item>
+                <v-list-item-title @click="handleDeleteFilm(film.englishTitle)"
+                  >Delete film</v-list-item-title
+                >
+              </v-list-item>
+            </v-list>
+          </v-menu>
+        </div>
+      </h1>
       <h2 class="japanese-title">{{ film.japaneseTitle }}</h2>
       <div class="year-minutes">
         <p>{{ film.releaseDate }}</p>
@@ -48,17 +80,22 @@ const closeModal = (id: number) => {
     </div>
 
     <div class="trailer">
-      <VideoPlayer :film="film" :isOpen="openModals[film.id] === true" />
+      <VideoPlayer :film="film" />
     </div>
 
-    <div class="poster-plot">
-      <img :src="film.imageUrl" :alt="film.englishTitle" />
-      <p>{{ film.plot }}</p>
-    </div>
+    <div class="movie-info">
+      <div class="poster">
+        <img :src="film.imageUrl" :alt="film.englishTitle" />
+      </div>
 
-    <div class="director-genres">
-      <p>Directed by {{ film.director }}</p>
-      <p>{{ film.genre }}</p>
+      <div class="plot">
+        <p>{{ film.plot }}</p>
+      </div>
+
+      <div class="director-genres">
+        <p>Directed by {{ film.director }}</p>
+        <p>{{ film.genre }}</p>
+      </div>
     </div>
 
     <!-- <div class="titles">
@@ -152,6 +189,14 @@ p {
   .english-title {
     font-size: 40px;
     font-weight: normal;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+  }
+
+  .settings-icon {
+    width: 18px;
   }
 
   .japanese-title {
@@ -174,14 +219,8 @@ p {
     margin-top: 10px;
   }
 
-  .poster-plot {
-    margin-top: 10px;
-    padding: 10px;
-  }
-
-  .poster-plot p {
-    font-size: 14px;
-    text-align: justify;
+  .movie-info {
+    margin: 10px;
   }
 
   img {
@@ -191,9 +230,18 @@ p {
     margin-right: 13px;
   }
 
+  .plot {
+    margin-right: 5px;
+  }
+
+  .plot p {
+    font-size: 13px;
+    text-align: justify;
+  }
+
   .director-genres {
-    padding: 10px;
-    font-size: 15px;
+    margin-top: 5px;
+    font-size: 13px;
   }
 
   /* .header {
@@ -232,6 +280,7 @@ p {
     padding-bottom: 10px;
   } */
 }
+
 @media only screen and (min-width: 481px) {
   .main-info {
     padding-left: 10px;
@@ -241,6 +290,14 @@ p {
   .english-title {
     font-size: 40px;
     font-weight: normal;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+  }
+
+  .settings-icon {
+    width: 18px;
   }
 
   .japanese-title {
@@ -263,14 +320,8 @@ p {
     margin-top: 10px;
   }
 
-  .poster-plot {
-    margin-top: 10px;
-    padding: 10px;
-  }
-
-  .poster-plot p {
-    font-size: 14px;
-    text-align: justify;
+  .movie-info {
+    margin: 10px;
   }
 
   img {
@@ -280,13 +331,100 @@ p {
     margin-right: 13px;
   }
 
+  .plot {
+    margin-right: 5px;
+  }
+
+  .plot p {
+    font-size: 13px;
+    text-align: justify;
+  }
+
   .director-genres {
-    padding: 10px;
-    font-size: 15px;
+    margin-top: 5px;
+    font-size: 13px;
   }
 }
 
 @media only screen and (min-width: 769px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    max-width: 80%;
+    padding: 10px;
+  }
+
+  .main-info {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .english-title {
+    font-size: 40px;
+    font-weight: normal;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+  }
+
+  .japanese-title {
+    font-size: 20px;
+    font-weight: normal;
+  }
+
+  .year-minutes {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .dot-icon {
+    width: 18px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .trailer {
+    margin-top: 10px;
+    flex: 1 1 250px;
+    min-width: 200px;
+    margin: 10px;
+  }
+
+  .movie-info {
+    margin: 10px;
+  }
+
+  img {
+    max-height: 220px;
+    border-radius: 8px;
+    float: left;
+    margin-right: 13px;
+  }
+
+  .plot {
+    margin-right: 5px;
+  }
+
+  .plot p {
+    font-size: 15px;
+    text-align: justify;
+  }
+
+  .director-genres {
+    margin-top: 5px;
+    font-size: 15px;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    max-width: 80%;
+    padding: 10px;
+  }
+
   .main-info {
     padding-left: 10px;
     padding-right: 10px;
@@ -320,76 +458,96 @@ p {
     margin: 10px;
   }
 
-  .poster-plot {
-    margin-top: 10px;
-    padding: 10px;
-  }
-
-  .poster-plot p {
-    font-size: 14px;
-    text-align: justify;
+  .movie-info {
+    margin: 10px;
   }
 
   img {
-    max-height: 220px;
+    max-height: 250px;
     border-radius: 8px;
     float: left;
     margin-right: 13px;
   }
 
+  .plot {
+    margin-right: 5px;
+  }
+
+  .plot p {
+    font-size: 15px;
+    text-align: justify;
+  }
+
   .director-genres {
-    padding: 10px;
+    margin-top: 5px;
     font-size: 15px;
   }
-
-  .container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    max-width: 80%;
-    padding: 10px;
-  }
 }
-@media only screen and (min-width: 992px) {
-  .container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    max-width: 70%;
-    padding: 10px;
-  }
 
-  img {
-    border-radius: 8px;
-  }
-
-  .info {
-    max-width: 65%;
-  }
-
-  iframe {
-    border-radius: 8px;
-  }
-}
 @media only screen and (min-width: 1025px) {
   .container {
     display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    max-width: 70%;
+    flex-direction: column;
+    max-width: 80%;
     padding: 10px;
   }
 
+  .main-info {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .english-title {
+    font-size: 40px;
+    font-weight: normal;
+  }
+
+  .japanese-title {
+    font-size: 20px;
+    font-weight: normal;
+  }
+
+  .year-minutes {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .dot-icon {
+    width: 18px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .trailer {
+    margin-top: 10px;
+    flex: 1 1 250px;
+    min-width: 200px;
+    margin: 10px;
+  }
+
+  .movie-info {
+    margin: 10px;
+  }
+
   img {
+    max-height: 250px;
     border-radius: 8px;
+    float: left;
+    margin-right: 13px;
   }
 
-  .info {
-    max-width: 65%;
+  .plot {
+    margin-right: 5px;
   }
 
-  iframe {
-    border-radius: 8px;
+  .plot p {
+    font-size: 15px;
+    text-align: justify;
+  }
+
+  .director-genres {
+    margin-top: 5px;
+    font-size: 15px;
   }
 }
 </style>
