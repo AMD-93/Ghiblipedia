@@ -1,7 +1,15 @@
 <script setup lang="ts">
 import { useAuth0 } from '@auth0/auth0-vue'
 import SvgIcon from '@jamescoyle/vue-icon'
-import { mdiHome, mdiEyeOutline, mdiMagnify, mdiNewspaper, mdiAccount, mdiLogin } from '@mdi/js'
+import {
+  mdiHome,
+  mdiEyeOutline,
+  mdiMagnify,
+  mdiNewspaper,
+  mdiAccount,
+  mdiLogin,
+  mdiCopyright,
+} from '@mdi/js'
 
 const { loginWithRedirect, isAuthenticated } = useAuth0()
 const home = mdiHome
@@ -10,6 +18,7 @@ const browse = mdiMagnify
 const news = mdiNewspaper
 const profile = mdiAccount
 const signIn = mdiLogin
+const credits = mdiCopyright
 
 function login() {
   loginWithRedirect()
@@ -52,6 +61,11 @@ function showMenu() {
             >
           </li>
           <li>
+            <RouterLink :to="{ name: 'credits' }" class="navbar-item"
+              ><svg-icon class="icon" type="mdi" :path="credits"> </svg-icon>credits</RouterLink
+            >
+          </li>
+          <li>
             <RouterLink :to="{ name: 'profile' }" class="navbar-item" v-if="isAuthenticated"
               ><svg-icon class="icon" type="mdi" :path="profile"> </svg-icon>profile</RouterLink
             >
@@ -91,6 +105,10 @@ function showMenu() {
   margin-right: 6px;
 }
 
+.nav-menu {
+  z-index: 2;
+}
+
 @media only screen and (min-width: 700px) {
   .hide-fullscreen {
     display: none;
@@ -104,13 +122,19 @@ function showMenu() {
 .nav-menu {
   background-color: #cb997e;
   color: #ffeee2;
+  position: fixed;
+  overflow: hidden;
+  width: 100%;
+  top: 0;
 }
+
 .nav-content {
   display: flex;
   justify-content: space-between;
   padding: 10px 30px;
   align-items: center;
 }
+
 .nav-items {
   display: flex;
   justify-content: center;
@@ -174,7 +198,7 @@ a:hover {
     align-self: left;
     display: flex;
     flex-direction: column;
-    margin-top: 5px;
+     : 5px;
   }
 
   a {

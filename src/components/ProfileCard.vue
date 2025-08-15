@@ -79,17 +79,17 @@ img {
   .profile-container {
     display: flex;
     flex-direction: column;
+    margin: 10px;
+    margin-bottom: 20px;
   }
 
   .pic {
     margin-bottom: 10px;
   }
-
   .header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 15px;
   }
   .profile-info {
     display: flex;
@@ -108,6 +108,8 @@ img {
   .profile-container {
     display: flex;
     flex-direction: column;
+    margin: 10px;
+    margin-bottom: 20px;
   }
 
   .pic {
@@ -136,7 +138,10 @@ img {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    margin: 5px auto;
+    max-width: 80%;
   }
+
   .header {
     display: flex;
     flex-direction: column;
@@ -159,6 +164,8 @@ img {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    margin: 10px auto;
+    max-width: 80%;
   }
   .header {
     display: flex;
@@ -182,6 +189,8 @@ img {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    margin: 10px auto;
+    max-width: 80%;
   }
   .header {
     display: flex;

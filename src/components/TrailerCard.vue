@@ -139,9 +139,8 @@ const props = defineProps<{ films: FilmDB[] }>()
   .card-container {
     display: flex;
     flex-direction: column;
-    margin: auto;
-    margin-top: 10px;
-    width: 70%;
+    margin: 5px auto;
+    max-width: 80%;
   }
   .card-content {
     display: flex;
@@ -189,8 +188,7 @@ const props = defineProps<{ films: FilmDB[] }>()
 @media only screen and (min-width: 992px) {
   .card-container {
     width: 80%;
-    margin: auto;
-    margin-top: 10px;
+    margin: 10px auto;
     background-color: #b7b7a4;
     border-radius: 8px;
   }
@@ -238,7 +236,7 @@ const props = defineProps<{ films: FilmDB[] }>()
   .card-container {
     width: 80%;
     margin: auto;
-    margin-top: 10px;
+    :10px;
     background-color: #b7b7a4;
     border-radius: 8px;
   }

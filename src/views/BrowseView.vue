@@ -46,20 +46,17 @@ const filteredList = computed(() => {
 <style scoped>
 input {
   color: #ffeee2;
-  margin-top: 10px;
 }
 
 .genres-tags-container .genres-container,
 .tags-container,
 .error {
-  box-shadow: 5px 5px 15px rgb(153, 153, 153);
   margin-bottom: 10px;
 }
 
 .error {
   background-color: #b7b7a4;
   margin: 10px;
-  margin-top: 0;
   padding: 10px;
   border-radius: 8px;
 }
@@ -68,8 +65,8 @@ input {
   .container {
     display: flex;
     flex-direction: column;
-    margin: auto;
-    max-width: 90%;
+    margin: 10px;
+    margin-bottom: 20px;
   }
 
   .input {
@@ -80,7 +77,6 @@ input {
 
   .search-results {
     margin-top: 10px;
-    max-width: 100%;
   }
 
   .genres-tags-container {
@@ -109,8 +105,8 @@ input {
   .container {
     display: flex;
     flex-direction: column;
-    margin: auto;
-    max-width: 90%;
+    margin: 10px;
+    margin-bottom: 20px;
   }
 
   .input {
@@ -150,8 +146,8 @@ input {
   .container {
     display: flex;
     flex-direction: column;
-    margin: auto;
-    max-width: 70%;
+    margin: 5px auto;
+    max-width: 80%;
   }
 
   .input {
@@ -191,8 +187,8 @@ input {
   .container {
     display: flex;
     flex-direction: column;
-    margin: auto;
-    max-width: 70%;
+    margin: 10px auto;
+    max-width: 80%;
   }
 
   .input {
@@ -234,8 +230,8 @@ input {
   .container {
     display: flex;
     flex-direction: column;
-    margin: auto;
-    max-width: 70%;
+    margin: 10px auto;
+    max-width: 80%;
   }
 
   .input {

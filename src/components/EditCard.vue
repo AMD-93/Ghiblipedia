@@ -45,7 +45,6 @@ const submit = () => {
   display: flex;
   flex-direction: column;
   background-color: #b7b7a4;
-  box-shadow: 5px 5px 15px rgb(153, 153, 153);
   border-radius: 8px;
   margin: 10px;
   margin-bottom: 20px;

@@ -9,14 +9,8 @@ function handleSubmit(englishTitle: string) {
 }
 </script>
 <template>
-  <div class="body">
-    <div>
-      <PostCard @submit="handleSubmit" />
-    </div>
+  <div>
+    <PostCard @submit="handleSubmit" />
   </div>
 </template>
-<style scoped>
-.body {
-  margin-top: 20px;
-}
-</style>
+<style scoped></style>

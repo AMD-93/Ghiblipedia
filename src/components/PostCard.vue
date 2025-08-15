@@ -16,28 +16,101 @@ const submit = () => {
   </div>
 </template>
 <style scoped>
-.form-container {
-  display: flex;
-  flex-direction: column;
-  background-color: #b7b7a4;
-  box-shadow: 5px 5px 15px rgb(153, 153, 153);
-  border-radius: 8px;
-  margin: 10px;
-  margin-bottom: 20px;
-  padding: 10px;
-  width: 70%;
-  justify-self: center;
-}
-input {
-  border: 1px #818174 solid;
-  border-radius: 8px;
-  padding: 10px;
-  margin-bottom: 10px;
+@media only screen and (max-width: 480px) {
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    background-color: #b7b7a4;
+    border-radius: 8px;
+    margin: 10px;
+    padding: 10px;
+  }
+  input {
+    border: 1px #818174 solid;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  button {
+    background-color: #868678;
+    border-radius: 8px;
+    padding: 10px;
+  }
 }
 
-button {
-  background-color: #868678;
-  border-radius: 8px;
-  padding: 10px;
+@media only screen and (min-width: 481px) {
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    background-color: #b7b7a4;
+    border-radius: 8px;
+    margin: 10px;
+    padding: 10px;
+  }
+  input {
+    border: 1px #818174 solid;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  button {
+    background-color: #868678;
+    border-radius: 8px;
+    padding: 10px;
+  }
+}
+
+@media only screen and (min-width: 769px) {
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    background-color: #b7b7a4;
+    border-radius: 8px;
+    margin: 5px auto;
+
+    padding: 10px;
+    max-width: 80%;
+  }
+  input {
+    border: 1px #818174 solid;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  button {
+    background-color: #868678;
+    border-radius: 8px;
+    padding: 10px;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    background-color: #b7b7a4;
+    border-radius: 8px;
+    margin: 10px auto;
+    padding: 10px;
+    max-width: 80%;
+  }
+  input {
+    border: 1px #818174 solid;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  button {
+    background-color: #868678;
+    border-radius: 8px;
+    padding: 10px;
+  }
+}
+
+@media only screen and (min-width: 1025px) {
 }
 </style>

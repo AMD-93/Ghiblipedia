@@ -42,14 +42,7 @@ p {
   font-size: smaller;
 }
 
-.v-expansion-panel {
-  box-shadow: 5px 5px 15px rgb(153, 153, 153);
-}
-
 @media only screen and (max-width: 480px) {
-  .v-expansion-panels {
-    margin: auto;
-  }
   .v-expansion-panel-title {
     display: flex;
     flex-direction: row;
@@ -63,9 +56,6 @@ p {
   }
 }
 @media only screen and (min-width: 481px) {
-  .v-expansion-panels {
-    margin: auto;
-  }
   .v-expansion-panel-title {
     display: flex;
     flex-direction: row;

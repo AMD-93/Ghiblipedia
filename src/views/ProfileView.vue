@@ -21,12 +21,6 @@ function handleLogout() {
 </template>
 
 <style scoped>
-.container {
-  margin: auto;
-  padding: 10px;
-  width: 100%;
-}
-
 button {
   background-color: #4b4e41;
   color: white;
@@ -38,10 +32,6 @@ button {
 }
 
 @media only screen and (max-width: 480px) {
-  .container {
-    display: flex;
-    flex-direction: column;
-  }
 }
 
 @media only screen and (min-width: 481px) {

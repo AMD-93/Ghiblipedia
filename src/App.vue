@@ -4,7 +4,9 @@ import NavBar from './components/NavBar.vue'
 
 <template>
   <NavBar />
-  <RouterView />
+  <div class="app-content">
+    <RouterView />
+  </div>
 </template>
 
 <style>
@@ -12,5 +14,9 @@ html,
 body {
   background-color: #ffeee2;
   overflow-x: hidden;
+}
+
+.app-content {
+  padding-top: 50px;
 }
 </style>

@@ -152,7 +152,6 @@ const closeModal = (id: number) => {
   /* margin: 20px; */
   justify-self: center;
   background-color: #b7b7a4;
-  /* box-shadow: 5px 5px 15px rgb(153, 153, 153); */
   border-radius: 8px;
 }
 

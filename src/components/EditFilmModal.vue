@@ -99,7 +99,6 @@ const handleSubmit = () => {
     padding: 10px;
     background-color: #ddddc7;
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
     display: flex;
     flex-direction: column;
   }
@@ -167,7 +166,6 @@ const handleSubmit = () => {
     padding: 10px;
     background-color: #ddddc7;
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
   }
 
   .modal-header {
@@ -229,7 +227,6 @@ const handleSubmit = () => {
     padding: 10px;
     background-color: #ddddc7;
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
   }
 
   .modal-header {
@@ -291,7 +288,6 @@ const handleSubmit = () => {
     padding: 10px;
     background-color: #ddddc7;
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
   }
 
   .modal-header {
@@ -353,7 +349,6 @@ const handleSubmit = () => {
     padding: 10px;
     background-color: #ddddc7;
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
   }
 
   .modal-header {

@@ -38,9 +38,39 @@ import NewsCard from '@/components/NewsCard.vue'
 }
 
 @media only screen and (min-width: 481px) {
+  .container-latest,
+  .container-upcoming,
+  .container-news {
+    display: flex;
+    flex-direction: column;
+    margin: 5px auto;
+    max-width: 80%;
+    padding: 20px;
+    background-color: #b7b7a4;
+    border-radius: 8px;
+  }
+  h1 {
+    font-size: larger;
+    padding-bottom: 5px;
+  }
 }
 
 @media only screen and (min-width: 769px) {
+  .container-latest,
+  .container-upcoming,
+  .container-news {
+    display: flex;
+    flex-direction: column;
+    margin: 10px auto;
+    max-width: 80%;
+    padding: 20px;
+    background-color: #b7b7a4;
+    border-radius: 8px;
+  }
+  h1 {
+    font-size: larger;
+    padding-bottom: 5px;
+  }
 }
 
 @media only screen and (min-width: 992px) {
