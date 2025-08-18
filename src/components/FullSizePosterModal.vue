@@ -1,30 +1,131 @@
 <script setup lang="ts">
-import {
-  ref,
-  // watch
-} from 'vue'
+import { ref } from 'vue'
 import { onClickOutside } from '@vueuse/core'
+import type { FilmDB } from '@/types'
 
-const { isOpen } = defineProps<{ isOpen: boolean }>()
+const { isOpen, film } = defineProps<{ isOpen: boolean; film: FilmDB }>()
 
 const emit = defineEmits(['modal-close'])
 
 const target = ref(null)
-onClickOutside(target, () => emit('modal-close'))
-
-// watch();
-
-// https://itnext.io/click-images-and-show-them-in-full-size-a-reusable-solution-in-vue-8b042f646809 follow this tutorial (how tf do I translate this into composition API tho :D)
+onClickOutside(target, () => {
+  emit('modal-close')
+})
 </script>
+
 <template>
   <div v-if="isOpen" class="modal-mask">
-    <div class="modal-wrapper">
-      <div class="modal-container" ref="target">
-        <div class="modal-body">
-          <slot name="content"> </slot>
-        </div>
+    <div class="modal-container" ref="target">
+      <div class="modal-body">
+        <slot name="content">
+          <img :src="film.imageUrl" :alt="film.englishTitle" />
+        </slot>
       </div>
     </div>
   </div>
 </template>
-<style></style>
+
+<style scoped>
+@media only screen and (max-width: 480px) {
+  .modal-mask {
+    position: absolute;
+    z-index: 9998;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .modal-container {
+    max-width: 100%;
+    margin: 60px 10px 0px 10px;
+    padding: 10px;
+    background-color: #ddddc7;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .modal-body {
+    display: flex;
+    flex-direction: column;
+  }
+}
+@media only screen and (min-width: 481px) {
+  .modal-mask {
+    position: absolute;
+    z-index: 9998;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .modal-container {
+    max-width: 100%;
+    margin: 60px 10px 0px 10px;
+    padding: 10px;
+    background-color: #ddddc7;
+    border-radius: 8px;
+  }
+}
+@media only screen and (min-width: 769px) {
+  .modal-mask {
+    position: absolute;
+    z-index: 9998;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .modal-container {
+    max-width: 80%;
+    margin: 60px auto;
+    padding: 10px;
+    background-color: #ddddc7;
+    border-radius: 8px;
+  }
+}
+@media only screen and (min-width: 992px) {
+  .modal-mask {
+    position: absolute;
+    z-index: 9998;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .modal-container {
+    max-width: 80%;
+    margin: 60px auto;
+    padding: 10px;
+    background-color: #ddddc7;
+    border-radius: 8px;
+  }
+}
+@media only screen and (min-width: 1025px) {
+  .modal-mask {
+    position: absolute;
+    z-index: 9998;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .modal-container {
+    max-width: 80%;
+    margin: 60px auto;
+    padding: 10px;
+    background-color: #ddddc7;
+    border-radius: 8px;
+  }
+}
+</style>

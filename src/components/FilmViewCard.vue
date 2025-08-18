@@ -1,37 +1,45 @@
 <script setup lang="ts">
 import VideoPlayer from './VideoPlayer.vue'
 import type { FilmDB } from '@/types'
-import { ref } from 'vue'
+import { reactive } from 'vue'
 import { useAuth0 } from '@auth0/auth0-vue'
-
 import SvgIcon from '@jamescoyle/vue-icon'
 import { mdiCog, mdiCircleSmall } from '@mdi/js'
 import { useFilmsStore } from '@/store/Films.ts'
-
-const filmsStore = useFilmsStore()
-const handleEditFilm = (payload: Record<string, string>, englishTitle: string) => {
-  filmsStore.editFilm(payload, englishTitle)
-}
-
-import EditFilmModal from '../components/EditFilmModal.vue'
+import EditFilmModal from './EditFilmModal.vue'
+import FullSizePosterModal from './FullSizePosterModal.vue'
 
 const { isAuthenticated } = useAuth0()
+const filmsStore = useFilmsStore()
+
 const cog = mdiCog
 const dot = mdiCircleSmall
 
 const props = defineProps<{ films: FilmDB[] }>()
 
+const editModalState = reactive<Record<number, boolean>>({})
+
+function openEditModal(id: number) {
+  editModalState[id] = true
+}
+function closeEditModal(id: number) {
+  editModalState[id] = false
+}
+
+const posterModalState = reactive<Record<number, boolean>>({})
+
+function openPosterModal(id: number) {
+  posterModalState[id] = true
+}
+function closePosterModal(id: number) {
+  posterModalState[id] = false
+}
+
+const handleEditFilm = (payload: Record<string, string>, englishTitle: string) => {
+  filmsStore.editFilm(payload, englishTitle)
+}
 const handleDeleteFilm = (englishTitle: FilmDB['englishTitle']) => {
   filmsStore.deleteFilm(englishTitle)
-}
-
-const openModals = ref<Record<number, boolean>>({})
-
-const openModal = (id: number) => {
-  openModals.value[id] = true
-}
-const closeModal = (id: number) => {
-  openModals.value[id] = false
 }
 
 //how can I make it so that the settings section is only visible if the logged in user has the admin role (ie edit:movies permission)? https://community.auth0.com/t/best-practices-for-retrieving-user-permissions-in-a-spa-vue-js-with-node-js-api-using-auth0/122017/6
@@ -45,8 +53,8 @@ const closeModal = (id: number) => {
         <div class="settings" v-if="isAuthenticated">
           <EditFilmModal
             :film="film"
-            :isOpen="openModals[film.id] === true"
-            @modal-close="() => closeModal(film.id)"
+            :isOpen="editModalState[film.id] === true"
+            @modal-close="() => closeEditModal(film.id)"
             @submit="(payload) => handleEditFilm(payload, film.englishTitle)"
             name="first-modal"
           >
@@ -59,7 +67,9 @@ const closeModal = (id: number) => {
             </template>
             <v-list>
               <v-list-item>
-                <v-list-item-title @click="() => openModal(film.id)">Edit film</v-list-item-title>
+                <v-list-item-title @click="() => openEditModal(film.id)"
+                  >Edit film</v-list-item-title
+                >
               </v-list-item>
 
               <v-list-item>
@@ -85,7 +95,18 @@ const closeModal = (id: number) => {
 
     <div class="movie-info">
       <div class="poster">
-        <img :src="film.imageUrl" :alt="film.englishTitle" />
+        <FullSizePosterModal
+          :film="film"
+          :isOpen="posterModalState[film.id] === true"
+          @modal-close="() => closePosterModal(film.id)"
+          name="second-modal"
+        >
+        </FullSizePosterModal>
+        <img
+          :src="film.imageUrl"
+          :alt="film.englishTitle"
+          @click="() => openPosterModal(film.id)"
+        />
       </div>
 
       <div class="plot">
@@ -97,49 +118,6 @@ const closeModal = (id: number) => {
         <p>{{ film.genre }}</p>
       </div>
     </div>
-
-    <!-- <div class="titles">
-      <div class="header">
-        <img :src="film.imageUrl" :alt="film.englishTitle" />
-        <h1>{{ film.englishTitle }} ({{ film.releaseDate }})</h1>
-      </div>
-      <div class="subheader">
-        <h2>{{ film.japaneseTitle }}</h2>
-        <p>{{ film.runningTime }}</p>
-        <p>{{ film.genre }}</p>
-      </div>
-    </div>
-    <div class="info">
-      <VideoPlayer :film="film" :isOpen="openModals[film.id] === true" />
-      <p>{{ film.plot }}</p>
-      <p>Directed by {{ film.director }}</p>
-      <div class="settings" v-if="isAuthenticated">
-        <EditFilmModal
-          :film="film"
-          :isOpen="openModals[film.id] === true"
-          @modal-close="() => closeModal(film.id)"
-          @submit="(payload) => handleEditFilm(payload, film.englishTitle)"
-          name="first-modal"
-        >
-        </EditFilmModal>
-        <v-menu>
-          <template v-slot:activator="{ props }">
-            <v-btn v-bind="props" variant="text">
-              <svg-icon class="icon" type="mdi" :path="cog"></svg-icon>
-            </v-btn>
-          </template>
-          <v-list>
-            <v-list-item>
-              <v-list-item-title @click="() => openModal(film.id)">Edit film</v-list-item-title>
-            </v-list-item>
-
-            <v-list-item>
-              <v-list-item-title @click="deleteFilm">Delete film</v-list-item-title>
-            </v-list-item>
-          </v-list>
-        </v-menu>
-      </div>
-    </div> -->
   </div>
 </template>
 
