@@ -84,8 +84,8 @@ const handleSubmit = () => {
 <style scoped>
 @media only screen and (max-width: 480px) {
   .modal-mask {
-    position: absolute;
-    z-index: 9998;
+    position: fixed;
+    z-index: 2;
     top: 0;
     left: 0;
     width: 100%;
@@ -151,8 +151,8 @@ const handleSubmit = () => {
 }
 @media only screen and (min-width: 481px) {
   .modal-mask {
-    position: absolute;
-    z-index: 9998;
+    position: fixed;
+    z-index: 2;
     top: 0;
     left: 0;
     width: 100%;
@@ -212,8 +212,8 @@ const handleSubmit = () => {
 }
 @media only screen and (min-width: 769px) {
   .modal-mask {
-    position: absolute;
-    z-index: 9998;
+    position: fixed;
+    z-index: 2;
     top: 0;
     left: 0;
     width: 100%;
@@ -273,8 +273,8 @@ const handleSubmit = () => {
 }
 @media only screen and (min-width: 992px) {
   .modal-mask {
-    position: absolute;
-    z-index: 9998;
+    position: fixed;
+    z-index: 2;
     top: 0;
     left: 0;
     width: 100%;
@@ -334,8 +334,8 @@ const handleSubmit = () => {
 }
 @media only screen and (min-width: 1025px) {
   .modal-mask {
-    position: absolute;
-    z-index: 9998;
+    position: fixed;
+    z-index: 2;
     top: 0;
     left: 0;
     width: 100%;

@@ -5,8 +5,13 @@ const props = defineProps<{ films: FilmDB[] }>()
 </script>
 
 <template>
-  <v-expansion-panels bg-color="#b7b7a4" rounded="lg" multiple>
-    <v-expansion-panel v-for="film in props.films" :key="film.id">
+  <v-expansion-panels bg-color="#b7b7a4" multiple>
+    <v-expansion-panel
+      v-for="film in props.films"
+      :key="film.id"
+      :style="{ 'background-image': 'url(' + film.imageUrl + ')' }"
+      style="background-size: cover; background-position: center"
+    >
       <v-expansion-panel-title>
         <h1>{{ film.englishTitle }}</h1>
         ({{ film.releaseDate }})
@@ -43,16 +48,65 @@ p {
 }
 
 @media only screen and (max-width: 480px) {
+  .v-expansion-panel {
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  .v-expansion-panels:not(.v-expansion-panels--variant-accordion)
+    > :first-child:not(:last-child):not(.v-expansion-panel--active):not(
+      .v-expansion-panel--before-active
+    ) {
+    border-bottom-left-radius: 3px !important;
+    border-bottom-right-radius: 3px !important;
+  }
+
+  .v-expansion-panels:not(.v-expansion-panels--variant-accordion)
+    > :not(:first-child):not(:last-child):not(.v-expansion-panel--active):not(
+      .v-expansion-panel--before-active
+    ) {
+    border-radius: 3px !important;
+  }
+  .v-expansion-panels:not(.v-expansion-panels--variant-accordion)
+    > :not(:first-child):not(:last-child):not(.v-expansion-panel--active):not(
+      .v-expansion-panel--after-active
+    ) {
+    border-radius: 3px !important;
+  }
+
+  .v-expansion-panels:not(.v-expansion-panels--variant-accordion)
+    > :last-child:not(:first-child):not(.v-expansion-panel--active):not(
+      .v-expansion-panel--after-active
+    ) {
+    border-radius: 3px !important;
+  }
+
+  #app
+    > div.app-content
+    > div
+    > div.search-results
+    > div
+    > div.v-expansion-panel.v-expansion-panel--active
+    > button {
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+  }
+
   .v-expansion-panel-title {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     padding: 10px;
     margin: 0 5 5 0;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
   }
 
   .v-expansion-panel-text {
+    background-color: rgba(255, 255, 255, 0.9);
     padding: 5px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
   }
 }
 @media only screen and (min-width: 481px) {
