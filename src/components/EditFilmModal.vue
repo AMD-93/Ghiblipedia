@@ -166,22 +166,28 @@ const handleSubmit = () => {
     padding: 10px;
     background-color: #ddddc7;
     border-radius: 8px;
+    display: flex;
+    flex-direction: column;
   }
 
   .modal-header {
-    padding: 10px;
-    margin-bottom: 5px;
+    padding: 10px 0px 10px 1px;
+  }
+
+  .modal-body {
+    display: flex;
+    flex-direction: column;
   }
 
   .form-container {
     display: flex;
     flex-direction: column;
+    padding-bottom: 5px;
   }
 
   h1 {
-    font-size: x-large;
+    font-size: 20px;
     font-weight: normal;
-    padding-top: 10px;
   }
 
   span {
@@ -189,7 +195,7 @@ const handleSubmit = () => {
   }
 
   input {
-    border: 2px #818174 solid;
+    border: 1px #818174 solid;
     border-radius: 8px;
     padding: 10px;
     margin-bottom: 10px;
@@ -202,11 +208,11 @@ const handleSubmit = () => {
   }
 
   button {
+    width: 100%;
     background-color: #868678;
     color: black;
     border-radius: 8px;
     padding: 10px;
-    margin-top: 10px;
     font-size: 15px;
   }
 }
@@ -250,7 +256,7 @@ const handleSubmit = () => {
   }
 
   input {
-    border: 2px #818174 solid;
+    border: 1px #818174 solid;
     border-radius: 8px;
     padding: 10px;
     margin-bottom: 10px;
@@ -263,11 +269,11 @@ const handleSubmit = () => {
   }
 
   button {
+    width: 100%;
     background-color: #868678;
     color: black;
     border-radius: 8px;
     padding: 10px;
-    margin-top: 10px;
     font-size: 15px;
   }
 }
@@ -311,7 +317,7 @@ const handleSubmit = () => {
   }
 
   input {
-    border: 2px #818174 solid;
+    border: 1px #818174 solid;
     border-radius: 8px;
     padding: 10px;
     margin-bottom: 10px;
@@ -324,11 +330,11 @@ const handleSubmit = () => {
   }
 
   button {
+    width: 100%;
     background-color: #868678;
     color: black;
     border-radius: 8px;
     padding: 10px;
-    margin-top: 10px;
     font-size: 15px;
   }
 }
@@ -372,7 +378,7 @@ const handleSubmit = () => {
   }
 
   input {
-    border: 2px #818174 solid;
+    border: 1px #818174 solid;
     border-radius: 8px;
     padding: 10px;
     margin-bottom: 10px;
@@ -385,11 +391,11 @@ const handleSubmit = () => {
   }
 
   button {
+    width: 100%;
     background-color: #868678;
     color: black;
     border-radius: 8px;
     padding: 10px;
-    margin-top: 10px;
     font-size: 15px;
   }
 }

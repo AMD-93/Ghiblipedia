@@ -17,25 +17,25 @@ const dot = mdiCircleSmall
 
 const props = defineProps<{ films: FilmDB[] }>()
 
-const editModalState = reactive<Record<number, boolean>>({})
+const editModalState = reactive<Record<FilmDB['id'], boolean>>({})
 
-function openEditModal(id: number) {
+function openEditModal(id: FilmDB['id']) {
   editModalState[id] = true
 }
-function closeEditModal(id: number) {
+function closeEditModal(id: FilmDB['id']) {
   editModalState[id] = false
 }
 
-const posterModalState = reactive<Record<number, boolean>>({})
+const posterModalState = reactive<Record<FilmDB['id'], boolean>>({})
 
-function openPosterModal(id: number) {
+function openPosterModal(id: FilmDB['id']) {
   posterModalState[id] = true
 }
-function closePosterModal(id: number) {
+function closePosterModal(id: FilmDB['id']) {
   posterModalState[id] = false
 }
 
-const handleEditFilm = (payload: Record<string, string>, englishTitle: string) => {
+const handleEditFilm = (payload: Record<string, string>, englishTitle: FilmDB['englishTitle']) => {
   filmsStore.editFilm(payload, englishTitle)
 }
 const handleDeleteFilm = (englishTitle: FilmDB['englishTitle']) => {
