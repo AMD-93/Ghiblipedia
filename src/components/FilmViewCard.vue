@@ -126,8 +126,6 @@ const handleDeleteFilm = (englishTitle: FilmDB['englishTitle']) => {
   display: flex;
   flex-direction: column;
   margin: 5px;
-  /* padding: 20px; */
-  /* margin: 20px; */
   justify-self: center;
   background-color: #b7b7a4;
   border-radius: 8px;
@@ -140,24 +138,11 @@ p {
   letter-spacing: 0.7px;
 }
 
-/* h1 {
-  font-size: large;
-  font-weight: normal;
-  font-style: italic;
-  padding-top: 10px;
-}
-
-h2 {
-  font-size: medium;
-  font-weight: normal;
-  font-style: italic;
-}
-
-p {
-  font-size: smaller;
-} */
-
 @media only screen and (max-width: 480px) {
+  :deep(.trailer) article {
+    border-radius: 0;
+  }
+
   .main-info {
     padding-left: 10px;
     padding-right: 10px;
@@ -220,45 +205,13 @@ p {
     margin-top: 5px;
     font-size: 13px;
   }
-
-  /* .header {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    padding: 10px;
-    padding-bottom: 0;
-    margin: 0 5 5 0;
-  }
-  .settings {
-    align-self: flex-end;
-  }
-
-  .subheader {
-    padding: 10px;
-    padding-bottom: 0;
-  }
-
-  img {
-    max-width: 100%;
-    border-radius: 8px;
-  }
-
-  .info {
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-  }
-
-  iframe {
-    margin-bottom: 10px;
-  }
-
-  .info p {
-    padding-bottom: 10px;
-  } */
 }
 
 @media only screen and (min-width: 481px) {
+  :deep(.trailer) article {
+    border-radius: 0;
+  }
+
   .main-info {
     padding-left: 10px;
     padding-right: 10px;
@@ -324,6 +277,10 @@ p {
 }
 
 @media only screen and (min-width: 769px) {
+  :deep(.trailer) article {
+    border-radius: 8px;
+  }
+
   .container {
     display: flex;
     flex-direction: column;

@@ -14,8 +14,8 @@ const film = computed(() => store.films[0])
 </script>
 
 <template>
-  <main>
-    <TrailerCard v-if="film" :films="[film]" />
+  <main v-if="film">
+    <TrailerCard :films="[film]" />
     <div class="carousels">
       <div class="carousel-left"><CarouselComponent :film="film" /></div>
       <div class="carousel-right"><CarouselComponent :film="film" /></div>

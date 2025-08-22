@@ -236,7 +236,6 @@ const props = defineProps<{ films: FilmDB[] }>()
   .card-container {
     width: 80%;
     margin: auto;
-    :10px;
     background-color: #b7b7a4;
     border-radius: 8px;
   }

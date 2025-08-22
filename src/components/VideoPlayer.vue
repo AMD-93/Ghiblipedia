@@ -10,12 +10,17 @@ const { film } = defineProps<{ film: FilmDB }>()
 </script>
 
 <template>
+  <div class="wrapper"></div>
   <LiteYouTubeEmbed
     v-if="film"
-    :id="String(film.trailerUrl)"
+    :id="film.trailerUrl"
     :title="film.englishTitle"
     poster="maxresdefault"
   />
 </template>
 
-<style scoped></style>
+<style>
+article {
+  border-radius: 8px;
+}
+</style>

@@ -8,6 +8,7 @@ const submit = () => {
   emit('submit', englishTitle.value)
 }
 </script>
+
 <template>
   <div class="form-container">
     <h1>Add film</h1>
