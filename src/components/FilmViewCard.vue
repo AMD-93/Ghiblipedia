@@ -131,26 +131,20 @@ const handleDeleteFilm = (englishTitle: FilmDB['englishTitle']) => {
   border-radius: 8px;
 }
 
-h1,
-h2,
-p {
-  line-height: 1.6;
-  letter-spacing: 0.7px;
-}
-
 @media only screen and (max-width: 480px) {
   :deep(.trailer) article {
     border-radius: 0;
   }
 
-  .main-info {
-    padding-left: 10px;
-    padding-right: 10px;
+  .container {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    margin: 10px;
   }
 
   .english-title {
     font-size: 40px;
-    font-weight: normal;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -163,7 +157,6 @@ p {
 
   .japanese-title {
     font-size: 20px;
-    font-weight: normal;
   }
 
   .year-minutes {
@@ -210,6 +203,13 @@ p {
 @media only screen and (min-width: 481px) {
   :deep(.trailer) article {
     border-radius: 0;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    margin: 10px;
   }
 
   .main-info {
@@ -357,6 +357,7 @@ p {
     flex-direction: column;
     max-width: 80%;
     padding: 10px;
+    margin-top: 10px;
   }
 
   .main-info {

@@ -27,20 +27,41 @@ button {
   font-size: larger;
   padding: 10px;
   border-radius: 8px;
-  width: 100%;
-  margin-top: 10px;
+  margin-bottom: 5px;
 }
 
 @media only screen and (max-width: 480px) {
+  .button-container {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+  }
 }
 
 @media only screen and (min-width: 481px) {
+  .button-container {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+  }
 }
 
 @media only screen and (min-width: 769px) {
+  .button-container {
+    display: flex;
+    flex-direction: column;
+    margin: 10px auto;
+    max-width: 80%;
+  }
 }
 
 @media only screen and (min-width: 992px) {
+  .button-container {
+    display: flex;
+    flex-direction: column;
+    margin: 10px auto;
+    max-width: 80%;
+  }
 }
 
 @media only screen and (min-width: 1025px) {

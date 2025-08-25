@@ -80,7 +80,6 @@ img {
     display: flex;
     flex-direction: column;
     margin: 10px;
-    margin-bottom: 20px;
   }
 
   .pic {

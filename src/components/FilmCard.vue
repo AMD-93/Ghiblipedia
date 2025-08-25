@@ -7,10 +7,10 @@ const props = defineProps<{ films: FilmDB[] }>()
 
 const posterModalState = reactive<Record<number, boolean>>({})
 
-function openPosterModal(id: number) {
+function openPosterModal(id: FilmDB['id']) {
   posterModalState[id] = true
 }
-function closePosterModal(id: number) {
+function closePosterModal(id: FilmDB['id']) {
   posterModalState[id] = false
 }
 </script>

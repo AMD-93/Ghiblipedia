@@ -1,38 +1,69 @@
 <script setup lang="ts">
 import { useFilmsStore } from '@/store/Films'
-import { onMounted, computed } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import TrailerCard from '@/components/TrailerCard.vue'
 import CarouselComponent from '@/components/CarouselComponent.vue'
+import type { FilmDB } from '@/types'
 
 const store = useFilmsStore()
+const randomFilmIndex = ref(0)
+
+const carousel1 = ref([])
+function randomizeCarousel1(films: FilmDB[], counter: number) {
+  const randomized = films.slice().sort(() => Math.random() - 0.5)
+  return randomized.slice(0, counter)
+}
+// const carouselTrailers = ref<FilmDB[][]>([[], []])
+
+// function getRandomUniqueIndices(arrayLength: number, count: number): number[] {
+//   const indices = Array.from({ length: arrayLength }, (_, i) => i)
+//   for (let i = indices.length - 1; i > 0; i--) {
+//     const j = Math.floor(Math.random() * (i + 1))
+//     ;[indices[i], indices[j]] = [indices[j], indices[i]]
+//   }
+//   return indices.slice(0, count)
+// }
 
 onMounted(() => {
-  store.fetchFilms()
+  store.fetchFilms().then(() => {
+    randomFilmIndex.value = Math.floor(Math.random() * store.films.length)
+    const selected = randomizeCarousel1(store.films, 6)
+    carousel1.value = selected.slice(0, 3)
+
+    // const totalNeeded = 6
+    // const indices = getRandomUniqueIndices(store.films.length, totalNeeded)
+    // const trailers = indices.map((i) => store.films[i])
+    // carouselTrailers.value = [trailers.slice(0, 3), trailers.slice(3, 6)]
+  })
 })
 
-const film = computed(() => store.films[0])
+const film = computed(() => store.films[randomFilmIndex.value])
 </script>
 
 <template>
-  <main v-if="film">
+  <main v-if="film" class="container">
     <TrailerCard :films="[film]" />
     <div class="carousels">
-      <div class="carousel-left"><CarouselComponent :film="film" /></div>
-      <div class="carousel-right"><CarouselComponent :film="film" /></div>
+      <div class="carousel-left">
+        <CarouselComponent :films="carousel1" />
+      </div>
+      <!-- <div class="carousel-right">
+        <CarouselComponent :film="film" />
+      </div> -->
     </div>
   </main>
 </template>
 
 <style scoped>
-.carousels {
-  padding-top: 10px;
+.container {
+  margin-top: 10px;
 }
+
 @media only screen and (max-width: 480px) {
   .carousels {
     display: flex;
     flex-direction: column;
     margin: 10px;
-    padding-top: 10px;
   }
 }
 
@@ -41,7 +72,6 @@ const film = computed(() => store.films[0])
     display: flex;
     flex-direction: column;
     margin: 10px;
-    padding-top: 10px;
   }
 }
 
@@ -49,7 +79,8 @@ const film = computed(() => store.films[0])
   .carousels {
     display: flex;
     flex-direction: column;
-    margin: 0;
+    max-width: 80%;
+    margin: auto;
   }
 }
 

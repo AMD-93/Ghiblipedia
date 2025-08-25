@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { ref } from 'vue'
+import { onClickOutside } from '@vueuse/core'
 import { useAuth0 } from '@auth0/auth0-vue'
 import SvgIcon from '@jamescoyle/vue-icon'
 import {
@@ -24,15 +26,21 @@ function login() {
   loginWithRedirect()
 }
 
-import { ref } from 'vue'
 const showMobileMenu = ref(false)
+
 function showMenu() {
   showMobileMenu.value = !showMobileMenu.value
 }
+
+const target = ref(null)
+
+onClickOutside(target, () => {
+  showMobileMenu.value = false
+})
 </script>
 <template>
   <div>
-    <div class="nav-menu">
+    <div class="nav-menu" ref="target">
       <i class="fas fa-bars" @click="showMenu()"></i>
       <div class="nav-content" :class="showMobileMenu ? 'open-menu' : 'closed-menu'">
         <div class="logo">
