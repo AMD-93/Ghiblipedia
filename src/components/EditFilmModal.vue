@@ -69,13 +69,6 @@ const handleSubmit = () => {
           </slot>
           <button @click="handleSubmit">Submit</button>
         </div>
-        <!-- <div class="modal-footer">
-          <slot name="footer">
-            <div>
-              <button @click.stop="emit('modal-close')">Submit</button>
-            </div>
-          </slot>
-        </div> -->
       </div>
     </div>
   </div>

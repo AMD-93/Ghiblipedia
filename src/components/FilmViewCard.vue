@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import VideoPlayer from './VideoPlayer.vue'
 import type { FilmDB } from '@/types'
-import { reactive } from 'vue'
+import { computed, reactive } from 'vue'
 import { useAuth0 } from '@auth0/auth0-vue'
 import SvgIcon from '@jamescoyle/vue-icon'
 import { mdiCog, mdiCircleSmall } from '@mdi/js'
@@ -15,7 +15,7 @@ const filmsStore = useFilmsStore()
 const cog = mdiCog
 const dot = mdiCircleSmall
 
-const props = defineProps<{ films: FilmDB[] }>()
+const films = computed(() => filmsStore.films)
 
 const editModalState = reactive<Record<FilmDB['id'], boolean>>({})
 
@@ -35,9 +35,15 @@ function closePosterModal(id: FilmDB['id']) {
   posterModalState[id] = false
 }
 
-const handleEditFilm = (payload: Record<string, string>, englishTitle: FilmDB['englishTitle']) => {
-  filmsStore.editFilm(payload, englishTitle)
+const handleEditFilm = async (
+  payload: Record<string, string>,
+  englishTitle: FilmDB['englishTitle'],
+  id: FilmDB['id'],
+) => {
+  await filmsStore.editFilm(payload, englishTitle)
+  await filmsStore.fetchFilmById(id)
 }
+
 const handleDeleteFilm = (englishTitle: FilmDB['englishTitle']) => {
   filmsStore.deleteFilm(englishTitle)
 }
@@ -46,7 +52,7 @@ const handleDeleteFilm = (englishTitle: FilmDB['englishTitle']) => {
 </script>
 
 <template>
-  <div class="container" v-for="film in props.films" :key="film.id">
+  <div class="container" v-for="film in films" :key="film.id">
     <div class="main-info">
       <h1 class="english-title">
         {{ film.englishTitle }}
@@ -55,7 +61,7 @@ const handleDeleteFilm = (englishTitle: FilmDB['englishTitle']) => {
             :film="film"
             :isOpen="editModalState[film.id] === true"
             @modal-close="() => closeEditModal(film.id)"
-            @submit="(payload) => handleEditFilm(payload, film.englishTitle)"
+            @submit="(payload) => handleEditFilm(payload, film.englishTitle, film.id)"
             name="first-modal"
           >
           </EditFilmModal>

@@ -18,7 +18,7 @@ const film = computed(() => store.films[0])
 
 <template>
   <div>
-    <FilmViewCard v-if="film" :films="[film]" />
+    <FilmViewCard v-if="film" />
     <div v-else>Film not found.</div>
   </div>
 </template>

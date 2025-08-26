@@ -1,26 +1,38 @@
 <script setup lang="ts">
 import { useFilmsStore } from '@/store/Films'
-import { onMounted, computed } from 'vue'
+import { onMounted, computed, ref } from 'vue'
 import CarouselComponent from '@/components/CarouselComponent.vue'
 import NewsCard from '@/components/NewsCard.vue'
+import type { FilmDB } from '@/types'
 
 const store = useFilmsStore()
+const randomFilmIndex = ref(0)
+const films = ref<FilmDB[]>([])
+const carousel1 = ref<FilmDB[]>([])
+const carousel2 = ref<FilmDB[]>([])
 
-onMounted(() => {
-  store.fetchFilms()
+onMounted(async () => {
+  await store.fetchFilmById(id: FilmDB['id'])
+  films.value = store.films
+
+  randomFilmIndex.value = Math.floor(Math.random() * store.films.length)
+
+  const shuffled = films.value.slice().sort(() => Math.random() - 0.5)
+  carousel1.value = shuffled.slice(0, 3)
+  carousel2.value = shuffled.slice(3, 6)
 })
 
-const film = computed(() => store.films[0])
+const film = computed(() => store.films[randomFilmIndex.value])
 </script>
 <template>
   <div class="container-latest">
     <h1>Latest trailers</h1>
-    <div><CarouselComponent :film="film" /></div>
+    <div><CarouselComponent v-if="film" :films="[film]" /></div>
   </div>
   <div class="container-upcoming">
     <h1>Upcoming releases</h1>
     <div>
-      <CarouselComponent :film="film" />
+      <CarouselComponent v-if="film" :films="[film]" />
     </div>
   </div>
 

@@ -8,33 +8,19 @@ import type { FilmDB } from '@/types'
 const store = useFilmsStore()
 const randomFilmIndex = ref(0)
 
-const carousel1 = ref([])
-function randomizeCarousel1(films: FilmDB[], counter: number) {
-  const randomized = films.slice().sort(() => Math.random() - 0.5)
-  return randomized.slice(0, counter)
-}
-// const carouselTrailers = ref<FilmDB[][]>([[], []])
+const films = ref<FilmDB[]>([])
+const carousel1 = ref<FilmDB[]>([])
+const carousel2 = ref<FilmDB[]>([])
 
-// function getRandomUniqueIndices(arrayLength: number, count: number): number[] {
-//   const indices = Array.from({ length: arrayLength }, (_, i) => i)
-//   for (let i = indices.length - 1; i > 0; i--) {
-//     const j = Math.floor(Math.random() * (i + 1))
-//     ;[indices[i], indices[j]] = [indices[j], indices[i]]
-//   }
-//   return indices.slice(0, count)
-// }
+onMounted(async () => {
+  await store.fetchFilms()
+  films.value = store.films
 
-onMounted(() => {
-  store.fetchFilms().then(() => {
-    randomFilmIndex.value = Math.floor(Math.random() * store.films.length)
-    const selected = randomizeCarousel1(store.films, 6)
-    carousel1.value = selected.slice(0, 3)
+  randomFilmIndex.value = Math.floor(Math.random() * store.films.length)
 
-    // const totalNeeded = 6
-    // const indices = getRandomUniqueIndices(store.films.length, totalNeeded)
-    // const trailers = indices.map((i) => store.films[i])
-    // carouselTrailers.value = [trailers.slice(0, 3), trailers.slice(3, 6)]
-  })
+  const shuffled = films.value.slice().sort(() => Math.random() - 0.5)
+  carousel1.value = shuffled.slice(0, 3)
+  carousel2.value = shuffled.slice(3, 6)
 })
 
 const film = computed(() => store.films[randomFilmIndex.value])
@@ -45,11 +31,11 @@ const film = computed(() => store.films[randomFilmIndex.value])
     <TrailerCard :films="[film]" />
     <div class="carousels">
       <div class="carousel-left">
-        <CarouselComponent :films="carousel1" />
+        <CarouselComponent v-if="carousel1.length" :films="carousel1" />
       </div>
-      <!-- <div class="carousel-right">
-        <CarouselComponent :film="film" />
-      </div> -->
+      <div class="carousel-right">
+        <CarouselComponent v-if="carousel2.length" :films="carousel2" />
+      </div>
     </div>
   </main>
 </template>
@@ -98,7 +84,7 @@ const film = computed(() => store.films[randomFilmIndex.value])
     width: 49%;
   }
 
-  .carousel-left :deep(.v-carousel),
+  /* .carousel-left :deep(.v-carousel),
   .carousel-right :deep(.v-carousel) {
     width: 100%;
     height: 100%;
@@ -109,7 +95,7 @@ const film = computed(() => store.films[randomFilmIndex.value])
     width: 100%;
     height: 100%;
     object-fit: cover;
-  }
+  } */
 }
 
 @media only screen and (min-width: 1025px) {
