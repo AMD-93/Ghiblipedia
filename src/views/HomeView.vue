@@ -4,6 +4,7 @@ import { ref, onMounted, computed } from 'vue'
 import TrailerCard from '@/components/TrailerCard.vue'
 import CarouselComponent from '@/components/CarouselComponent.vue'
 import type { FilmDB } from '@/types'
+import DataIterator from '@/components/DataIterator.vue'
 
 const store = useFilmsStore()
 const randomFilmIndex = ref(0)
@@ -29,6 +30,7 @@ const film = computed(() => store.films[randomFilmIndex.value])
 <template>
   <main v-if="film" class="container">
     <TrailerCard :films="[film]" />
+    <DataIterator />
     <div class="carousels">
       <div class="carousel-left">
         <CarouselComponent v-if="carousel1.length" :films="carousel1" />

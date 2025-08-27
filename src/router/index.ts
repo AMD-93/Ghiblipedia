@@ -10,13 +10,43 @@ import FilmView from '@/views/FilmView.vue'
 import CreditsView from '@/views/CreditsView.vue'
 
 const routes = [
-  { path: '/', name: 'home', component: HomeView },
-  { path: '/watchlist', name: 'watchlist', component: WatchlistView, beforeEnter: authGuard },
-  { path: '/browse', name: 'browse', component: BrowseView },
-  { path: '/news', name: 'news', component: NewsView },
-  { path: '/profile', name: 'profile', component: ProfileView, beforeEnter: authGuard },
-  { path: '/api/movies/:id', name: 'film', component: FilmView },
-  { path: '/credits', name: 'credits', component: CreditsView },
+  {
+    path: '/',
+    name: 'home',
+    component: HomeView,
+  },
+  {
+    path: '/watchlist',
+    name: 'watchlist',
+    component: WatchlistView,
+    beforeEnter: authGuard,
+  },
+  {
+    path: '/browse',
+    name: 'browse',
+    component: BrowseView,
+  },
+  {
+    path: '/news',
+    name: 'news',
+    component: NewsView,
+  },
+  {
+    path: '/profile',
+    name: 'profile',
+    component: ProfileView,
+    beforeEnter: authGuard,
+  },
+  {
+    path: '/api/movies/:id',
+    name: 'film',
+    component: FilmView,
+  },
+  {
+    path: '/credits',
+    name: 'credits',
+    component: CreditsView,
+  },
 ]
 
 const router = createRouter({

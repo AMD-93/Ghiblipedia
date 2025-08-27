@@ -13,16 +13,12 @@ const props = defineProps<{ films: FilmDB[] }>()
             <VideoPlayer :film="film" />
           </div>
           <div class="movie-info">
-            <h2>{{ film.englishTitle }} ({{ film.releaseDate }})</h2>
+            <h2>
+              <span class="italic">{{ film.englishTitle }}</span>
+              <span class="release-date">({{ film.releaseDate }})</span>
+            </h2>
             <p>{{ film.summary }}</p>
           </div>
-        </div>
-
-        <div class="links">
-          <a href="#">Trailer</a>
-          <a href="#">Trailer</a>
-          <a href="#">Trailer</a>
-          <a href="#">Trailer</a>
         </div>
       </div>
     </div>
@@ -30,6 +26,15 @@ const props = defineProps<{ films: FilmDB[] }>()
 </template>
 
 <style scoped>
+.italic {
+  font-style: italic;
+  padding-right: 8px;
+}
+
+.release-date {
+  font-size: 15px;
+}
+
 .card-container {
   background-color: #b7b7a4;
   padding: 20px;

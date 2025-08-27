@@ -21,6 +21,7 @@ onMounted(async () => {
   carousel2.value = shuffled.slice(3, 6)
 })
 </script>
+
 <template>
   <div class="container-latest">
     <h1>Latest trailers</h1>
@@ -32,11 +33,11 @@ onMounted(async () => {
       <CarouselComponent v-if="carousel2.length" :films="carousel2" />
     </div>
   </div>
-
   <div class="container-news">
     <NewsCard />
   </div>
 </template>
+
 <style scoped>
 @media only screen and (max-width: 480px) {
   .container-latest,
