@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useFilmsStore } from '@/store/Films'
-import { onMounted, computed, ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import CarouselComponent from '@/components/CarouselComponent.vue'
 import NewsCard from '@/components/NewsCard.vue'
 import type { FilmDB } from '@/types'
@@ -12,27 +12,24 @@ const carousel1 = ref<FilmDB[]>([])
 const carousel2 = ref<FilmDB[]>([])
 
 onMounted(async () => {
-  await store.fetchFilmById(id: FilmDB['id'])
+  await store.fetchFilms()
   films.value = store.films
 
   randomFilmIndex.value = Math.floor(Math.random() * store.films.length)
-
   const shuffled = films.value.slice().sort(() => Math.random() - 0.5)
   carousel1.value = shuffled.slice(0, 3)
   carousel2.value = shuffled.slice(3, 6)
 })
-
-const film = computed(() => store.films[randomFilmIndex.value])
 </script>
 <template>
   <div class="container-latest">
     <h1>Latest trailers</h1>
-    <div><CarouselComponent v-if="film" :films="[film]" /></div>
+    <div><CarouselComponent v-if="carousel1.length" :films="carousel1" /></div>
   </div>
   <div class="container-upcoming">
     <h1>Upcoming releases</h1>
     <div>
-      <CarouselComponent v-if="film" :films="[film]" />
+      <CarouselComponent v-if="carousel2.length" :films="carousel2" />
     </div>
   </div>
 
