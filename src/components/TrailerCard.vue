@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import VideoPlayer from './VideoPlayer.vue'
 import type { FilmDB } from '@/types'
-const props = defineProps<{ films: FilmDB[] }>()
+const { films } = defineProps<{ films: FilmDB[] }>()
 </script>
 
 <template>
   <div>
-    <div class="card-container" v-for="film in props.films" :key="film.id">
+    <div class="card-container" v-for="film in films" :key="film.id">
       <div class="card-content">
         <div class="movie">
           <div class="trailer">

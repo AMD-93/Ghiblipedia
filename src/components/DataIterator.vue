@@ -1,110 +1,242 @@
 <script setup lang="ts">
-// https://vuetifyjs.com/en/components/data-iterators/#usage
+import { shallowRef } from 'vue'
+import VideoPlayer from './VideoPlayer.vue'
+import SvgIcon from '@jamescoyle/vue-icon'
+import { mdiArrowLeft, mdiArrowRight, mdiCircleSmall } from '@mdi/js'
 
-const desserts = [
-  {
-    name: 'Frozen Yogurt',
-    description:
-      'A tangy and creamy dessert made from yogurt and sometimes fruit, Frozen Yogurt is a lighter alternative to ice cream. Perfect for those who crave a sweet treat but want to keep it on the healthier side.',
-    icon: 'mdi-ice-cream',
-    color: '#6EC1E4',
-    calories: 159,
-    fat: 6,
-    carbs: 24,
-    protein: 4,
-    sodium: 87,
-    calcium: '14%',
-    iron: '1%',
-  },
-  {
-    name: 'Ice cream sandwich',
-    description:
-      "A classic treat featuring a layer of creamy ice cream sandwiched between two cookies or cake layers. Ideal for those hot summer days when you can't decide between a cookie and ice cream.",
-    icon: 'mdi-cookie',
-    color: '#F4A261',
-    calories: 237,
-    fat: 9,
-    carbs: 37,
-    protein: 4.3,
-    sodium: 129,
-    calcium: '8%',
-    iron: '1%',
-  },
-  {
-    name: 'Eclair',
-    description:
-      'A small, individual cake topped with frosting and often adorned with sprinkles or other decorations. Great for parties or as a quick indulgence when you need a sugar fix.',
-    icon: 'mdi-cake-variant',
-    color: '#6D4C41',
-    calories: 262,
-    fat: 16,
-    carbs: 23,
-    protein: 6,
-    sodium: 337,
-    calcium: '6%',
-    iron: '7%',
-  },
-  {
-    name: 'Cupcake',
-    description:
-      'A small, individual cake topped with frosting and often adorned with sprinkles or other decorations. Great for parties or as a quick indulgence when you need a sugar fix.',
-    color: '#FFADAD',
-    icon: 'mdi-cupcake',
-    calories: 305,
-    fat: 3.7,
-    carbs: 67,
-    protein: 4.3,
-    sodium: 413,
-    calcium: '3%',
-    iron: '8%',
-  },
-]
+import type { FilmDB } from '@/types'
+const { films } = defineProps<{ films: FilmDB[] }>()
+
+const itemsPerPage = shallowRef(1)
+
+const arrowLeft = mdiArrowLeft
+const arrowRight = mdiArrowRight
+const dot = mdiCircleSmall
+
+// https://vuetifyjs.com/en/components/data-iterators/#usage
 </script>
 
 <template>
-  <v-data-iterator :items="desserts" item-value="name">
-    <template v-slot:default="{ items, isExpanded, toggleExpand }">
-      <v-row>
-        <v-col v-for="item in items" :key="item.raw.name" cols="12" md="6" sm="12">
-          <v-card>
-            <v-card-title class="d-flex align-center">
-              <v-icon :color="item.raw.color" :icon="item.raw.icon" size="18" start></v-icon>
+  <v-data-iterator
+    :items="films"
+    item-value="name"
+    :items-per-page="itemsPerPage"
+    class="card-container"
+  >
+    <template v-slot:default="{ items, page, pageCount, prevPage, nextPage }">
+      <v-card v-for="item in items" :key="item.raw.id" class="card-content">
+        <VideoPlayer :film="item.raw" />
 
-              <h4>{{ item.raw.name }}</h4>
-            </v-card-title>
+        <v-card-title>
+          <h2 class="italic">{{ item.raw.englishTitle }}</h2>
+          <div class="year-minutes">
+            <p>{{ item.raw.releaseDate }}</p>
+            <svg-icon class="dot-icon" type="mdi" :path="dot"></svg-icon>
+            <p>{{ item.raw.runningTime }}</p>
+          </div>
+        </v-card-title>
 
-            <v-card-text>
-              {{ item.raw.description }}
-            </v-card-text>
+        <v-card-text>
+          <p>{{ item.raw.summary }}</p>
+        </v-card-text>
 
-            <div class="px-4">
-              <v-switch
-                :label="`${isExpanded(item) ? 'Hide' : 'Show'} details`"
-                :model-value="isExpanded(item)"
-                density="compact"
-                inset
-                @click="() => toggleExpand(item)"
-              ></v-switch>
-            </div>
+        <div class="card-navigation">
+          <v-btn :disabled="page === 1" size="small" variant="tonal" @click="prevPage">
+            <svg-icon type="mdi" :path="arrowLeft" />
+          </v-btn>
 
-            <v-divider></v-divider>
-
-            <v-expand-transition>
-              <div v-if="isExpanded(item)">
-                <v-list :lines="false" density="compact">
-                  <v-list-item :title="`🔥 Calories: ${item.raw.calories}`" active></v-list-item>
-                  <v-list-item :title="`🍔 Fat: ${item.raw.fat}`"></v-list-item>
-                  <v-list-item :title="`🍞 Carbs: ${item.raw.carbs}`"></v-list-item>
-                  <v-list-item :title="`🍗 Protein: ${item.raw.protein}`"></v-list-item>
-                  <v-list-item :title="`🧂 Sodium: ${item.raw.sodium}`"></v-list-item>
-                  <v-list-item :title="`🦴 Calcium: ${item.raw.calcium}`"></v-list-item>
-                  <v-list-item :title="`🧲 Iron: ${item.raw.iron}`"></v-list-item>
-                </v-list>
-              </div>
-            </v-expand-transition>
-          </v-card>
-        </v-col>
-      </v-row>
+          <v-btn :disabled="page === pageCount" size="small" variant="tonal" @click="nextPage">
+            <svg-icon type="mdi" :path="arrowRight" />
+          </v-btn>
+        </div>
+      </v-card>
     </template>
   </v-data-iterator>
 </template>
+
+<style scoped>
+.italic {
+  font-style: italic;
+  padding-right: 8px;
+}
+
+.release-date {
+  font-size: 15px;
+}
+
+.card-content {
+  border-radius: 8px;
+  background-color: #b7b7a4;
+}
+
+.year-minutes {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.dot-icon {
+  width: 18px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+button:nth-child(1) {
+  border-top-left-radius: 0px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 0px;
+}
+
+button:nth-child(2) {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+
+:deep(article) {
+  border-radius: 0px;
+}
+
+@media only screen and (max-width: 480px) {
+  .card-container {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+  }
+
+  .card-navigation {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .card-content {
+    display: flex;
+    flex-direction: column;
+  }
+  h2 {
+    font-size: 20px;
+  }
+
+  h3 {
+    font-style: italic;
+    font-size: 15px;
+  }
+
+  p {
+    font-size: 13px;
+  }
+}
+
+@media only screen and (min-width: 481px) {
+  .card-container {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+  }
+
+  .card-navigation {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+
+  .card-content {
+    display: flex;
+    flex-direction: column;
+  }
+  h2 {
+    font-size: 20px;
+  }
+
+  h3 {
+    font-style: italic;
+    font-size: 15px;
+  }
+
+  p {
+    font-size: 13px;
+  }
+}
+
+@media only screen and (min-width: 769px) {
+  .card-container {
+    display: flex;
+    flex-direction: column;
+    margin: 5px auto;
+    max-width: 80%;
+  }
+  .card-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  h3 {
+    font-style: italic;
+    font-size: 15px;
+  }
+
+  p {
+    font-size: 13px;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .card-container {
+    width: 80%;
+    margin: 10px auto;
+    background-color: #b7b7a4;
+    border-radius: 8px;
+  }
+
+  .card-content {
+    display: flex;
+    flex-direction: column;
+  }
+  h2 {
+    font-size: 20px;
+  }
+
+  h3 {
+    font-style: italic;
+    font-size: 15px;
+  }
+
+  p {
+    font-size: 13px;
+  }
+}
+
+@media only screen and (min-width: 1025px) {
+  .card-container {
+    width: 80%;
+    margin: 10px auto;
+    background-color: #b7b7a4;
+    border-radius: 8px;
+  }
+
+  .card-content {
+    display: flex;
+    flex-direction: column;
+  }
+  h2 {
+    font-size: 20px;
+  }
+
+  h3 {
+    font-style: italic;
+    font-size: 15px;
+  }
+
+  p {
+    font-size: 13px;
+  }
+}
+</style>
