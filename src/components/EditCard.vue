@@ -1,21 +1,14 @@
 <script setup lang="ts">
 import { reactive } from 'vue'
 
-//commented out bunch of props that should probably be read-only
 const form = reactive({
-  // englishTitle: '',
   japaneseTitle: '',
-  // releaseDate: '',
-  // imageUrl: '',
   trailerUrl: '',
   summary: '',
   plot: '',
-  // director: '',
   genre: '',
-  // runningTime: '',
   tags: [''],
 })
-// The Wind Rises, Japanese titles: 風立ちぬ, Kaze Tachinu
 const emit = defineEmits(['submit'])
 
 const submit = () => {
@@ -26,16 +19,11 @@ const submit = () => {
 <template>
   <div class="form-container">
     <h1>Edit film</h1>
-    <!-- <input v-model="form.englishTitle" placeholder="English title" /> -->
     <input v-model="form.japaneseTitle" placeholder="Japanese title" />
-    <!-- <input v-model="form.releaseDate" placeholder="Release date" /> -->
-    <!-- <input v-model="form.imageUrl" placeholder="Image URL" /> -->
     <input v-model="form.trailerUrl" placeholder="Trailer URL" />
     <input v-model="form.summary" placeholder="Summary" />
     <input v-model="form.plot" placeholder="Plot" />
-    <!-- <input v-model="form.director" placeholder="Director" /> -->
     <input v-model="form.genre" placeholder="Genres" />
-    <!-- <input v-model="form.runningTime" placeholder="Running time" /> -->
     <input v-model="form.tags" placeholder="Tags" />
     <button @click="submit">Submit</button>
   </div>

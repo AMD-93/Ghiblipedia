@@ -12,8 +12,6 @@ const itemsPerPage = shallowRef(1)
 const arrowLeft = mdiArrowLeft
 const arrowRight = mdiArrowRight
 const dot = mdiCircleSmall
-
-// https://vuetifyjs.com/en/components/data-iterators/#usage
 </script>
 
 <template>

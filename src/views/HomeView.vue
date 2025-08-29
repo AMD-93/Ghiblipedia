@@ -85,19 +85,6 @@ const film = computed(() => store.films[randomFilmIndex.value])
   .carousel-right {
     width: 49%;
   }
-
-  /* .carousel-left :deep(.v-carousel),
-  .carousel-right :deep(.v-carousel) {
-    width: 100%;
-    height: 100%;
-  }
-
-  .carousel-left :deep(video),
-  .carousel-right :deep(video) {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  } */
 }
 
 @media only screen and (min-width: 1025px) {

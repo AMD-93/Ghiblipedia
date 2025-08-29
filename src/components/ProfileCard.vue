@@ -44,16 +44,6 @@ const items = [{ title: 'Edit profile' }, { title: 'Reset password' }, { title: 
       </v-menu>
     </div>
   </div>
-  <!-- <pre v-if="isAuthenticated">
-        <code>
-          {{ user }}
-        <p> {{ user?.nickname }}</p>
-        <p> {{ user?.name }}</p>
-        <p> {{ user?.email }}</p>
-        <p> {{ user?.email_verified }}</p>
-
-        </code>
-</pre> -->
 </template>
 <style scoped>
 .pic {
